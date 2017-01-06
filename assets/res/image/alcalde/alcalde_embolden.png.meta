@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "7c9cd83b-310f-49e5-a6c8-759af0dfe57b",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "alcalde_embolden": {
+      "ver": "1.0.3",
+      "uuid": "c333c841-fa40-4608-917d-cc8b5195f7ad",
+      "rawTextureUuid": "7c9cd83b-310f-49e5-a6c8-759af0dfe57b",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 240,
+      "height": 273,
+      "rawWidth": 240,
+      "rawHeight": 273,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

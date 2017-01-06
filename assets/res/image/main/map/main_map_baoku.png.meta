@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "2ce7bfd0-ac4c-411a-b994-d1e2e10ec03f",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "main_map_baoku": {
+      "ver": "1.0.3",
+      "uuid": "693d4d08-0bca-4714-ae30-2e1bf6ba07fa",
+      "rawTextureUuid": "2ce7bfd0-ac4c-411a-b994-d1e2e10ec03f",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 202,
+      "height": 179,
+      "rawWidth": 202,
+      "rawHeight": 179,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "d73b5c33-867f-4706-b9ae-9cb9c1a6ad93",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "alcalde_inaugural": {
+      "ver": "1.0.3",
+      "uuid": "eb1775c0-047a-4001-905d-6675f373b4bd",
+      "rawTextureUuid": "d73b5c33-867f-4706-b9ae-9cb9c1a6ad93",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 240,
+      "height": 273,
+      "rawWidth": 240,
+      "rawHeight": 273,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
