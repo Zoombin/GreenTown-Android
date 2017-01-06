@@ -38,7 +38,7 @@ var User = cc.Class({
         // 当前用户
         current: function() {
             var user_id = cc.sys.localStorage.getItem("user_id");
-            if (user_id !== null || user_id !== undefined || user_id !== '') {
+            if (user_id !== null && user_id !== undefined && user_id !== '') {
                 var user = new User();
                 user.user_id = user_id;
                 user.user_name = cc.sys.localStorage.getItem("user_name");

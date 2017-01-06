@@ -66,10 +66,21 @@ cc.Class({
         cc.log("menu", "onMenuSettingClicked");
         cc.director.loadScene("completeInfoScene");
     },
+    
+    start: function() {
+        cc.log("start");
+        this.infoNameLabel.width = 500;
+    },
 
     // use this for initialization
     onLoad: function () {
         // 检测用户是否登录，未登录的话，进入登录页面
+        var user = User.current();
+        if (user === null) {
+            //
+            cc.director.loadScene("loginScene");
+            return;
+        }
     },
 
     // called every frame, uncomment this function to activate update callback
