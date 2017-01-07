@@ -1,4 +1,4 @@
-const User = require('User');
+const UserAPI = require('UserAPI');
 
 cc.Class({
     extends: cc.Component,
@@ -50,13 +50,13 @@ cc.Class({
     // 菜单栏
     onMenuMessageClicked: function() {
         cc.log("menu", "onMenuMessageClicked");
-        var user = new User();
+        var user = new UserAPI();
         user.user_id = "111";
         user.save();
     },
     onMenuSportClicked: function() {
         cc.log("menu", "onMenuSportClicked");
-        this.infoNameLabel.string = User.current().user_id;
+        this.infoNameLabel.string = UserAPI.current().user_id;
     },
     onMenuStoreClicked: function() {
         cc.log("menu", "onMenuStoreClicked");
@@ -75,7 +75,7 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         // 检测用户是否登录，未登录的话，进入登录页面
-        var user = User.current();
+        var user = UserAPI.current();
         if (user === null) {
             //
             cc.director.loadScene("loginScene");

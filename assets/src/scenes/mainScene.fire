@@ -37,9 +37,6 @@
       },
       {
         "__id__": 48
-      },
-      {
-        "__id__": 128
       }
     ],
     "_localZOrder": 0,
@@ -1154,7 +1151,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 139,
+      "width": 135,
       "height": 45
     },
     "_children": [],
@@ -1296,7 +1293,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 96,
       "height": 32
     },
     "_children": [],
@@ -1340,7 +1337,7 @@
     "_actualFontSize": 32,
     "_fontSize": 32,
     "_lineHeight": 0,
-    "_enableWrapText": false,
+    "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "3331089e-7d55-4712-8280-83d231488d14"
     },
@@ -1438,7 +1435,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 132,
+      "width": 128,
       "height": 32
     },
     "_children": [],
@@ -1482,7 +1479,7 @@
     "_actualFontSize": 32,
     "_fontSize": 32,
     "_lineHeight": 0,
-    "_enableWrapText": false,
+    "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "3331089e-7d55-4712-8280-83d231488d14"
     },
@@ -4839,53 +4836,5 @@
     },
     "_fitWidth": true,
     "_fitHeight": true
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "New Node",
-    "_objFlags": 0,
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_parent": {
-      "__id__": 1
-    },
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
-    },
-    "_children": [],
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_tag": -1,
-    "_opacityModifyRGB": false,
-    "_id": "f3e21TqDHpImJwesRYMLFNF",
-    "_active": true,
-    "_components": [],
-    "_prefab": null,
-    "groupIndex": 0
   }
 ]

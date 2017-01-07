@@ -1,3 +1,4 @@
+const API = require("API");
 
 var User = cc.Class({
     extends: cc.Component,
@@ -61,13 +62,87 @@ var User = cc.Class({
         
         // 登录
         login: function(phone, code, callback) {
-            
+            API.post("user/login", {
+                "user_name": phone,
+                "captcha": code
+            }, function(msg, data) {
+                if (msg !== null) {
+                    callback(msg, null);
+                    return;
+                }
+                var user = new User();
+                user.user_id = data.user_id;
+                user.user_name = data.user_name;
+                user.fullname = data.fullname;
+                user.nickname = data.nickname;
+                user.gender = data.gender;
+                user.role_id = data.role_id;
+                user.department_id = data.department_id;
+                user.department_name = data.department_name;
+                user.position_id = data.position_id;
+                user.position_name = data.position_name;
+                user.golds = data.golds;
+                user.coins = data.coins;
+                user.points = data.points;
+                user.title_name = data.title_name;
+                user.save();
+                callback(null, user);
+            });
         },
         
         // 获取验证码
-        requestCode: function(code, callback) {
-            
-        }
+        requestCode: function(phone, callback) {
+            API.get("user/captcha", {
+                "user_name": phone
+            }, function(msg, data) {
+                if (msg !== null) {
+                    callback(msg, null);
+                    return;
+                }
+                callback(msg, null);
+            });
+        },
+        
+        // 成就排行
+        pointsRank: function(page, callback) {
+            API.get("user/points_ranking", {
+                "START": page,
+                "PAGESIZE": 50
+            }, callback);
+        },
+        
+        // 绿币排行
+        coinsRank: function(page, callback) {
+            API.get("user/coins_ranking", {
+                "START": page,
+                "PAGESIZE": 50
+            }, callback);
+        },
+        
+        // 所有用户
+        allUsers: function(callback) {
+            API.get("user/group_list", {
+                "START": 0,
+                "PAGESIZE": 50
+            }, callback);
+        },
+        
+        // 鞭策
+        spur: function(user_id, reason_id, callback) {
+            API.post("user/spur", {
+                user_id: user_id,
+                reason_id: reason_id
+            }, callback);
+        },
+        
+        // 鼓舞
+        inspire: function(user_id, reason_id, callback) {
+            API.post("user/inspire", {
+                user_id: user_id,
+                reason_id: reason_id
+            }, callback);
+        },
+        
     },
     
     // 退出登录
@@ -107,8 +182,8 @@ var User = cc.Class({
     },
     
     // 更新信息
-    update: function() {
-        
-    }
+    update: function(params, callback) {
+        API.post("user/complete_profile", params, callback);
+    },
     
 });

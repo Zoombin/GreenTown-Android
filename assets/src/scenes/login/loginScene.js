@@ -1,3 +1,8 @@
+const API = require("API");
+const UserAPI = require("UserAPI");
+const Toast = require("Toast");
+const StringUtils = require("StringUtils");
+
 cc.Class({
     extends: cc.Component,
 
@@ -14,27 +19,43 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-
-    },
-    
-    codeButtonClicked: function() {
         
     },
     
+    codeButtonClicked: function() {
+        var phone = this.phoneEditBox.string;
+        if (!StringUtils.isPhone(phone)) {
+            Toast.show("手机号格式错误");
+            return;
+        }
+        UserAPI.requestCode(phone, function(msg, data) {
+            Toast.show(msg);
+        });
+    },
+    
     loginButtonClicked: function() {
-        this.login();
+        var phone = this.phoneEditBox.string;
+        var code = this.codeEditBox.string;
+        if (!StringUtils.isPhone(phone)) {
+            Toast.show("手机号格式错误");
+            return;
+        }
+        UserAPI.login(phone, code, function(msg, user) {
+            if (msg !== null) {
+                Toast.show(msg);
+                return;
+            }
+            // 登录成功
+        });
     },
     
     onEditingReturn: function(editBox) {
-        cc.log("333");
         if (editBox == this.phoneEditBox) {
             this.codeEditBox.setFocus();
-            cc.log("1111");
         } else if (editBox == this.codeEditBox) {
             this.login();
-            cc.log("2222");
         }
-        cc.log("444");
+        Toast.show("123");
     },
 
     login: function() {
