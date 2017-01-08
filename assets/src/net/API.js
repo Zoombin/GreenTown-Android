@@ -26,10 +26,8 @@ var API = cc.Class({
                         var json = JSON.parse(xhr.responseText);
                         if (json.error === 0) {
                             callback(json.msg, json.data);
-                            return;
                         } else {
                             callback(json.msg, null);
-                            return;
                         }
                     } else {
                         callback(xhr.statusText, null);
@@ -58,10 +56,8 @@ var API = cc.Class({
                         var json = JSON.parse(xhr.responseText);
                         if (json.error === 0) {
                             callback(json.msg, json.data);
-                            return;
                         } else {
                             callback(json.msg, null);
-                            return;
                         }
                     } else {
                         callback(xhr.statusText, null);

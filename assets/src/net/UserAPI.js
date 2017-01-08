@@ -60,35 +60,38 @@ var User = cc.Class({
             return null;
         },
         
+        convertUser: function(data) {
+            var user = new User();
+            user.user_id = data.user_id;
+            user.user_name = data.user_name;
+            user.fullname = data.fullname;
+            user.nickname = data.nickname;
+            user.gender = data.gender;
+            user.role_id = data.role_id;
+            user.department_id = data.department_id;
+            user.department_name = data.department_name;
+            user.position_id = data.position_id;
+            user.position_name = data.position_name;
+            user.golds = data.golds;
+            user.coins = data.coins;
+            user.points = data.points;
+            user.title_name = data.title_name;
+            return user;
+        },
+        
         // 登录
         login: function(phone, code, callback) {
             API.post("user/login", {
                 "user_name": phone,
                 "captcha": code
             }, function(msg, data) {
-                if (msg !== null) {
+                if (data === null) {
                     callback(msg, null);
                     return;
                 }
-                cc.log("1111");
-                var user = new User();
-                user.user_id = data.user_id;
-                user.user_name = data.user_name;
-                user.fullname = data.fullname;
-                user.nickname = data.nickname;
-                user.gender = data.gender;
-                user.role_id = data.role_id;
-                user.department_id = data.department_id;
-                user.department_name = data.department_name;
-                user.position_id = data.position_id;
-                user.position_name = data.position_name;
-                user.golds = data.golds;
-                user.coins = data.coins;
-                user.points = data.points;
-                user.title_name = data.title_name;
+                var user = User.convertUser(data);
                 user.save();
-                cc.log("222");
-                callback(null, user);
+                callback(msg, user);
             });
         },
         
@@ -97,7 +100,7 @@ var User = cc.Class({
             API.get("user/captcha", {
                 "user_name": phone
             }, function(msg, data) {
-                if (msg !== null) {
+                if (data === null) {
                     callback(msg, null);
                     return;
                 }
@@ -145,6 +148,22 @@ var User = cc.Class({
             }, callback);
         },
         
+        // 检测跳转
+        checkScene: function() {
+            if (User.current().fullname === null ||
+                User.current().fullname === "") {
+                // 跳转到完善1
+                cc.director.loadScene("completeInfoScene");
+                return false;
+            }
+            if (User.current().department_id === null ||
+                User.current().department_id === "") {
+                // 跳转到完善2
+                return false;
+            }
+            return true;
+        }
+        
     },
     
     // 退出登录
@@ -185,7 +204,16 @@ var User = cc.Class({
     
     // 更新信息
     update: function(params, callback) {
-        API.post("user/complete_profile", params, callback);
+        API.post("user/complete_profile",
+        params, function(msg, data) {
+            if (data === null) {
+                callback(msg, null);
+                return;
+            }
+            var user = User.convertUser(data);
+            user.save();
+            callback(msg, user);
+        });
     },
     
 });

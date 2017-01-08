@@ -68,12 +68,16 @@ cc.Class({
             return;
         }
         UserAPI.login(phone, code, function(msg, user) {
-            if (msg !== null) {
+            if (user === null) {
                 Toast.show(msg);
                 return;
             }
             // 登录成功
-            Toast.show("登录成功");
+            if (!UserAPI.checkScene()) {
+                return;
+            }
+            // 跳转到主场景
+            cc.director.loadScene("mainScene");
         });
     }
 
