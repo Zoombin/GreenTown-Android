@@ -57,10 +57,13 @@
     "_components": [
       {
         "__id__": 9
+      },
+      {
+        "__id__": 10
       }
     ],
     "_prefab": {
-      "__id__": 10
+      "__id__": 11
     },
     "groupIndex": 0
   },
@@ -188,15 +191,15 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 38,
-    "_fontSize": 38,
+    "_actualFontSize": 32,
+    "_fontSize": 32,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "3331089e-7d55-4712-8280-83d231488d14"
     },
     "_isSystemFontUsed": false,
-    "_N$string": "",
+    "_N$string": "Toast内容",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$overflow": 2
@@ -280,6 +283,18 @@
     "backgroundSprite": {
       "__id__": 7
     }
+  },
+  {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_defaultClip": null,
+    "_clips": [],
+    "playOnLoad": false
   },
   {
     "__type__": "cc.PrefabInfo",

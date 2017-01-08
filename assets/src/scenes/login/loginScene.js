@@ -2,6 +2,7 @@ const API = require("API");
 const UserAPI = require("UserAPI");
 const Toast = require("Toast");
 const StringUtils = require("StringUtils");
+const Dialog = require("Dialog");
 
 cc.Class({
     extends: cc.Component,
@@ -22,6 +23,16 @@ cc.Class({
         
     },
     
+    onEnable: function() {
+        cc.eventManager.addListener({
+            event: cc.EventListener.KEYBOARD,
+            onKeyReleased: function(keyCode, event) {
+                if (keyCode == cc.KEY.back) {
+                    cc.director.end();
+                }
+            }}, this.node);
+    },
+    
     codeButtonClicked: function() {
         var phone = this.phoneEditBox.string;
         if (!StringUtils.isPhone(phone)) {
@@ -34,19 +45,7 @@ cc.Class({
     },
     
     loginButtonClicked: function() {
-        var phone = this.phoneEditBox.string;
-        var code = this.codeEditBox.string;
-        if (!StringUtils.isPhone(phone)) {
-            Toast.show("手机号格式错误");
-            return;
-        }
-        UserAPI.login(phone, code, function(msg, user) {
-            if (msg !== null) {
-                Toast.show(msg);
-                return;
-            }
-            // 登录成功
-        });
+        this.login();
     },
     
     onEditingReturn: function(editBox) {
@@ -55,11 +54,27 @@ cc.Class({
         } else if (editBox == this.codeEditBox) {
             this.login();
         }
-        Toast.show("123");
     },
 
     login: function() {
-        
+        var phone = this.phoneEditBox.string;
+        var code = this.codeEditBox.string;
+        if (!StringUtils.isPhone(phone)) {
+            Toast.show("手机号格式错误");
+            return;
+        }
+        if (StringUtils.isEmpty(code)) {
+            Toast.show("请输入验证码");
+            return;
+        }
+        UserAPI.login(phone, code, function(msg, user) {
+            if (msg !== null) {
+                Toast.show(msg);
+                return;
+            }
+            // 登录成功
+            Toast.show("登录成功");
+        });
     }
 
     // called every frame, uncomment this function to activate update callback

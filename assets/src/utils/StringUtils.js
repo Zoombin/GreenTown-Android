@@ -17,8 +17,8 @@ cc.Class({
     statics: {
         
         //删除左右两端的空格
-        trim: function (str){ 
-　　        return str.replace(/(^\s*)|(\s*$)/g, "");
+        isEmpty: function (str){ 
+　　        return str.replace(/(^\s*)|(\s*$)/g, "") === "";
 　　    },
         
         isPhone: function(phone) {

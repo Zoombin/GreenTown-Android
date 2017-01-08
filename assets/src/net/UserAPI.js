@@ -70,6 +70,7 @@ var User = cc.Class({
                     callback(msg, null);
                     return;
                 }
+                cc.log("1111");
                 var user = new User();
                 user.user_id = data.user_id;
                 user.user_name = data.user_name;
@@ -86,6 +87,7 @@ var User = cc.Class({
                 user.points = data.points;
                 user.title_name = data.title_name;
                 user.save();
+                cc.log("222");
                 callback(null, user);
             });
         },

@@ -47,6 +47,7 @@ var API = cc.Class({
             var requestURL = this.baseURL + url + "?" + paramsString;
             cc.log("POST  " + requestURL);
             xhr.open("POST", requestURL, true);
+            xhr.send();
         },
         
         get: function(url, params, callback) {
