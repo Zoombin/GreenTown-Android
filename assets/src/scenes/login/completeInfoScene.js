@@ -12,6 +12,16 @@ cc.Class({
         nicknameEditBox: cc.EditBox,
         confirmButton: cc.Button,
     },
+    
+    onEnable: function() {
+        cc.eventManager.addListener({
+            event: cc.EventListener.KEYBOARD,
+            onKeyReleased: function(keyCode, event) {
+                if (keyCode == cc.KEY.back) {
+                    cc.director.end();
+                }
+            }}, this.node);
+    },
 
     // use this for initialization
     onLoad: function () {
