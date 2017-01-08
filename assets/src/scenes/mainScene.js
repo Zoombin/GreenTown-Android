@@ -27,6 +27,16 @@ cc.Class({
         
     },
     
+    onEnable: function() {
+        cc.eventManager.addListener({
+            event: cc.EventListener.KEYBOARD,
+            onKeyReleased: function(keyCode, event) {
+                if (keyCode == cc.KEY.back) {
+                    cc.director.end();
+                }
+            }}, this.node);
+    },
+    
     // 地图
     onMapZhengzhangClicked: function() {
         cc.log("map", "onMapZhengzhangClicked");
@@ -74,15 +84,6 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        cc.eventManager.addListener({
-            event: cc.EventListener.KEYBOARD,
-            onKeyReleased: function(keyCode, event) {
-                cc.log("keyCode1 -> " + keyCode);
-                if (keyCode == cc.KEY.back) {
-                    cc.director.exit();
-                    cc.log("keyCode2 -> " + keyCode);
-                }
-            }}, this.node);
         // 检测用户是否登录，未登录的话，进入登录页面
         var user = UserAPI.current();
         if (user === null) {
