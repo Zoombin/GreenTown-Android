@@ -1,4 +1,3 @@
-const API = require("API");
 const UserAPI = require("UserAPI");
 const Toast = require("Toast");
 const StringUtils = require("StringUtils");

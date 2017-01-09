@@ -60,21 +60,15 @@ cc.Class({
     // 菜单栏
     onMenuMessageClicked: function() {
         cc.log("menu", "onMenuMessageClicked");
-        var user = new UserAPI();
-        user.user_id = "111";
-        user.save();
     },
     onMenuSportClicked: function() {
         cc.log("menu", "onMenuSportClicked");
-        this.infoNameLabel.string = UserAPI.current().user_id;
     },
     onMenuStoreClicked: function() {
         cc.log("menu", "onMenuStoreClicked");
-        cc.director.loadScene("loginScene");
     },
     onMenuSettingClicked: function() {
         cc.log("menu", "onMenuSettingClicked");
-        UserAPI.current().logout();
     },
     
     start: function() {

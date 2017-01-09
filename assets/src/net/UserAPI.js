@@ -159,6 +159,7 @@ var User = cc.Class({
             if (User.current().department_id === null ||
                 User.current().department_id === "") {
                 // 跳转到完善2
+                cc.director.loadScene("completeInfoScene");
                 return false;
             }
             return true;
