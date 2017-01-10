@@ -6,6 +6,7 @@ cc.Class({
     },
     
     statics: {
+        // 角色配置
         roles: {
             "boy": [
                 {
