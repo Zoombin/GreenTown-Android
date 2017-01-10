@@ -1,5 +1,7 @@
 const UserAPI = require("UserAPI");
 const Config = require("Config");
+const StringUtils = require("StringUtils");
+const Toast = require("Toast");
 
 cc.Class({
     extends: cc.Component,
@@ -18,6 +20,7 @@ cc.Class({
         nicknameEditBox: cc.EditBox,
         confirmButton: cc.Button,
         
+        isBoy: true,
         roles: [Object],
         selectedIndex: 0
     },
@@ -105,6 +108,7 @@ cc.Class({
         var role_id = this.roles[this.selectedIndex].id;
         var fullname = this.fullnameEditBox.string;
         var nickname = this.nicknameEditBox.string;
+        var user_id = UserAPI.current().user_id;
         
         if (StringUtils.isEmpty(fullname)) {
             Toast.show("请输入姓名");
@@ -115,6 +119,22 @@ cc.Class({
             Toast.show("请输入昵称");
             return;
         }
+        
+        UserAPI.update({
+            "user_id": user_id,
+            "gender": this.isBoy ? "male" : "felmale",
+            "role_id": role_id,
+            "fullname": fullname,
+            "nickname": nickname,
+        }, function (msg, user) {
+            if (user === null) {
+                Toast.show(msg);
+                return;
+            }
+            // 登录成功
+            UserAPI.checkScene();
+            Toast.show("更新成功");
+        });
     }
     
     

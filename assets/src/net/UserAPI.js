@@ -147,6 +147,20 @@ var User = cc.Class({
                 reason_id: reason_id
             }, callback);
         },
+    
+        // 更新信息
+        update: function(params, callback) {
+            API.post("user/complete_profile",
+            params, function(msg, data) {
+                if (data === null) {
+                    callback(msg, null);
+                    return;
+                }
+                var user = User.convertUser(data);
+                user.save();
+                callback(msg, user);
+            });
+        },
         
         // 检测跳转
         checkScene: function() {
@@ -159,7 +173,7 @@ var User = cc.Class({
             if (User.current().department_id === null ||
                 User.current().department_id === "") {
                 // 跳转到完善2
-                cc.director.loadScene("completeInfoScene");
+                cc.director.loadScene("completeDepartmentScene");
                 return false;
             }
             return true;
@@ -201,20 +215,6 @@ var User = cc.Class({
         cc.sys.localStorage.setItem("coins", this.coins);
         cc.sys.localStorage.setItem("points", this.points);
         cc.sys.localStorage.setItem("title_name", this.title_name);
-    },
-    
-    // 更新信息
-    update: function(params, callback) {
-        API.post("user/complete_profile",
-        params, function(msg, data) {
-            if (data === null) {
-                callback(msg, null);
-                return;
-            }
-            var user = User.convertUser(data);
-            user.save();
-            callback(msg, user);
-        });
     },
     
 });
