@@ -699,7 +699,8 @@
     },
     "scrollView": {
       "__id__": 45
-    }
+    },
+    "outsideButton": null
   },
   {
     "__type__": "cc.Node",
@@ -1660,8 +1661,7 @@
     "node": {
       "__id__": 38
     },
-    "_enabled": true,
-    "delegate": null
+    "_enabled": true
   },
   {
     "__type__": "cc.Sprite",
