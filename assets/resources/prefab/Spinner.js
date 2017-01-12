@@ -1,35 +1,40 @@
-var ListView = require("ListView");
-
 cc.Class({
     extends: cc.Component,
 
     properties: {
         nameLabel: cc.Label,
         valueLabel: cc.Label,
-        expandSprite: cc.Sprite,
         touchButton: cc.Button,
-        scrollView: cc.ScrollView,
-        
-        outsideButton: cc.Button
     },
 
     // use this for initialization
     onLoad: function () {
-        this.expandSprite.node.active = false;
         this.touchButton.node.on("click", this.spinnerClicked, this);
     },
     
     spinnerClicked: function() {
-        this.expandSprite.node.active = !this.expandSprite.node.active;
-        if (this.expandSprite.node.active) {
-            
+        if (cc.director.getScene().getChildByName("SpinnerExpand") === null) {
+            cc.loader.loadRes("prefab/SpinnerExpand", cc.Prefab, function(err, prefab) {
+                if (err !== null) {
+                    cc.log(err);
+                    return;
+                }
+                var winSize = cc.director.getWinSize();
+                var node = cc.instantiate(prefab);
+                node.name = "SpinnerExpand";
+                node.setPosition(cc.v2(winSize.width / 2, winSize.height / 2));
+                cc.director.getScene().addChild(node, 10000);
+                
+                var spinnerExpand = node.getComponent("SpinnerExpand");
+                var expandLayout = spinnerExpand.expandLayout;
+                var rect = this.touchButton.node.getBoundingBoxToWorld();
+                var position = cc.v2(rect.x, rect.y);
+                position = cc.v2(position.x - winSize.width / 2 + rect.width / 2, position.y - winSize.height / 2 - rect.height / 2 - rect.height);
+                expandLayout.node.setPosition(position);
+            }.bind(this));
         } else {
-            this.hideOutSideButton();
+            cc.director.getScene().getChildByName("SpinnerExpand").removeFromParent(true);
         }
-    },
-    
-    outsideButtonClicked: function() {
-        this.hideOutSideButton();
     },
 
     // called every frame, uncomment this function to activate update callback

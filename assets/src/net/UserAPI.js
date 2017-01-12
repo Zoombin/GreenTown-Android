@@ -79,6 +79,20 @@ var User = cc.Class({
             return user;
         },
         
+        // 鼓舞理由
+        inspireReason: function(callback) {
+            API.get("user/inspire_or_spur_content", {
+                "type": "1"
+            }, callback);
+        },
+        
+        // 鞭策理由
+        spurReason: function(callback) {
+            API.get("user/inspire_or_spur_content", {
+                "type": "2"
+            }, callback);
+        },
+        
         // 登录
         login: function(phone, code, callback) {
             API.post("user/login", {
@@ -164,6 +178,10 @@ var User = cc.Class({
         
         // 检测跳转
         checkScene: function() {
+            if (User.current() === null) {
+                cc.director.loadScene("loginScene");
+                return false;
+            }
             if (User.current().fullname === null ||
                 User.current().fullname === "") {
                 // 跳转到完善1
