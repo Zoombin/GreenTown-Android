@@ -13,6 +13,16 @@ cc.Class({
         // },
         // ...
     },
+    
+    onEnable: function() {
+        cc.eventManager.addListener({
+            event: cc.EventListener.KEYBOARD,
+            onKeyReleased: function(keyCode, event) {
+                if (keyCode == cc.KEY.back) {
+                    cc.director.loadScene("mainScene");
+                }
+            }}, this.node);
+    },
 
     // use this for initialization
     onLoad: function () {

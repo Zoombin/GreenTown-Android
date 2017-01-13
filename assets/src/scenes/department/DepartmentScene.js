@@ -5,10 +5,26 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        departmentSpinner: Spinner,
+        departmentSpinner: cc.Spinner,
+        scrollview: cc.ScrollView,
+        cells: [cc.Node],
     
         department: Object,
         departments: [Object],
+        cellPrefab: {
+            default: null,
+            type: cc.Prefab
+        },
+    },
+    
+    onEnable: function() {
+        cc.eventManager.addListener({
+            event: cc.EventListener.KEYBOARD,
+            onKeyReleased: function(keyCode, event) {
+                if (keyCode == cc.KEY.back) {
+                    cc.director.loadScene("mainScene");
+                }
+            }}, this.node);
     },
 
     // use this for initialization
@@ -25,8 +41,7 @@ cc.Class({
         
         DepartmentAPI.departmentList(function(msg, data) {
             if (data === null) {
-                Toast.show(msg);
-                return;
+                return Toast.show(msg);
             }
             this.departments = data;
             cc.log("departmentList --", data.length);
@@ -39,7 +54,32 @@ cc.Class({
     
     selectDepartment: function(department) {
         this.department = department;
+        DepartmentAPI.departmentUsers(department.department_id, function(msg, data) {
+            if (data === null) {
+                return Toast.show(msg);
+            }
+            for (var i = this.cells.length - 1; i >= 0; i--) {
+                this.cells[i].removeFromParent();
+            }
+            this.cells = [];
+            let node = cc.instantiate(this.cellPrefab);
+            this.scrollview.content.height = data.length * node.height;
+            cc.log("this.scrollview.content.height = ", this.scrollview.content.height);
+            // 循环 添加
+            for (let i = 0; i < data.length; i++) {
+                let cellNode = cc.instantiate(this.cellPrefab);
+                let position = cc.v2(0, -cellNode.height / 2 - i * cellNode.height);
+                cellNode.setPosition(position);
+                cellNode.getComponent("DepartmentIUserCell").updateUser(data[i]);
+                this.scrollview.content.addChild(cellNode);
+                this.cells.push(cellNode);
+            }
+        }.bind(this));
     },
+    
+    closeButtonClicked: function() {
+        cc.director.loadScene("mainScene");
+    }
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

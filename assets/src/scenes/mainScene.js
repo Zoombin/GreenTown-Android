@@ -1,5 +1,6 @@
 const UserAPI = require('UserAPI');
 const Dialog = require("Dialog");
+const Config = require("Config");
 
 cc.Class({
     extends: cc.Component,
@@ -78,6 +79,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        Config.loadAvatar();
         // 检测用户是否登录，未登录的话，进入登录页面
         if (!UserAPI.checkScene(true)) {
             return;

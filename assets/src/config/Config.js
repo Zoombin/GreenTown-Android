@@ -1,4 +1,4 @@
-cc.Class({
+var Config = cc.Class({
     extends: cc.Component,
     
     properties: {
@@ -6,7 +6,14 @@ cc.Class({
     },
     
     statics: {
-        // 角色配置
+        
+        boy0Avatar: cc.SpriteFrame,
+        boy1Avatar: cc.SpriteFrame,
+        boy2Avatar: cc.SpriteFrame,
+        girl0Avatar: cc.SpriteFrame,
+        girl1Avatar: cc.SpriteFrame,
+        girl2Avatar: cc.SpriteFrame,
+
         roles: {
             "boy": [
                 {
@@ -47,10 +54,51 @@ cc.Class({
                     "id": 5,
                 }
             ]
-        },  
+        },
         
-    },
-
+        findAvatarWithRoleID: function(role_id) {
+            if (role_id === 0) {
+                return Config.boy0Avatar;
+            }
+            if (role_id === 1) {
+                return Config.boy1Avatar;
+            }
+            if (role_id === 2) {
+                return Config.boy2Avatar;
+            }
+            if (role_id === 3) {
+                return Config.girl0Avatar;
+            }
+            if (role_id === 4) {
+                return Config.girl1Avatar;
+            }
+            if (role_id === 5) {
+                return Config.girl2Avatar;
+            }
+        },
+        
+        loadAvatar: function() {
+            cc.loader.loadRes("image/user/boy/boy1_avatar", cc.SpriteFrame, function(error, spriteFrame) {
+                Config.boy0Avatar = spriteFrame;
+            });
+            cc.loader.loadRes("image/user/boy/boy3_avatar", cc.SpriteFrame, function(error, spriteFrame) {
+                Config.boy1Avatar = spriteFrame;
+            });
+            cc.loader.loadRes("image/user/boy/boy2_avatar", cc.SpriteFrame, function(error, spriteFrame) {
+                Config.boy2Avatar = spriteFrame;
+            });
+            cc.loader.loadRes("image/user/girl/girl1_avatar", cc.SpriteFrame, function(error, spriteFrame) {
+                Config.girl0Avatar = spriteFrame;
+            });
+            cc.loader.loadRes("image/user/girl/girl3_avatar", cc.SpriteFrame, function(error, spriteFrame) {
+                Config.girl1Avatar = spriteFrame;
+            });
+            cc.loader.loadRes("image/user/girl/girl2_avatar", cc.SpriteFrame, function(error, spriteFrame) {
+                Config.girl2Avatar = spriteFrame;
+            });
+        }, 
+        
+    },  
     // use this for initialization
     onLoad: function () {
 

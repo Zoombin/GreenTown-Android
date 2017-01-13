@@ -49,18 +49,12 @@ cc.Class({
         this._loadBody(this.roles[this.selectedIndex].body, this.bodySprite);
     },
     
-    _loadImage: function(url, button) {
-        cc.loader.loadRes(url, cc.SpriteFrame, function(err, spriteFrame) {
-            if (err !== null) {
-                cc.log(err);
-                return;
-            }
+    _loadImage: function(spriteFrame, button) {
             button.transition = cc.Button.Transition.SPRITE;
             button.normalSprite = spriteFrame;
             button.pressedSprite = spriteFrame;
             button.hoverSprite = spriteFrame;
             button.disabledSprite = spriteFrame;
-        }.bind(button));
     },
     
     _loadBody: function(url, sprite) {
