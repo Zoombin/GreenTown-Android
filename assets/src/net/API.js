@@ -37,7 +37,7 @@ var API = cc.Class({
             
             var paramsString = "";
             for (var key in params) { 
-                paramsString += key + "=" + params[key] + "&";
+                paramsString += key + "=" + encodeURI(params[key]) + "&";
             }
             if (paramsString.length > 0) {
                 paramsString = "?" + paramsString.substring(0, paramsString.length - 1);
@@ -67,7 +67,7 @@ var API = cc.Class({
             
             var paramsString = "";
             for (var key in params) { 
-                paramsString += key + "=" + params[key] + "&";
+                paramsString += key + "=" + encodeURI(params[key]) + "&";
             }
             if (paramsString.length > 0) {
                 paramsString = paramsString.substring(0, paramsString.length - 1);
