@@ -44,7 +44,7 @@ cc.Class({
             return this.positions[index].position_name;
         }.bind(this);
         this.positionSpinner.cellClickedCallback = function(index) {
-            this.position = position;
+            this.position = this.positions[index];
         }.bind(this);
         
         DepartmentAPI.departmentList(function(msg, data) {

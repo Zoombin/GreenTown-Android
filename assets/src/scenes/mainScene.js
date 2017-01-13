@@ -34,10 +34,10 @@ cc.Class({
     
     // 地图
     onMapZhengzhangClicked: function() {
-        cc.log("map", "onMapZhengzhangClicked");
+        cc.director.loadScene("HomeScene");
     },
     onMapGonghuiClicked: function() {
-        cc.log("map", "onMapGonghuiClicked");
+        cc.director.loadScene("DepartmentScene");
     },
     onMapPaihangClicked: function() {
         cc.log("map", "onMapPaihangClicked");

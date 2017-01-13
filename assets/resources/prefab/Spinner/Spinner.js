@@ -37,9 +37,11 @@ cc.Class({
                 
                 var spinnerExpand = node.getComponent("SpinnerExpand");
                 var expandLayout = spinnerExpand.expandLayout;
+                expandLayout.node.scale = this.node.scale * 0.7;
                 var rect = this.touchButton.node.getBoundingBoxToWorld();
                 var position = cc.v2(rect.x, rect.y);
-                position = cc.v2(position.x - winSize.width / 2 + rect.width / 2, position.y - winSize.height / 2 - rect.height / 2 - rect.height);
+                position = cc.v2(position.x - winSize.width / 2 + rect.width / 2, 
+                                 position.y - winSize.height / 2 - rect.height / 2 - rect.height);
                 expandLayout.node.setPosition(position);
                 
                 let itemWidth = spinnerExpand.scrollview.node.width;
