@@ -6,14 +6,6 @@ cc.Class({
 
     properties: {
         
-        infoAvatarSprite: cc.Sprite,
-        infoNameLabel: cc.Label,
-        infoDepartmentLabel: cc.Label,
-        infoTitleLabel: cc.Label,
-        infoPointsLabel: cc.Label,
-        infoGoldsLabel: cc.Label,
-        infoCoinsLabel: cc.Label,
-        
         mapZhenzhangButton: cc.Button,
         mapGonghuiButton: cc.Button,
         mapPaihangButton: cc.Button,
@@ -90,22 +82,6 @@ cc.Class({
         if (!UserAPI.checkScene(true)) {
             return;
         }
-        var user = UserAPI.current();
-        this.infoNameLabel.string = user.fullname;
-        this.infoDepartmentLabel.string = user.department_name;
-        this.infoTitleLabel.string = user.title_name;
-        this.infoPointsLabel.string = user.points;
-        this.infoGoldsLabel.string = user.golds;
-        this.infoCoinsLabel.string = user.coins;
-        // 头像加载
-        
-        cc.loader.loadRes(user.avatarUrl(), cc.SpriteFrame, function(err, spriteFrame) {
-            if (err !== null) {
-                cc.log(err);
-                return;
-            }
-            this.infoAvatarSprite.spriteFrame = spriteFrame;
-        }.bind(this));
     },
 
     // called every frame, uncomment this function to activate update callback
