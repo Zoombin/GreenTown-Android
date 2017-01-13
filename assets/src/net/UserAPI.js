@@ -1,4 +1,5 @@
 const API = require("API");
+const Config = require("Config");
 
 var User = cc.Class({
     extends: cc.Component,
@@ -177,7 +178,7 @@ var User = cc.Class({
         },
         
         // 检测跳转
-        checkScene: function() {
+        checkScene: function(isMain) {
             if (User.current() === null) {
                 cc.director.loadScene("loginScene");
                 return false;
@@ -193,6 +194,10 @@ var User = cc.Class({
                 // 跳转到完善2
                 cc.director.loadScene("completeDepartmentScene");
                 return false;
+            }
+            // 跳转到主场景
+            if (!isMain) {
+                cc.director.loadScene("mainScene");
             }
             return true;
         }
@@ -234,5 +239,22 @@ var User = cc.Class({
         cc.sys.localStorage.setItem("points", this.points);
         cc.sys.localStorage.setItem("title_name", this.title_name);
     },
+    
+    avatarUrl: function() {
+        let roles = Config.roles;
+        for (var i = 0; i < roles.boy.length; i++) {
+            var item = roles.boy[i];
+            if (item.id == this.role_id) {
+                return item.avatar;
+            }
+        }
+        for (var i = 0; i < roles.girl.length; i++) {
+            var item = roles.girl[i];
+            if (item.id == this.role_id) {
+                return item.avatar;
+            }
+        }
+        return "";
+    }
     
 });

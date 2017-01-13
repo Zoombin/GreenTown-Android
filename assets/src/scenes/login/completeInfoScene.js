@@ -132,8 +132,9 @@ cc.Class({
                 return;
             }
             // 登录成功
-            UserAPI.checkScene();
-            Toast.show("更新成功");
+            if (!UserAPI.checkScene(false)) {
+                return;
+            }
         });
     }
     

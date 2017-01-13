@@ -1,3 +1,5 @@
+const API = require("API");
+
 cc.Class({
     extends: cc.Component,
 

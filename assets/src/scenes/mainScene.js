@@ -1,4 +1,5 @@
 const UserAPI = require('UserAPI');
+const Dialog = require("Dialog");
 
 cc.Class({
     extends: cc.Component,
@@ -23,7 +24,9 @@ cc.Class({
         menuMessageButton: cc.Button,
         menuSportButton: cc.Button,
         menuStoreButton: cc.Button,
-        menuSetButton: cc.Button
+        menuSetButton: cc.Button,
+        
+        settingLayout: cc.Node,
         
     },
     
@@ -68,15 +71,41 @@ cc.Class({
         cc.log("menu", "onMenuStoreClicked");
     },
     onMenuSettingClicked: function() {
-        cc.log("menu", "onMenuSettingClicked");
+        this.settingLayout.active = !this.settingLayout.active;
+    },
+    
+    logoutButtonClicked: function() {
+        Dialog.show("你确认要退出帐号么？", function(dialog) {
+            UserAPI.current().logout();
+            dialog.dismiss();
+            if (!UserAPI.checkScene(true)) {
+                return;
+            }
+        });
     },
 
     // use this for initialization
     onLoad: function () {
         // 检测用户是否登录，未登录的话，进入登录页面
-        if (!UserAPI.checkScene()) {
+        if (!UserAPI.checkScene(true)) {
             return;
         }
+        var user = UserAPI.current();
+        this.infoNameLabel.string = user.fullname;
+        this.infoDepartmentLabel.string = user.department_name;
+        this.infoTitleLabel.string = user.title_name;
+        this.infoPointsLabel.string = user.points;
+        this.infoGoldsLabel.string = user.golds;
+        this.infoCoinsLabel.string = user.coins;
+        // 头像加载
+        
+        cc.loader.loadRes(user.avatarUrl(), cc.SpriteFrame, function(err, spriteFrame) {
+            if (err !== null) {
+                cc.log(err);
+                return;
+            }
+            this.infoAvatarSprite.spriteFrame = spriteFrame;
+        }.bind(this));
     },
 
     // called every frame, uncomment this function to activate update callback

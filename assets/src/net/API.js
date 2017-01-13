@@ -40,9 +40,9 @@ var API = cc.Class({
                 paramsString += key + "=" + params[key] + "&";
             }
             if (paramsString.length > 0) {
-                paramsString = paramsString.substring(0, paramsString.length - 1);
+                paramsString = "?" + paramsString.substring(0, paramsString.length - 1);
             }
-            var requestURL = this.baseURL + url + "?" + paramsString;
+            var requestURL = this.baseURL + url + paramsString;
             cc.log("POST  " + requestURL);
             xhr.open("POST", requestURL, true);
             xhr.send();

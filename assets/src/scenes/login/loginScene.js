@@ -72,11 +72,9 @@ cc.Class({
                 return;
             }
             // 登录成功
-            if (!UserAPI.checkScene()) {
+            if (!UserAPI.checkScene(false)) {
                 return;
             }
-            // 跳转到主场景
-            cc.director.loadScene("mainScene");
         });
     }
 

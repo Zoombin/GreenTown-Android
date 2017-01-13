@@ -20,7 +20,7 @@ cc.Class({
                     "body": "image/user/boy/boy3_all",
                     "id": 1,
                 },
-                
+
                 {
                     "avatar": "image/user/boy/boy2_avatar",
                     "body": "image/user/boy/boy2_all",
