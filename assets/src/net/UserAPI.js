@@ -238,6 +238,8 @@ var User = cc.Class({
         cc.sys.localStorage.setItem("coins", this.coins);
         cc.sys.localStorage.setItem("points", this.points);
         cc.sys.localStorage.setItem("title_name", this.title_name);
+        
+        cc.director.getScene().emit("user");
     },
     
     avatarUrl: function() {

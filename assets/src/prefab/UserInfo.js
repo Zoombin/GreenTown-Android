@@ -15,6 +15,11 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        this.loadUser();
+        cc.director.getScene().on("user", this.loadUser, this);
+    },
+    
+    loadUser: function() {
         var user = UserAPI.current();
         if (user) {
             this.infoNameLabel.string = user.fullname;
@@ -33,7 +38,7 @@ cc.Class({
                 this.infoAvatarSprite.spriteFrame = spriteFrame;
             }.bind(this));
         }
-    },
+    }
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

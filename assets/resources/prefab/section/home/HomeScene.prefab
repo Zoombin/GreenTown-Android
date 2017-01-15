@@ -29,8 +29,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
+      "width": 750,
+      "height": 1334
     },
     "_children": [
       {
@@ -88,7 +88,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 750,
-      "height": 1335
+      "height": 1334
     },
     "_children": [
       {
@@ -3204,10 +3204,10 @@
     "_enabled": true,
     "isAlignOnce": true,
     "_alignFlags": 45,
-    "_left": -375,
-    "_right": -375,
-    "_top": -667.5,
-    "_bottom": -667.5,
+    "_left": 0,
+    "_right": 0,
+    "_top": 0,
+    "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,
@@ -3240,6 +3240,24 @@
     "_enabled": true,
     "closeButton": {
       "__id__": 62
+    },
+    "departmentButton": {
+      "__id__": 70
+    },
+    "giftButton": {
+      "__id__": 90
+    },
+    "inspireButton": {
+      "__id__": 86
+    },
+    "spurButton": {
+      "__id__": 82
+    },
+    "taskButton": {
+      "__id__": 78
+    },
+    "messageButton": {
+      "__id__": 74
     }
   },
   {

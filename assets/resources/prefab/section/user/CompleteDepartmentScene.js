@@ -1,21 +1,21 @@
 var Spinner = require("Spinner");
 var DepartmentAPI = require("DepartmentAPI");
+var Toast = require("Toast");
+var UserAPI = require("UserAPI");
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
         departmentSpinner: Spinner,
-        scrollview: cc.ScrollView,
+        positionSpinner: Spinner,
         closeButton: cc.Button,
-        cells: [cc.Node],
+        submitButton: cc.Button,
     
         department: Object,
         departments: [Object],
-        cellPrefab: {
-            default: null,
-            type: cc.Prefab
-        },
+        position: Object,
+        positions: [Object],
     },
 
     // use this for initialization
@@ -27,7 +27,8 @@ cc.Class({
                     this.node.removeFromParent();
                 }
             }}, this.node);
-        this.closeButton.node.on("click", this.closeButtonClicked, this); 
+        this.closeButton.node.on("click", this.closeButtonClicked, this);
+        this.submitButton.node.on("click", this.submitButtonClicked, this);
         
         this.departmentSpinner.numberOfCellCallback = function() {
             return this.departments.length;
@@ -38,10 +39,20 @@ cc.Class({
         this.departmentSpinner.cellClickedCallback = function(index) {
             this.selectDepartment(this.departments[index]);
         }.bind(this);
+        this.positionSpinner.numberOfCellCallback = function() {
+            return this.positions.length;
+        }.bind(this);
+        this.positionSpinner.textOfCellCallback = function(index) {
+            return this.positions[index].position_name;
+        }.bind(this);
+        this.positionSpinner.cellClickedCallback = function(index) {
+            this.position = this.positions[index];
+        }.bind(this);
         
         DepartmentAPI.departmentList(function(msg, data) {
             if (data === null) {
-                return Toast.show(msg);
+                Toast.show(msg);
+                return;
             }
             this.departments = data;
             cc.log("departmentList --", data.length);
@@ -58,26 +69,39 @@ cc.Class({
     
     selectDepartment: function(department) {
         this.department = department;
-        DepartmentAPI.departmentUsers(department.department_id, function(msg, data) {
+        DepartmentAPI.positionList(department.department_id, function(msg, data) {
             if (data === null) {
-                return Toast.show(msg);
+                Toast.show(msg);
+                return;
             }
-            for (var i = this.cells.length - 1; i >= 0; i--) {
-                this.cells[i].removeFromParent();
+            this.positions = data;
+            cc.log("positionList --", data.length);
+            if (data.length > 0) {
+                this.position = data[0];
             }
-            this.cells = [];
-            let node = cc.instantiate(this.cellPrefab);
-            this.scrollview.content.height = data.length * node.height;
-            cc.log("this.scrollview.content.height = ", this.scrollview.content.height);
-            // 循环 添加
-            for (let i = 0; i < data.length; i++) {
-                let cellNode = cc.instantiate(this.cellPrefab);
-                let position = cc.v2(0, -cellNode.height / 2 - i * cellNode.height);
-                cellNode.setPosition(position);
-                cellNode.getComponent("DepartmentIUserCell").updateUser(data[i]);
-                this.scrollview.content.addChild(cellNode);
-                this.cells.push(cellNode);
+            this.positionSpinner.reloadData();
+        }.bind(this));
+    },
+    
+    submitButtonClicked: function() {
+        var user_id = UserAPI.current().user_id;
+        if (!this.department) {
+            return Toast.show("请选择工会");
+        }
+        if (!this.position) {
+            return Toast.show("请选择职位");
+        }
+        UserAPI.update({
+            "department_id": this.department.department_id,
+            "position_id": this.position.position_id,
+            "user_id": user_id
+        }, function (msg, user) {
+            if (user === null) {
+                Toast.show(msg);
+                return;
             }
+            // 关闭
+            this.node.removeFromParent();
         }.bind(this));
     },
 
