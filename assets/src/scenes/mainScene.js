@@ -22,6 +22,16 @@ cc.Class({
         settingLayout: cc.Node,
         
     },
+
+    // use this for initialization
+    onLoad: function () {
+        // cc.game.addPersistRootNode(this.node); 
+        Config.loadAvatar();
+        // 检测用户是否登录，未登录的话，进入登录页面
+        if (!UserAPI.checkScene(true)) {
+            return;
+        }
+    },
     
     onEnable: function() {
         cc.eventManager.addListener({
@@ -35,16 +45,19 @@ cc.Class({
     
     // 地图
     onMapZhengzhangClicked: function() {
+        cc.director.preloadScene("HomeScene", function() {
+            
+        });
         cc.director.loadScene("HomeScene");
     },
     onMapGonghuiClicked: function() {
         cc.director.loadScene("DepartmentScene");
     },
     onMapPaihangClicked: function() {
-        cc.log("map", "onMapPaihangClicked");
+        cc.director.loadScene("RankScene");
     },
     onMapJingjiClicked: function() {
-        cc.log("map", "onMapJingjiClicked");
+        cc.director.loadScene("SportScene");
     },
     onMapBaokuClicked: function() {
         cc.log("map", "onMapBaokuClicked");
@@ -55,10 +68,10 @@ cc.Class({
     
     // 菜单栏
     onMenuMessageClicked: function() {
-        cc.log("menu", "onMenuMessageClicked");
+        cc.director.loadScene("MessageScene");
     },
     onMenuSportClicked: function() {
-        cc.log("menu", "onMenuSportClicked");
+        cc.director.loadScene("SportScene");
     },
     onMenuStoreClicked: function() {
         cc.log("menu", "onMenuStoreClicked");
@@ -75,15 +88,6 @@ cc.Class({
                 return;
             }
         });
-    },
-
-    // use this for initialization
-    onLoad: function () {
-        Config.loadAvatar();
-        // 检测用户是否登录，未登录的话，进入登录页面
-        if (!UserAPI.checkScene(true)) {
-            return;
-        }
     },
 
     // called every frame, uncomment this function to activate update callback
