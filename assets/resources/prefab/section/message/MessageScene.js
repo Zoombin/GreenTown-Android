@@ -5,7 +5,9 @@ cc.Class({
         announcementButton: cc.Button,
         eventButton: cc.Button,
         departmentButton: cc.Button,
-        scrollview: cc.ScrollView
+        scrollview: cc.ScrollView,
+        
+        closeButton: cc.Button,
     },
 
     // use this for initialization
@@ -14,15 +16,16 @@ cc.Class({
             event: cc.EventListener.KEYBOARD,
             onKeyReleased: function(keyCode, event) {
                 if (keyCode == cc.KEY.back) {
-                    cc.director.loadScene("mainScene");
+                    this.node.removeFromParent();
                 }
             }}, this.node);
+        this.closeButton.node.on("click", this.closeButtonClicked, this); 
     },
     
-    closeButtonClicked: function() {
-        cc.director.loadScene("mainScene");
-    },
-    
+	closeButtonClicked: function() {
+	    this.node.removeFromParent();
+	},
+
     announcementButtonClicked: function() {
         
     },

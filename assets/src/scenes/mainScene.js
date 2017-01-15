@@ -53,10 +53,10 @@ cc.Class({
         Config.show("prefab/section/department/DepartmentScene");
     },
     onMapPaihangClicked: function() {
-        cc.director.loadScene("RankScene");
+        Config.show("prefab/section/rank/RankScene");
     },
     onMapJingjiClicked: function() {
-        cc.director.loadScene("SportScene");
+        Config.show("prefab/section/sport/SportScene");
     },
     onMapBaokuClicked: function() {
         cc.log("map", "onMapBaokuClicked");
@@ -67,10 +67,10 @@ cc.Class({
     
     // 菜单栏
     onMenuMessageClicked: function() {
-        cc.director.loadScene("MessageScene");
+        Config.show("prefab/section/message/MessageScene");
     },
     onMenuSportClicked: function() {
-        cc.director.loadScene("SportScene");
+        Config.show("prefab/section/sport/SportScene");
     },
     onMenuStoreClicked: function() {
         cc.log("menu", "onMenuStoreClicked");
