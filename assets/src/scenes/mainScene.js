@@ -2,6 +2,8 @@ const UserAPI = require('UserAPI');
 const Dialog = require("Dialog");
 const Config = require("Config");
 
+var HomeScene = require("HomeScene");
+
 cc.Class({
     extends: cc.Component,
 
@@ -20,7 +22,6 @@ cc.Class({
         menuSetButton: cc.Button,
         
         settingLayout: cc.Node,
-        
     },
 
     // use this for initialization
@@ -45,13 +46,11 @@ cc.Class({
     
     // 地图
     onMapZhengzhangClicked: function() {
-        cc.director.preloadScene("HomeScene", function() {
-            
-        });
-        cc.director.loadScene("HomeScene");
+        // cc.director.loadScene("HomeScene");
+        Config.show("prefab/section/home/HomeScene");
     },
     onMapGonghuiClicked: function() {
-        cc.director.loadScene("DepartmentScene");
+        Config.show("prefab/section/department/DepartmentScene");
     },
     onMapPaihangClicked: function() {
         cc.director.loadScene("RankScene");

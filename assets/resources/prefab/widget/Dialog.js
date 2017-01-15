@@ -12,7 +12,7 @@ cc.Class({
     statics: {
         
         show: function(msg, callback) {
-            cc.loader.loadRes("prefab/Dialog", cc.Prefab, function(err, prefab) {
+            cc.loader.loadRes("prefab/widget/Dialog", cc.Prefab, function(err, prefab) {
                 if (err !== null) {
                     cc.log("加载失败" + err);
                     return;

@@ -1,11 +1,12 @@
+var GLScene = require("GLScene");
 var Spinner = require("Spinner");
 var DepartmentAPI = require("DepartmentAPI");
 
 cc.Class({
-    extends: cc.Component,
+    extends: GLScene,
 
     properties: {
-        departmentSpinner: cc.Spinner,
+        departmentSpinner: Spinner,
         scrollview: cc.ScrollView,
         cells: [cc.Node],
     
@@ -16,19 +17,11 @@ cc.Class({
             type: cc.Prefab
         },
     },
-    
-    onEnable: function() {
-        cc.eventManager.addListener({
-            event: cc.EventListener.KEYBOARD,
-            onKeyReleased: function(keyCode, event) {
-                if (keyCode == cc.KEY.back) {
-                    cc.director.loadScene("mainScene");
-                }
-            }}, this.node);
-    },
 
     // use this for initialization
     onLoad: function () {
+        this.register();
+        
         this.departmentSpinner.numberOfCellCallback = function() {
             return this.departments.length;
         }.bind(this);
@@ -76,10 +69,6 @@ cc.Class({
             }
         }.bind(this));
     },
-    
-    closeButtonClicked: function() {
-        cc.director.loadScene("mainScene");
-    }
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

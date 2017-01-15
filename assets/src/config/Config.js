@@ -98,6 +98,20 @@ var Config = cc.Class({
             });
         }, 
         
+        show: function(url) {
+            cc.log("url = ", url);
+            cc.loader.loadRes(url, cc.Prefab, function(err, prefab) {
+                if (err !== null) {
+                    cc.log("加载失败" + err);
+                    return;
+                }
+                var node = cc.instantiate(prefab);
+                var size = cc.director.getWinSize();
+                node.setPosition(cc.v2(size.width / 2, size.height / 2));
+                cc.director.getScene().addChild(node);
+            });
+        }  
+        
     },  
     // use this for initialization
     onLoad: function () {

@@ -10,7 +10,7 @@ cc.Class({
         
         // 显示
         show: function(msg) {
-            cc.loader.loadRes("prefab/Toast", cc.Prefab, function(err, prefab) {
+            cc.loader.loadRes("prefab/widget/Toast", cc.Prefab, function(err, prefab) {
                 if (err !== null) {
                     cc.log("加载失败" + err);
                     return;

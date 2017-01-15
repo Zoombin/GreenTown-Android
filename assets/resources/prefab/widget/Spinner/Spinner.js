@@ -16,7 +16,7 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         this.touchButton.node.on("click", this.spinnerClicked, this);
-        cc.loader.loadRes("prefab/Spinner/SpinnerCell", cc.Prefab, function(err, prefab) {
+        cc.loader.loadRes("prefab/widget/Spinner/SpinnerCell", cc.Prefab, function(err, prefab) {
             this.spinnerCell = prefab;
         }.bind(this));
     },
@@ -25,7 +25,7 @@ cc.Class({
         this.cells = [];
         
         if (cc.director.getScene().getChildByName("SpinnerExpand") === null) {
-            cc.loader.loadRes("prefab/Spinner/SpinnerExpand", cc.Prefab, function(err, prefab) {
+            cc.loader.loadRes("prefab/widget/Spinner/SpinnerExpand", cc.Prefab, function(err, prefab) {
                 if (err !== null) {
                     return cc.error(err.message || err);
                 }
