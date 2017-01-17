@@ -108,7 +108,7 @@ var Config = cc.Class({
                 var node = cc.instantiate(prefab);
                 var size = cc.director.getWinSize();
                 node.setPosition(cc.v2(size.width / 2, size.height / 2));
-                cc.director.getScene().addChild(node);
+                cc.director.getScene().addChild(node, 100);
             });
         }  
         

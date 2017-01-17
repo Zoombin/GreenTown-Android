@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "12a95ab3-4af2-4975-9cdc-7d88ad1da590",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "rank_coins_label_background": {
+      "ver": "1.0.3",
+      "uuid": "f160b317-911f-4eab-a777-991ccda3795e",
+      "rawTextureUuid": "12a95ab3-4af2-4975-9cdc-7d88ad1da590",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -0.5,
+      "trimX": 0,
+      "trimY": 1,
+      "width": 270,
+      "height": 95,
+      "rawWidth": 270,
+      "rawHeight": 96,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

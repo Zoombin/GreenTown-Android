@@ -59,4 +59,5 @@ cc.Class({
     messageButtonClicked: function() {
         
     },
+    
 });

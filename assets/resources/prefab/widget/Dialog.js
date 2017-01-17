@@ -50,7 +50,7 @@ cc.Class({
     },
     
     //触摸吞噬
-    eatTouch:function(event){
+    eatTouch: function(event) {
         event.stopPropagation();
     },
     

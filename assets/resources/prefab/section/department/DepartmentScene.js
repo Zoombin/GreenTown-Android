@@ -67,8 +67,8 @@ cc.Class({
             }
             this.cells = [];
             let node = cc.instantiate(this.cellPrefab);
+            this.scrollview.stopAutoScroll();
             this.scrollview.content.height = data.length * node.height;
-            cc.log("this.scrollview.content.height = ", this.scrollview.content.height);
             // 循环 添加
             for (let i = 0; i < data.length; i++) {
                 let cellNode = cc.instantiate(this.cellPrefab);
