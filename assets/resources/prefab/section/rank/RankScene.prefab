@@ -1269,7 +1269,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 621
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -2699,7 +2699,7 @@
     "_tag": -1,
     "_opacityModifyRGB": false,
     "_id": "",
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 82
@@ -3767,6 +3767,12 @@
     },
     "pointsTitleLabel": {
       "__id__": 106
+    },
+    "coinsCellPrefab": {
+      "__uuid__": "672f7f9b-5549-4449-98a2-54767093f58e"
+    },
+    "pointsCellPrefab": {
+      "__uuid__": "404a0dbe-5fd7-46ef-a88b-ac5614a7b80f"
     }
   },
   {

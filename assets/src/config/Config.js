@@ -97,6 +97,20 @@ var Config = cc.Class({
                 Config.girl2Avatar = spriteFrame;
             });
         }, 
+    
+        loadImage: function(url, button) {
+            cc.loader.loadRes(url, cc.SpriteFrame, function(err, spriteFrame) {
+                if (err !== null) {
+                    cc.log(err);
+                    return;
+                }
+                button.transition = cc.Button.Transition.SPRITE;
+                button.normalSprite = spriteFrame;
+                button.pressedSprite = spriteFrame;
+                button.hoverSprite = spriteFrame;
+                button.disabledSprite = spriteFrame;
+            }.bind(button));
+        },
         
         show: function(url) {
             cc.log("url = ", url);
