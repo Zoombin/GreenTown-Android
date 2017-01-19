@@ -1,3 +1,5 @@
+const Toast = require("Toast");
+
 cc.Class({
     extends: cc.Component,
 

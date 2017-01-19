@@ -45,11 +45,11 @@ cc.Class({
     },
     
     inspireButtonClicked: function() {
-        
+        Config.show("prefab/section/inspire/InspireScene");
     },
     
     spurButtonClicked: function() {
-        
+        Config.show("prefab/section/spur/SpurScene");
     },
     
     taskButtonClicked: function() {

@@ -1,5 +1,6 @@
 var UserAPI = require("UserAPI");
 var Config = require("Config");
+const Toast = require("Toast");
 
 cc.Class({
     extends: cc.Component,

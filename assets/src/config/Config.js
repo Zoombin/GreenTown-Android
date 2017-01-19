@@ -124,6 +124,23 @@ var Config = cc.Class({
                 node.setPosition(cc.v2(size.width / 2, size.height / 2));
                 cc.director.getScene().addChild(node, 100);
             });
+        },
+        
+        showWithCallBack: function(url, callback) {
+            cc.log("url = ", url);
+            cc.loader.loadRes(url, cc.Prefab, function(err, prefab) {
+                if (err !== null) {
+                    cc.log("加载失败" + err);
+                    return;
+                }
+                var node = cc.instantiate(prefab);
+                var size = cc.director.getWinSize();
+                node.setPosition(cc.v2(size.width / 2, size.height / 2));
+                if (callback !== null) {
+                    callback(node);
+                }
+                cc.director.getScene().addChild(node, 100);
+            }.bind(callback));
         }  
         
     },  
