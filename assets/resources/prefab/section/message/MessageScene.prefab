@@ -1671,6 +1671,9 @@
     },
     "closeButton": {
       "__id__": 11
+    },
+    "cellPrefab": {
+      "__uuid__": "c3897a2f-353d-4756-9a25-c3fa1d7cbfec"
     }
   },
   {
