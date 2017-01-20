@@ -47,6 +47,7 @@ cc.Class({
             
             this.festivalNameLabel.string = data.gift_name;
             this.festivalDateLabel.string = data.gift_start;
+            this.festivalPackButton.node.active = true;
 	        Config.loadImage(data.is_picked === 1 ? "image/gift/gift_pack_background_disable" : "image/gift/gift_pack_background_normal", this.festivalPackButton);
         }.bind(this));
         GiftAPI.monthGift(UserAPI.current().user_id, function(msg, data) {
@@ -57,6 +58,7 @@ cc.Class({
             
             this.monthNameLabel.string = data.gift_name;
             this.monthDateLabel.string = data.gift_start;
+            this.monthPackButton.node.active = true;
 	        Config.loadImage(data.is_picked === 1 ? "image/gift/gift_pack_background_disable" : "image/gift/gift_pack_background_normal", this.monthPackButton);
         }.bind(this));
     },
@@ -75,7 +77,7 @@ cc.Class({
             }
             // 领取成功
             this.festivalGift.is_picked = 1;
-            Config.loadImage(data.is_picked === 1 ? "image/gift/gift_pack_background_disable" : "image/gift/gift_pack_background_normal", this.festivalPackButton);
+            Config.loadImage(this.festivalGift.is_picked === 1 ? "image/gift/gift_pack_background_disable" : "image/gift/gift_pack_background_normal", this.festivalPackButton);
             Toast.show("领取成功");
 	    }.bind(this));
 	},
@@ -90,7 +92,7 @@ cc.Class({
             }
             // 领取成功
             this.monthGift.is_picked = 1;
-            Config.loadImage(data.is_picked === 1 ? "image/gift/gift_pack_background_disable" : "image/gift/gift_pack_background_normal", this.monthPackButton);
+            Config.loadImage(this.monthGift.is_picked === 1 ? "image/gift/gift_pack_background_disable" : "image/gift/gift_pack_background_normal", this.monthPackButton);
             Toast.show("领取成功");
 	    }.bind(this));
 	},

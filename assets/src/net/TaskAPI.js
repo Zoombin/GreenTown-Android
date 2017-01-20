@@ -36,7 +36,7 @@ cc.Class({
         
         // 领取任务
         pickTask: function(task_id, user_id, callback) {
-            API.get("task/pick_task", {
+            API.post("task/pick_task", {
                 "user_id": user_id,
                 "task_id": task_id
             }, callback);
@@ -44,7 +44,7 @@ cc.Class({
         
         // 完成任务
         finishTask: function(task_id, user_id, callback) {
-            API.get("task/finish_task", {
+            API.post("task/finish_task", {
                 "user_id": user_id,
                 "task_id": task_id
             }, callback);

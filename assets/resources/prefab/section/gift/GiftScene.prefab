@@ -912,7 +912,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 246,
+      "width": 6,
       "height": 60
     },
     "_children": [],
@@ -963,7 +963,7 @@
       "__uuid__": "3ba2b98d-aa38-4e3d-82ae-b4040864644a"
     },
     "_isSystemFontUsed": false,
-    "_N$string": "圣诞礼包",
+    "_N$string": "",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$overflow": 0
@@ -1019,7 +1019,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 412.19,
+      "width": 6,
       "height": 35
     },
     "_children": [],
@@ -1070,7 +1070,7 @@
       "__uuid__": "3ba2b98d-aa38-4e3d-82ae-b4040864644a"
     },
     "_isSystemFontUsed": false,
-    "_N$string": "2016-12-25 22:00:00",
+    "_N$string": "",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$overflow": 0
@@ -1146,7 +1146,7 @@
     "_tag": -1,
     "_opacityModifyRGB": false,
     "_id": "",
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 32
@@ -1473,7 +1473,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 246,
+      "width": 6,
       "height": 60
     },
     "_children": [],
@@ -1524,7 +1524,7 @@
       "__uuid__": "3ba2b98d-aa38-4e3d-82ae-b4040864644a"
     },
     "_isSystemFontUsed": false,
-    "_N$string": "每月礼包",
+    "_N$string": "",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$overflow": 0
@@ -1580,7 +1580,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 412.19,
+      "width": 6,
       "height": 35
     },
     "_children": [],
@@ -1631,7 +1631,7 @@
       "__uuid__": "3ba2b98d-aa38-4e3d-82ae-b4040864644a"
     },
     "_isSystemFontUsed": false,
-    "_N$string": "2016-12-25 22:00:00",
+    "_N$string": "",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$overflow": 0
@@ -1707,7 +1707,7 @@
     "_tag": -1,
     "_opacityModifyRGB": false,
     "_id": "",
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 50
