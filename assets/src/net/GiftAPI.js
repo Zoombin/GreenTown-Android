@@ -34,7 +34,7 @@ cc.Class({
         
         // 领取节日礼包
         pickFestivalGift: function(user_id, gift_id, callback) {
-            API.get("gift/pick_festival_gift", {
+            API.post("gift/pick_festival_gift", {
                 "user_id": user_id,
                 "gift_id": gift_id
             }, callback);
@@ -42,7 +42,7 @@ cc.Class({
         
         // 领取每月礼包
         pickMonethGift: function(user_id, gift_id, callback) {
-            API.get("gift/pick_monthly_gift", {
+            API.post("gift/pick_monthly_gift", {
                 "user_id": user_id,
                 "gift_id": gift_id
             }, callback);

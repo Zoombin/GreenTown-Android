@@ -104,11 +104,6 @@ cc.Class({
             this.node.removeFromParent();
         }.bind(this));
     },
-    
-    //触摸吞噬
-    eatTouch: function(event) {
-        event.stopPropagation();
-    },
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

@@ -41,7 +41,7 @@ cc.Class({
     },
     
     giftButtonClicked: function() {
-        
+        Config.show("prefab/section/gift/GiftScene");
     },
     
     inspireButtonClicked: function() {
@@ -53,11 +53,11 @@ cc.Class({
     },
     
     taskButtonClicked: function() {
-        
+        Config.show("prefab/section/task/TaskScene");
     },
     
     messageButtonClicked: function() {
-        
+        Config.show("prefab/section/message/LeaveMessageScene");
     },
     
 });
