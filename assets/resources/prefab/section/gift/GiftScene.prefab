@@ -1966,7 +1966,9 @@
     },
     "monthPackButton": {
       "__id__": 51
-    }
+    },
+    "festivalGift": null,
+    "monthGift": null
   },
   {
     "__type__": "cc.PrefabInfo",

@@ -74,6 +74,9 @@ cc.Class({
                 return Toast.show(msg);
             }
             // 领取成功
+            this.festivalGift.is_picked = 1;
+            Config.loadImage(data.is_picked === 1 ? "image/gift/gift_pack_background_disable" : "image/gift/gift_pack_background_normal", this.festivalPackButton);
+            Toast.show("领取成功");
 	    }.bind(this));
 	},
 	
@@ -86,6 +89,9 @@ cc.Class({
                 return Toast.show(msg);
             }
             // 领取成功
+            this.monthGift.is_picked = 1;
+            Config.loadImage(data.is_picked === 1 ? "image/gift/gift_pack_background_disable" : "image/gift/gift_pack_background_normal", this.monthPackButton);
+            Toast.show("领取成功");
 	    }.bind(this));
 	},
 

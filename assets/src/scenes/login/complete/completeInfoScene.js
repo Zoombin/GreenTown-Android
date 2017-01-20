@@ -49,12 +49,14 @@ cc.Class({
         this._loadBody(this.roles[this.selectedIndex].body, this.bodySprite);
     },
     
-    _loadImage: function(spriteFrame, button) {
-            button.transition = cc.Button.Transition.SPRITE;
-            button.normalSprite = spriteFrame;
-            button.pressedSprite = spriteFrame;
-            button.hoverSprite = spriteFrame;
-            button.disabledSprite = spriteFrame;
+    _loadImage: function(url, button) {
+        Config.loadImage(url, button);
+        
+        // button.transition = cc.Button.Transition.SPRITE;
+        // button.normalSprite = spriteFrame;
+        // button.pressedSprite = spriteFrame;
+        // button.hoverSprite = spriteFrame;
+        // button.disabledSprite = spriteFrame;
     },
     
     _loadBody: function(url, sprite) {
