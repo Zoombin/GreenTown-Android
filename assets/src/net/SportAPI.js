@@ -19,7 +19,7 @@ cc.Class({
     statics: {
         
         // 月赛
-        sportMonthList: function(user_id, msg_content, callback) {
+        sportMonthList: function(user_id, callback) {
             API.get("sports/sports_list", {
                 "user_id": user_id,
                 "type": "1"
@@ -27,7 +27,7 @@ cc.Class({
         },
         
         // 年赛
-        sportYearList: function(user_id, msg_content, callback) {
+        sportYearList: function(user_id, callback) {
             API.get("sports/sports_list", {
                 "user_id": user_id,
                 "type": "2"

@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "ef7734d4-c8bb-4946-9fe8-bcf6be0d18b3",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "sport_avatar_run": {
+      "ver": "1.0.3",
+      "uuid": "08d89e0d-e950-48b1-b759-5f1544417f92",
+      "rawTextureUuid": "ef7734d4-c8bb-4946-9fe8-bcf6be0d18b3",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 155,
+      "height": 155,
+      "rawWidth": 155,
+      "rawHeight": 155,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

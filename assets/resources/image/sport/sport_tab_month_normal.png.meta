@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "4b6d06bb-2eab-4221-a090-068d92f3815d",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "sport_tab_month_normal": {
+      "ver": "1.0.3",
+      "uuid": "1485717b-29b7-4676-846e-e0b604e2c9bf",
+      "rawTextureUuid": "4b6d06bb-2eab-4221-a090-068d92f3815d",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0.5,
+      "trimX": 1,
+      "trimY": 1,
+      "width": 342,
+      "height": 102,
+      "rawWidth": 344,
+      "rawHeight": 105,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

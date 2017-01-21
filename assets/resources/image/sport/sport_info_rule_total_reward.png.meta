@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "e3edf0ca-fe66-45e8-a577-506af6962cd5",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "sport_info_rule_total_reward": {
+      "ver": "1.0.3",
+      "uuid": "46baf8b7-b2a9-407d-8d19-ec0850a4e35b",
+      "rawTextureUuid": "e3edf0ca-fe66-45e8-a577-506af6962cd5",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": 1,
+      "trimX": 1,
+      "trimY": 0,
+      "width": 694,
+      "height": 141,
+      "rawWidth": 695,
+      "rawHeight": 143,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

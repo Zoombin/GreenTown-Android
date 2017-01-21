@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "ac55975f-48ae-4aa0-bdd0-f5683180120a",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "sport_percent_selected": {
+      "ver": "1.0.3",
+      "uuid": "99c5b5b9-312c-481d-ba61-d5d0f7dc0d2c",
+      "rawTextureUuid": "ac55975f-48ae-4aa0-bdd0-f5683180120a",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 57,
+      "height": 27,
+      "rawWidth": 57,
+      "rawHeight": 27,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
