@@ -8,6 +8,8 @@ cc.Class({
 
     properties: {
         closeButton: cc.Button,
+        ruleButton: cc.Button,
+        playerButton: cc.Button,
         
         titleLabel: cc.Label,
         player1: cc.Label,
@@ -28,6 +30,8 @@ cc.Class({
                 }
             }}, this.node);
         this.closeButton.node.on("click", this.closeButtonClicked, this); 
+        this.ruleButton.node.on("click", this.ruleButtonClicked, this); 
+        this.playerButton.node.on("click", this.playerButtonClicked, this); 
         
         this.titleLabel.string = this.sport.title;
         this.moneyLabel.string = this.sport.total_reward;
@@ -43,6 +47,18 @@ cc.Class({
 	closeButtonClicked: function() {
 	    this.node.removeFromParent();
 	},
+	
+	ruleButtonClicked: function() {
+        Config.showWithCallBack("prefab/section/sport/SportRuleScene", function(node) {
+            node.getComponent("SportRuleScene").sport = this.sport;
+        }.bind(this));
+	},
+	
+	playerButtonClicked: function() {
+        Config.showWithCallBack("prefab/section/sport/SportPlayerScene", function(node) {
+            node.getComponent("SportPlayerScene").sport = this.sport;
+        }.bind(this));
+	}
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

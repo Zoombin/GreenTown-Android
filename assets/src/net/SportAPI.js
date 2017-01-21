@@ -36,7 +36,7 @@ cc.Class({
         
         // 参赛选手
         players: function(sport_id, callback) {
-            API.get("sports/department_msg", {
+            API.get("sports/player_list", {
                 "sport_id": sport_id
             }, callback);
         },

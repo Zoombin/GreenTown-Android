@@ -1949,6 +1949,12 @@
     "closeButton": {
       "__id__": 10
     },
+    "ruleButton": {
+      "__id__": 33
+    },
+    "playerButton": {
+      "__id__": 37
+    },
     "titleLabel": {
       "__id__": 14
     },
