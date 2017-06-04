@@ -13,5 +13,12 @@
   "packageName": "com.zoombin.greentown",
   "startScene": "b30aa36b-ca4b-4685-86a4-382cfca1635c",
   "title": "GreenTown",
-  "webOrientation": "portrait"
+  "webOrientation": "portrait",
+  "oauthLoginServer": "",
+  "appKey": "",
+  "appSecret": "",
+  "privateKey": "",
+  "renderMode": "0",
+  "inlineSpriteFrames": true,
+  "mergeStartScene": false
 }
