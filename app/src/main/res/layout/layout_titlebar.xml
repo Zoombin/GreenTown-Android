@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        
+        <ImageButton
+            android:id="@+id/navigationLeftButton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/navigation_user"
+            android:background="@null"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/navigationTitleImageView"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:src="@drawable/navigation_name"
+            android:layout_centerVertical="true"
+            android:scaleType="center"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/titleLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/app_name"
+            android:textSize="18sp"
+            android:textColor="@color/mainTextColor"
+            android:gravity="center"
+            android:visibility="gone"/>
+
+        <ImageButton
+            android:id="@+id/navigationRightButton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/navigation_menu"
+            android:background="@null"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+</merge>

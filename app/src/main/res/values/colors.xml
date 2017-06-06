@@ -4,4 +4,5 @@
     <color name="white">#ffffff</color>
     <color name="themeColor">#F08600</color>
     <color name="backgroundColor">#EEEEEE</color>
+    <color name="mainTextColor">#FAFAFA</color>
 </resources>
