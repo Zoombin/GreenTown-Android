@@ -51,9 +51,19 @@ class User: Any() {
 
     companion object {
 
-        fun parse(json: String) : User {
-            val user = User()
-            return user
+        // 退出登录
+        fun logout() {
+            val edit = GTApplication.context?.getSharedPreferences("user", 0)?.edit()
+            edit?.remove("user")
+            edit?.commit()
+        }
+
+        // 获取当前登录用户
+        fun current() : User? {
+            val json = GTApplication.context?.getSharedPreferences("user", 0)?.getString("user", "")
+            val user = JSON.parseObject(json, User::class.java)
+            if (user != null) return user
+            return null
         }
 
         // 请求验证码
@@ -82,31 +92,100 @@ class User: Any() {
             }, failure)
         }
 
-        // 退出登录
-        fun logout() {
-            val edit = GTApplication.context?.getSharedPreferences("user", 0)?.edit()
-            edit?.remove("user")
-            edit?.commit()
+        // 成就排行
+        fun pointsRank(page: Int,
+                       success: (List<User>) -> Unit,
+                       failure: (String?) -> Unit) {
+            val map = HashMap<String, Any>()
+            map.put("START", page)
+            map.put("PAGESIZE", 20)
+            Net.get("user/points_ranking", map, { json ->
+                val users = JSON.parseArray(JSONObject(json).getString("data").toString(), User::class.java)
+                success(users)
+            }, failure)
         }
 
-        // 获取当前登录用户
-        fun current() : User? {
-            val json = GTApplication.context?.getSharedPreferences("user", 0)?.getString("user", "")
-            val user = JSON.parseObject(json, User::class.java)
-            if (user != null) return user
-            return null
+        // 绿币排行
+        fun coinsRank(page: Int,
+                      success: (List<User>) -> Unit,
+                      failure: (String?) -> Unit) {
+            val map = HashMap<String, Any>()
+            map.put("START", page)
+            map.put("PAGESIZE", 20)
+            Net.get("user/coins_ranking", map, { json ->
+                val users = JSON.parseArray(JSONObject(json).getString("data").toString(), User::class.java)
+                success(users)
+            }, failure)
         }
 
-        // 保存
-        fun save() {
-
+        // 所有成员
+        fun allUsers(success: (List<User>) -> Unit,
+                     failure: (String?) -> Unit) {
+            val map = HashMap<String, Any>()
+            Net.get("user/group_list", map, { json ->
+                val users = JSON.parseArray(JSONObject(json).getString("data").toString(), User::class.java)
+                success(users)
+            }, failure)
         }
 
-        // 清空
-        fun clear() {
+    }
 
-        }
+    // 完善信息
+    fun completeProfile(gender: String,
+                        roleId: String,
+                        fullName: String,
+                        nickName: String,
+                        departmentId: String,
+                        positionId: String,
+                        success: () -> Unit,
+                 failure: (String?) -> Unit) {
+        val map = HashMap<String, Any>()
+        if (User.current()?.user_id != null)
+            map.put("user_id", User.current()!!.user_id)
+        map.put("gender", gender)
+        map.put("role_id", roleId)
+        map.put("fullname", fullName)
+        map.put("nickname", nickName)
+        map.put("department_id", departmentId)
+        map.put("position_id", positionId)
+        Net.get("user/complete_profile", map, { json ->
+            success()
+        }, failure)
+    }
 
+    // 鞭策
+    fun spur(reasonId: Int,
+             success: () -> Unit,
+             failure: (String?) -> Unit) {
+        val map = HashMap<String, Any>()
+        map.put("reason_id", reasonId)
+        if (User.current()?.user_id != null)
+            map.put("user_id", User.current()!!.user_id)
+        Net.get("user/spur", map, { json ->
+            success()
+        }, failure)
+    }
+
+    // 鼓舞
+    fun inspire(reasonId: Int,
+                success: () -> Unit,
+                failure: (String?) -> Unit) {
+        val map = HashMap<String, Any>()
+        map.put("reason_id", reasonId)
+        if (User.current()?.user_id != null)
+            map.put("user_id", User.current()!!.user_id)
+        Net.get("user/inspire", map, { json ->
+            success()
+        }, failure)
+    }
+
+    // 获取绿币
+    fun queryUserPoint(success: () -> Unit,
+                       failure: (String?) -> Unit) {
+        val map = HashMap<String, Any>()
+        Net.get("queryUserPoint", map, { json ->
+            success()
+        }, failure)
     }
 
 }
