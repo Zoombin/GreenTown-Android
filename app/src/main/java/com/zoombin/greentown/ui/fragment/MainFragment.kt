@@ -9,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
+import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import me.yokeyword.fragmentation.SupportFragment
+import me.yokeyword.fragmentation.anim.DefaultNoAnimator
 import me.yokeyword.fragmentation.anim.DefaultVerticalAnimator
 import me.yokeyword.fragmentation.anim.FragmentAnimator
 import org.jetbrains.anko.imageResource
@@ -31,16 +33,28 @@ class MainFragment : SupportFragment() {
         navigationLeftButton.imageResource = R.drawable.navigation_user
         navigationRightButton.imageResource = R.drawable.navigation_menu
 
-        navigationLeftButton.setOnClickListener {
-            // 点击用户信息
-        }
+        navigationLeftButton.setOnClickListener { start(UserFragment()) }
 
         navigationRightButton.setOnClickListener {
-            // 点击菜单
+
         }
+
+        messageButton.setOnClickListener { start(MessageFragment()) }
+
+        homeButton.setOnClickListener { start(HomeFragment()) }
+
+        guildButton.setOnClickListener { start(GuildFragment()) }
+
+        sportButton.setOnClickListener { start(SportFragment()) }
+
+        rankButton.setOnClickListener { start(RankFragment()) }
 
         if (User.current() == null)
             start(LoginFragment())
+    }
+
+    override fun onCreateFragmentAnimator(): FragmentAnimator {
+        return DefaultNoAnimator()
     }
 
 }

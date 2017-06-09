@@ -13,6 +13,7 @@
             android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
             android:src="@drawable/navigation_user"
+            android:scaleType="centerInside"
             android:background="@null"
             android:visibility="gone"/>
 
@@ -44,6 +45,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:src="@drawable/navigation_menu"
+            android:scaleType="centerInside"
             android:background="@null"
             android:visibility="gone"/>
 
