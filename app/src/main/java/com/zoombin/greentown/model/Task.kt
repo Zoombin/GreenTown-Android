@@ -1,5 +1,9 @@
 package com.zoombin.greentown.model
 
+import com.alibaba.fastjson.JSON
+import com.zoombin.greentown.net.Net
+import org.json.JSONObject
+
 /**
  * Created by gejw on 2017/6/10.
  */
@@ -19,5 +23,44 @@ class Task : Any() {
     var is_picked = 0
     // 0:未完成 1：已完成
     var is_finished = 0
+
+    companion object {
+
+        fun tasks(success: (List<Task>) -> Unit,
+                  failure: (String?) -> Unit) {
+            val map = HashMap<String, Any>()
+            if (User.current()?.user_id != null)
+                map.put("user_id", User.current()!!.user_id)
+            Net.get("task/task_list", map, { json ->
+                val tasks = JSON.parseArray(JSONObject(json).getString("data").toString(), Task::class.java)
+                success(tasks)
+            }, failure)
+        }
+
+    }
+
+    // 领取任务
+    fun pickTask(success: () -> Unit,
+              failure: (String?) -> Unit) {
+        val map = HashMap<String, Any>()
+        if (User.current()?.user_id != null)
+            map.put("user_id", User.current()!!.user_id)
+        map.put("task_id", task_id)
+        Net.get("task/pick_task", map, { json ->
+            success()
+        }, failure)
+    }
+
+    // 完成任务
+    fun finishTask(success: () -> Unit,
+              failure: (String?) -> Unit) {
+        val map = HashMap<String, Any>()
+        if (User.current()?.user_id != null)
+            map.put("user_id", User.current()!!.user_id)
+        map.put("task_id", task_id)
+        Net.get("task/finish_task", map, { json ->
+            success()
+        }, failure)
+    }
     
 }
