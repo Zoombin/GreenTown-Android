@@ -1,5 +1,9 @@
 package com.zoombin.greentown.model
 
+import com.alibaba.fastjson.JSON
+import com.zoombin.greentown.net.Net
+import org.json.JSONObject
+
 /**
  * Created by gejw on 2017/6/10.
  */
