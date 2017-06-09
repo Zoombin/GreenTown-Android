@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.layout_titlebar.*
 import me.yokeyword.fragmentation.SupportFragment
 import me.yokeyword.fragmentation.anim.DefaultVerticalAnimator
 import me.yokeyword.fragmentation.anim.FragmentAnimator
+import org.jetbrains.anko.imageResource
 
 /**
  * Created by gejw on 2017/6/9.
@@ -25,16 +26,12 @@ class MessageFragment : BaseBackFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navigationLeftButton.setImageResource(R.drawable.navigation_close)
-        navigationLeftButton.setOnClickListener {
-            pop()
-        }
+        navigationLeftButton.imageResource = R.drawable.navigation_close
         titleLabel.text = "消息"
     }
 
     override fun onCreateFragmentAnimator(): FragmentAnimator {
         return DefaultVerticalAnimator()
     }
-
 
 }

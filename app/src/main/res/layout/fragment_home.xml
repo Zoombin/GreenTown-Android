@@ -22,8 +22,85 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp">
+                    
+                    <ImageButton
+                        android:id="@+id/inauguralButton"
+                        android:layout_width="124dp"
+                        android:layout_height="160dp"
+                        android:src="@drawable/home_inaugural"
+                        android:scaleType="centerInside"
+                        android:background="@null"
+                        android:layout_marginRight="50dp"/>
+
+                    <ImageButton
+                        android:id="@+id/giftButton"
+                        android:layout_width="124dp"
+                        android:layout_height="160dp"
+                        android:src="@drawable/home_gift"
+                        android:scaleType="centerInside"
+                        android:background="@null"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageButton
+                        android:id="@+id/encourageButton"
+                        android:layout_width="124dp"
+                        android:layout_height="160dp"
+                        android:src="@drawable/home_encourage"
+                        android:scaleType="centerInside"
+                        android:background="@null"
+                        android:layout_marginRight="50dp"/>
+
+                    <ImageButton
+                        android:id="@+id/pushButton"
+                        android:layout_width="124dp"
+                        android:layout_height="160dp"
+                        android:src="@drawable/home_push"
+                        android:scaleType="centerInside"
+                        android:background="@null"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/taskButton"
+                        android:layout_width="124dp"
+                        android:layout_height="160dp"
+                        android:src="@drawable/home_task"
+                        android:scaleType="centerInside"
+                        android:background="@null"
+                        android:layout_marginRight="50dp"/>
+
+                    <ImageButton
+                        android:id="@+id/messageButton"
+                        android:layout_width="124dp"
+                        android:layout_height="160dp"
+                        android:src="@drawable/home_message"
+                        android:scaleType="centerInside"
+                        android:background="@null"/>
+
+                </LinearLayout>
 
 
             </LinearLayout>
