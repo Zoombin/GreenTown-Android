@@ -52,7 +52,8 @@ class LoginFragment : SupportFragment() {
                 return@setOnClickListener
             }
             User.login(phone, code, {
-
+                toast("登录成功！")
+                pop()
             }) { if (it != null) toast(it) }
         }
 

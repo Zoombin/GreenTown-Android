@@ -38,7 +38,7 @@ dependencies {
     // 通用库
     compile 'org.xutils:xutils:3.5.0'
     // fastjson
-//    compile 'com.alibaba:fastjson:1.1.55.android'
+    compile 'com.alibaba:fastjson:1.1.55.android'
     // 等待对话框 (https://github.com/d-max/spots-dialog)
     compile 'com.github.d-max:spots-dialog:0.7@aar'
     // android常用工具 (https://github.com/litesuits/android-common)
