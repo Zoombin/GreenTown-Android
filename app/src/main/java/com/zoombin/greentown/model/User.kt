@@ -131,23 +131,29 @@ class User: Any() {
     }
 
     // 完善信息
-    fun completeProfile(gender: String,
-                        roleId: String,
-                        fullName: String,
-                        nickName: String,
-                        departmentId: String,
-                        positionId: String,
+    fun completeProfile(gender: String? = null,
+                        roleId: String? = null,
+                        fullName: String? = null,
+                        nickName: String? = null,
+                        departmentId: String? = null,
+                        positionId: String? = null,
                         success: () -> Unit,
                  failure: (String?) -> Unit) {
         val map = HashMap<String, Any>()
         if (User.current()?.user_id != null)
             map.put("user_id", User.current()!!.user_id)
-        map.put("gender", gender)
-        map.put("role_id", roleId)
-        map.put("fullname", fullName)
-        map.put("nickname", nickName)
-        map.put("department_id", departmentId)
-        map.put("position_id", positionId)
+        if (gender != null)
+            map.put("gender", gender)
+        if (roleId != null)
+            map.put("role_id", roleId)
+        if (fullName != null)
+            map.put("fullname", fullName)
+        if (nickName != null)
+            map.put("nickname", nickName)
+        if (departmentId != null)
+            map.put("department_id", departmentId)
+        if (positionId != null)
+            map.put("position_id", positionId)
         Net.get("user/complete_profile", map, { json ->
             success()
         }, failure)
