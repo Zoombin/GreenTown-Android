@@ -48,7 +48,7 @@ class RankFragment : BaseBackFragment() {
 
         coinsButton.setOnClickListener { selectSegment(0) }
         pointButton.setOnClickListener { selectSegment(1) }
-        selectSegment(0)
+        selectSegment(0, true)
 
         User.coinsRank(0, { users ->
             coinsUsers.clear()
@@ -56,6 +56,7 @@ class RankFragment : BaseBackFragment() {
             reloadData()
         }) { message ->
             if (message != null) toast(message)
+            reloadData()
         }
         User.pointsRank(0, { users ->
             pointsUsers.clear()
@@ -63,10 +64,11 @@ class RankFragment : BaseBackFragment() {
             reloadData()
         }) { message ->
             if (message != null) toast(message)
+            reloadData()
         }
     }
 
-    fun selectSegment(index: Int) {
+    fun selectSegment(index: Int, isInit: Boolean = false) {
         selectedIndex = index
         when(index) {
             0 -> {
@@ -79,7 +81,8 @@ class RankFragment : BaseBackFragment() {
             }
         }
         (recyclerView.adapter as ListAdapter).selectedIndex = index
-        reloadData()
+        if (!isInit)
+            reloadData()
     }
 
     fun reloadData() {
@@ -93,6 +96,7 @@ class RankFragment : BaseBackFragment() {
             }
         }
         recyclerView.adapter.notifyDataSetChanged()
+        emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
     }
 
     class ListAdapter(val users: ArrayList<User>, val listener: (User) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
@@ -115,7 +119,7 @@ class RankFragment : BaseBackFragment() {
                 when(position % 4) {
                     0 -> { layout.backgroundResource = R.drawable.cell_blue }
                     1 -> { layout.backgroundResource = R.drawable.cell_green }
-                    2 -> { layout.backgroundResource = R.drawable.cell_purple }
+                    2 -> { layout.backgroundResource = R.drawable.cell_purple_xml }
                     3 -> { layout.backgroundResource = R.drawable.cell_red }
                 }
                 rankTextView.text = "${position + 1}"

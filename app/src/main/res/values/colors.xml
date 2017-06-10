@@ -7,4 +7,8 @@
     <color name="mainTextColor">#FAFAFA</color>
 
     <color name="poolTextColor">#f5774b00</color>
+
+    <color name="spinner_origin">#FF8C00</color>
+    <color name="spinner_green">#10E382</color>
+    <color name="spinner_blue">#0096E6</color>
 </resources>
