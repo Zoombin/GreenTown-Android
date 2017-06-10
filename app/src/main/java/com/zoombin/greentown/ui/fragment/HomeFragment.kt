@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
+import com.zoombin.greentown.model.Task
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import me.yokeyword.fragmentation.SupportFragment
@@ -26,15 +27,15 @@ class HomeFragment : BaseBackFragment() {
 
         titleLabel.text = "歌林小屋"
 
-        inauguralButton.setOnClickListener {  }
+        inauguralButton.setOnClickListener { start(JobFragment()) }
 
-        giftButton.setOnClickListener {  }
+        giftButton.setOnClickListener { start(GiftFragment()) }
 
-        encourageButton.setOnClickListener {  }
+        encourageButton.setOnClickListener { start(InspireFragment()) }
 
-        pushButton.setOnClickListener {  }
+        pushButton.setOnClickListener { start(SpurFragment()) }
 
-        taskButton.setOnClickListener {  }
+        taskButton.setOnClickListener { start(TaskFragment()) }
 
         messageButton.setOnClickListener { start(LevelMessageFragment()) }
     }

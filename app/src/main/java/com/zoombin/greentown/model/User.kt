@@ -165,8 +165,7 @@ class User: Any() {
              failure: (String?) -> Unit) {
         val map = HashMap<String, Any>()
         map.put("reason_id", reasonId)
-        if (User.current()?.user_id != null)
-            map.put("user_id", User.current()!!.user_id)
+        map.put("user_id", user_id)
         Net.get("user/spur", map, { json ->
             success()
         }, failure)
@@ -178,8 +177,7 @@ class User: Any() {
                 failure: (String?) -> Unit) {
         val map = HashMap<String, Any>()
         map.put("reason_id", reasonId)
-        if (User.current()?.user_id != null)
-            map.put("user_id", User.current()!!.user_id)
+        map.put("user_id", user_id)
         Net.get("user/inspire", map, { json ->
             success()
         }, failure)

@@ -28,9 +28,4 @@ class LevelMessageFragment : BaseBackFragment() {
         titleLabel.text = "我要留言"
     }
 
-    override fun onCreateFragmentAnimator(): FragmentAnimator {
-        return DefaultVerticalAnimator()
-    }
-
-
 }
