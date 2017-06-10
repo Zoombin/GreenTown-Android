@@ -15,17 +15,6 @@
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/titleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="标题"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/nameTextView"
-            android:layout_marginTop="17.5dp" />
-
         <ImageView
             android:id="@+id/avatarImageView"
             android:layout_width="80dp"
@@ -56,6 +45,28 @@
             android:layout_below="@id/nameTextView"
             android:layout_marginTop="9dp"
             android:layout_marginLeft="10dp"/>
+
+        <ImageButton
+            android:id="@+id/inspireButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/inspire_button"
+            android:background="@null"
+            android:layout_toLeftOf="@id/spurButton"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"/>
+        
+        <ImageButton
+            android:id="@+id/spurButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/spur_button"
+            android:background="@null"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 

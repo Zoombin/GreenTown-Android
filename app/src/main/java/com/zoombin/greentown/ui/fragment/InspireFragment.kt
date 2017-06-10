@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.zoombin.greentown.R
+import com.zoombin.greentown.model.User
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import me.yokeyword.fragmentation.SupportFragment
 import me.yokeyword.fragmentation.anim.DefaultVerticalAnimator
@@ -15,7 +16,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator
  * Created by gejw on 2017/6/9.
  */
 
-class InspireFragment : BaseBackFragment() {
+class InspireFragment(user: User? = null) : BaseBackFragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_inspire, null)

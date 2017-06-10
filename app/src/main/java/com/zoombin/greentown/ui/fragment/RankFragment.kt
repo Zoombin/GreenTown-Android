@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.layout_rank_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import me.yokeyword.fragmentation.SupportFragment
 import org.jetbrains.anko.backgroundResource
+import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -117,11 +118,12 @@ class RankFragment : BaseBackFragment() {
 
             fun bind(item: User, position: Int, selectedIndex: Int, listener: (User) -> Unit) = with(itemView) {
                 when(position % 4) {
-                    0 -> { layout.backgroundResource = R.drawable.cell_blue }
-                    1 -> { layout.backgroundResource = R.drawable.cell_green }
+                    0 -> { layout.backgroundResource = R.drawable.cell_blue_xml }
+                    1 -> { layout.backgroundResource = R.drawable.cell_green_xml }
                     2 -> { layout.backgroundResource = R.drawable.cell_purple_xml }
-                    3 -> { layout.backgroundResource = R.drawable.cell_red }
+                    3 -> { layout.backgroundResource = R.drawable.cell_red_xml }
                 }
+                avatarImageView.imageResource = if (item.role_id >= 3) R.drawable.female else R.drawable.male
                 rankTextView.text = "${position + 1}"
                 nameTextView.text = item.fullname
                 titleTextView.text = if (selectedIndex == 0) "" else "${item.title_name}"
