@@ -84,6 +84,7 @@ class GuildFragment : BaseBackFragment() {
             items.clear()
             items.addAll(users)
             recyclerView.adapter.notifyDataSetChanged()
+            emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
         }) { message ->
             if (message != null) toast(message)
         }
