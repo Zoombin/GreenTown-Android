@@ -43,6 +43,15 @@ class Sport : Any() {
             }, failure)
         }
 
+        // 奖池
+        fun pool(success: (Int) -> Unit,
+                 failure: (String?) -> Unit) {
+            val map = HashMap<String, Any>()
+            Net.get("sports/pool", map, { json ->
+                success(JSONObject(json).getJSONObject("data").getInt("coins"))
+            }, failure)
+        }
+
     }
 
     // 参赛选手
@@ -90,16 +99,6 @@ class Sport : Any() {
         map.put("sport_id", sport_id)
         Net.get("sports/joinSport", map, { json ->
             success()
-        }, failure)
-    }
-
-    // 奖池
-    fun pool(success: (Int) -> Unit,
-             failure: (String?) -> Unit) {
-        val map = HashMap<String, Any>()
-        map.put("sport_id", sport_id)
-        Net.get("sports/pool", map, { json ->
-            success(JSONObject(json).getJSONObject("data").getInt("coins"))
         }, failure)
     }
 

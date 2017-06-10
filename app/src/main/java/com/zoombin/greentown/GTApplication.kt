@@ -2,6 +2,7 @@ package com.zoombin.greentown
 
 import android.app.Application
 import android.content.Context
+import cn.jpush.android.api.JPushInterface
 import org.xutils.x
 
 /**
@@ -17,6 +18,9 @@ class GTApplication : Application() {
 
         x.Ext.init(this)
         x.Ext.setDebug(true)
+        JPushInterface.setDebugMode(true)
+        JPushInterface.init(this)
+        JPushInterface.setAlias(this, "green", null)
     }
 
     companion object {
