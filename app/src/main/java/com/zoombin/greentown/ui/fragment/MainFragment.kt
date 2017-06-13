@@ -1,5 +1,7 @@
 package com.zoombin.greentown.ui.fragment
 
+import android.app.AlertDialog
+import android.content.*
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -9,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
+import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import me.yokeyword.fragmentation.SupportFragment
@@ -16,6 +19,7 @@ import me.yokeyword.fragmentation.anim.DefaultNoAnimator
 import me.yokeyword.fragmentation.anim.DefaultVerticalAnimator
 import me.yokeyword.fragmentation.anim.FragmentAnimator
 import org.jetbrains.anko.imageResource
+import org.jetbrains.anko.support.v4.toast
 
 class MainFragment : SupportFragment() {
 
@@ -36,7 +40,27 @@ class MainFragment : SupportFragment() {
         navigationLeftButton.setOnClickListener { start(UserFragment()) }
 
         navigationRightButton.setOnClickListener {
-
+            val items = ArrayList<String>()
+            items.add("关于")
+            items.add("退出登录")
+            AlertDialog.Builder(activity)
+                    .setTitle("菜单")
+                    .setItems(items.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
+                        when(which) {
+                            0 -> { start(AboutFragment()) }
+                            1 -> {
+                                val dialog = AlertDialog.Builder(context)
+                                dialog.setTitle("确认退出？")
+                                dialog.setPositiveButton("确定") { dialog, which ->
+                                    // 退出登录
+                                    User.logout()
+                                }
+                                dialog.setNegativeButton("取消", null)
+                                dialog.show()
+                            }
+                        }
+                    })
+                    .show()
         }
 
         messageButton.setOnClickListener { start(MessageFragment()) }
@@ -51,6 +75,26 @@ class MainFragment : SupportFragment() {
 
         if (User.current() == null)
             start(LoginFragment())
+
+
+        context.registerReceiver(null, IntentFilter("logout"))
+    }
+
+    private val broadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context : Context?, intent : Intent?) {
+            when(intent!!.action){
+                "logout" -> { start(LoginFragment()) }
+            }
+        }
+    }
+
+    override fun onPause(){
+        super.onPause()
+        context.unregisterReceiver(broadcastReceiver)
+    }
+    override fun onResume(){
+        super.onResume()
+        context.registerReceiver(broadcastReceiver, IntentFilter("logout"))
     }
 
     override fun onCreateFragmentAnimator(): FragmentAnimator {

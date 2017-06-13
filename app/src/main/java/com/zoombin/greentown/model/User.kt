@@ -1,5 +1,6 @@
 package com.zoombin.greentown.model
 
+import android.content.Intent
 import com.alibaba.fastjson.JSON
 import com.zoombin.greentown.GTApplication
 import com.zoombin.greentown.net.Net
@@ -56,6 +57,7 @@ class User: Any() {
             val edit = GTApplication.context?.getSharedPreferences("user", 0)?.edit()
             edit?.remove("user")
             edit?.commit()
+            GTApplication.context?.sendBroadcast(Intent("logout"))
         }
 
         // 获取当前登录用户
