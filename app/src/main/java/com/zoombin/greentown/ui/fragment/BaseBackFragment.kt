@@ -24,12 +24,10 @@ open class BaseBackFragment : SupportFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         titleLabel.visibility = View.VISIBLE
-        navigationLeftButton.visibility = View.VISIBLE
-        navigationRightButton.visibility = View.VISIBLE
         navigationLeftButton.imageResource = R.drawable.navigation_back
+        navigationLeftButton.visibility = View.VISIBLE
+        navigationLeftButton.setOnClickListener { pop() }
         navigationRightButton.image = null
-        navigationLeftButton.setOnClickListener {
-            pop()
-        }
+        navigationRightButton.visibility = View.VISIBLE
     }
 }

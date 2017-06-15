@@ -137,8 +137,8 @@ class User: Any() {
                         roleId: String? = null,
                         fullName: String? = null,
                         nickName: String? = null,
-                        departmentId: String? = null,
-                        positionId: String? = null,
+                        departmentId: Int? = null,
+                        positionId: Int? = null,
                         success: () -> Unit,
                  failure: (String?) -> Unit) {
         val map = HashMap<String, Any>()
@@ -156,7 +156,7 @@ class User: Any() {
             map.put("department_id", departmentId)
         if (positionId != null)
             map.put("position_id", positionId)
-        Net.get("user/complete_profile", map, { json ->
+        Net.post("user/complete_profile", map, { json ->
             success()
         }, failure)
     }

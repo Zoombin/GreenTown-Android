@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/spinnerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/spinner_background_origin"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/nameZhLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工会"
+            android:textSize="16sp"
+            android:textColor="@color/spinner_origin"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/nameEnLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guild"
+            android:textSize="14sp"
+            android:textColor="@color/spinner_origin"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/valueTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="请选择"
+            android:textSize="14sp"
+            android:textColor="@color/spinner_origin"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"/>
+
+        <ImageView
+            android:id="@+id/arrowImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/spinner_orange_arrow"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+</LinearLayout>
