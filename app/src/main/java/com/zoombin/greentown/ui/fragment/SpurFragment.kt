@@ -102,6 +102,7 @@ class SpurFragment(user: User? = null) : BaseBackFragment() {
                 return@setOnClickListener
             }
             user?.spur(reason!!.reason_id, {
+                toast("鞭策成功")
                 pop()
             }) { message ->
                 if (message != null) toast(message)

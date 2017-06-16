@@ -24,7 +24,7 @@ class Reason : Any() {
                           failure: (String?) -> Unit) {
             val map = HashMap<String, Any>()
             map.put("type", 1)
-            Net.post("user/inspire_or_spur_content", map, { json ->
+            Net.get("user/inspire_or_spur_content", map, { json ->
                 val reasons = JSON.parseArray(JSONObject(json).getString("data").toString(), Reason::class.java)
                 success(reasons)
             }, failure)
@@ -35,7 +35,7 @@ class Reason : Any() {
                           failure: (String?) -> Unit) {
             val map = HashMap<String, Any>()
             map.put("type", 2)
-            Net.post("user/inspire_or_spur_content", map, { json ->
+            Net.get("user/inspire_or_spur_content", map, { json ->
                 val reasons = JSON.parseArray(JSONObject(json).getString("data").toString(), Reason::class.java)
                 success(reasons)
             }, failure)

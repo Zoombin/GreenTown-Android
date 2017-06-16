@@ -168,7 +168,7 @@ class User: Any() {
         val map = HashMap<String, Any>()
         map.put("reason_id", reasonId)
         map.put("user_id", user_id)
-        Net.get("user/spur", map, { json ->
+        Net.post("user/spur", map, { json ->
             success()
         }, failure)
     }
@@ -180,7 +180,7 @@ class User: Any() {
         val map = HashMap<String, Any>()
         map.put("reason_id", reasonId)
         map.put("user_id", user_id)
-        Net.get("user/inspire", map, { json ->
+        Net.post("user/inspire", map, { json ->
             success()
         }, failure)
     }

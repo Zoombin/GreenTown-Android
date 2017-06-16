@@ -104,6 +104,7 @@ class InspireFragment(user: User? = null) : BaseBackFragment() {
                 return@setOnClickListener
             }
             user?.inspire(reason!!.reason_id, {
+                toast("鼓舞成功")
                 pop()
             }) { message ->
                 if (message != null) toast(message)
