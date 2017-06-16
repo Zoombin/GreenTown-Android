@@ -4,17 +4,122 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/cell_blue"
+        android:background="@drawable/cell_blue_xml"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
-        android:paddingBottom="10dp"
-        android:orientation="vertical">
+        android:padding="20dp">
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/avatarImageView"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="centerInside"/>
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/avatarImageView"
+            android:layout_marginLeft="10dp"
+            android:text="姓名"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="6dp"
+            android:layout_toRightOf="@id/nameTextView">
+
+            <ImageView
+                android:id="@+id/percent1ImageView"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/sport_percent_selected"
+                android:layout_marginLeft="3dp"/>
+
+            <ImageView
+                android:id="@+id/percent2ImageView"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/sport_percent_selected"
+                android:layout_marginLeft="3dp"/>
+
+            <ImageView
+                android:id="@+id/percent3ImageView"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/sport_percent_selected"
+                android:layout_marginLeft="3dp"/>
+
+            <ImageView
+                android:id="@+id/percent4ImageView"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/sport_percent_selected"
+                android:layout_marginLeft="3dp"/>
+
+            <ImageView
+                android:id="@+id/percent5ImageView"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/sport_percent_selected"
+                android:layout_marginLeft="3dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/descTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/avatarImageView"
+            android:layout_below="@id/nameTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:text="描述"
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/avatarImageView">
+
+            <Button
+                android:id="@+id/ruleButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_border_white"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:text="赛事规则"/>
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="match_parent"/>
+
+            <Button
+                android:id="@+id/commitButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_border_white"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:text="参赛"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>

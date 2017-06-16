@@ -7,11 +7,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Sport
 import kotlinx.android.synthetic.main.fragment_sport.*
+import kotlinx.android.synthetic.main.layout_sport_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import me.yokeyword.fragmentation.SupportFragment
+import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -32,11 +35,11 @@ class SportFragment : BaseBackFragment() {
 
         titleLabel.text = "歌林娱乐"
 
-        val layoutManager = GridLayoutManager(activity, 1)
+        val layoutManager = GridLayoutManager(context, 1)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = ListAdapter(items) {
-
+            start(SportInfoFragment(it))
         }
 
         Sport.sports({ sports ->
@@ -69,6 +72,18 @@ class SportFragment : BaseBackFragment() {
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             fun bind(item: Sport, listener: (Sport) -> Unit) = with(itemView) {
+                nameTextView.text = item.title
+                descTextView.text = item.sub_title
+
+                Glide.with(context).load(item.logo).into(avatarImageView)
+
+                percent1ImageView.imageResource = R.drawable.sport_percent_selected
+                percent2ImageView.imageResource = R.drawable.sport_percent_selected
+                percent3ImageView.imageResource = R.drawable.sport_percent_selected
+                percent4ImageView.imageResource = R.drawable.sport_percent_selected
+                percent5ImageView.imageResource = R.drawable.sport_percent_selected
+
+                commitButton.text = if (item.is_joined == 0) "参加" else "已参加"
 
                 setOnClickListener { listener(item) }
             }
