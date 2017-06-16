@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/cell_blue_xml">
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/white"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"/>
+
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/line"
+                android:layout_marginTop="15dp"
+                android:text="姓名"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/timeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nameTextView"
+                android:layout_marginTop="5dp"
+                android:text="时间"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:gravity="center"/>
+
+
+            <Button
+                android:id="@+id/pickButton"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_border_white"
+                android:layout_below="@id/timeTextView"
+                android:layout_marginTop="15dp"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:text="领取"/>
+
+        </RelativeLayout>
+        
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/gift_icon"
+            android:layout_marginLeft="20dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

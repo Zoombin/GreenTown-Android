@@ -1,6 +1,7 @@
 package com.zoombin.greentown.model
 
 import com.alibaba.fastjson.JSON
+import com.alibaba.fastjson.annotation.JSONField
 import com.zoombin.greentown.net.Net
 import org.json.JSONObject
 
@@ -27,7 +28,8 @@ class Sport : Any() {
     // 头像
     var logo = ""
     // 0:未参加 1：已参加
-    var is_joined = 0
+    @JSONField(name="is_joined")
+    var joined = 0
 
     companion object {
 

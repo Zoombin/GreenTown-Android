@@ -1,6 +1,7 @@
 package com.zoombin.greentown.model
 
 import com.alibaba.fastjson.JSON
+import com.alibaba.fastjson.annotation.JSONField
 import com.zoombin.greentown.net.Net
 import org.json.JSONObject
 
@@ -21,7 +22,8 @@ class Gift : Any() {
     // 成就点
     var points = 0
     // 是否已认领 0：未认领  1：已认领
-    var is_picked = 0
+    @JSONField(name="is_picked")
+    var picked = 0
     // 开始时间
     var gift_start = ""
     // 结束时间
@@ -50,7 +52,7 @@ class Gift : Any() {
         if (User.current()?.user_id != null)
             map.put("user_id", User.current()!!.user_id)
         map.put("gift_id", gift_id)
-        Net.get("gift/pick_gift", map, { json ->
+        Net.post("gift/pick_gift", map, { json ->
             success()
         }, failure)
     }

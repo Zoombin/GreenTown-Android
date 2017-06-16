@@ -61,6 +61,7 @@ class MessageFragment : BaseBackFragment() {
             noteMessages.addAll(messages)
             reloadData()
         }) { message ->
+            reloadData()
             if (message != null) toast(message)
         }
 
@@ -69,6 +70,7 @@ class MessageFragment : BaseBackFragment() {
             eventMessages.addAll(messages)
             reloadData()
         }) { message ->
+            reloadData()
             if (message != null) toast(message)
         }
 
@@ -77,6 +79,7 @@ class MessageFragment : BaseBackFragment() {
             departmentMessages.addAll(messages)
             reloadData()
         }) { message ->
+            reloadData()
             if (message != null) toast(message)
         }
     }

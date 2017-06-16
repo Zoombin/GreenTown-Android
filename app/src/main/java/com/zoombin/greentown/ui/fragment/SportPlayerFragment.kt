@@ -52,6 +52,7 @@ class SportPlayerFragment(sport: Sport) : BaseBackFragment() {
             emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
         }) { message ->
             if (message != null) toast(message)
+            emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
         }
 
     }

@@ -53,6 +53,7 @@ class SportFragment : BaseBackFragment() {
             emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
         }) { message ->
             if (message != null) toast(message)
+            emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
         }
         Sport.pool({ pool ->
             poolTextView.text = "总奖金：$pool"
