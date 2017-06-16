@@ -107,6 +107,12 @@ class JobFragment : BaseBackFragment() {
             }
             User.current()?.completeProfile(departmentId = department!!.department_id, positionId = position!!.position_id, success = {
                 toast("修改成功")
+                val user = User.current()
+                user?.department_id = department!!.department_id
+                user?.department_name = department!!.department_name
+                user?.position_id = position!!.position_id
+                user?.position_name = position!!.position_name
+                user?.save()
                 pop()
             }) { message ->
                 if (message != null) toast(message)

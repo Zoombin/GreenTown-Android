@@ -43,7 +43,7 @@ class User: Any() {
 
     var role_id = 0
 
-    private fun save() {
+    fun save() {
         val json = JSON.toJSONString(this)
         val edit = GTApplication.context?.getSharedPreferences("user", 0)?.edit()
         edit?.putString("user", json)
