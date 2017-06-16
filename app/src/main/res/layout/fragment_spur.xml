@@ -7,29 +7,52 @@
 
     <include layout="@layout/layout_titlebar"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/white">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none">
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"/>
+
+            <include android:id="@+id/playerSpinner" layout="@layout/widget_spinner"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"/>
+
+            <include android:id="@+id/reasonSpinner" layout="@layout/widget_spinner"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"/>
+
+            <include android:id="@+id/rewardSpinner" layout="@layout/widget_spinner"/>
+
+            <Button
+                android:id="@+id/submitButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+                android:layout_height="80dp"
+                android:background="@drawable/cell_green_xml"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="50dp"
+                android:text="确定"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
 
+        </LinearLayout>
 
-            </LinearLayout>
-
-        </ScrollView>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

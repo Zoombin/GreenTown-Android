@@ -44,17 +44,11 @@ class JobFragment : BaseBackFragment() {
 
         guildSpinner.nameZhLabel.text = "工会"
         guildSpinner.nameEnLabel.text = "Guild"
-        guildSpinner.nameZhLabel.textColor = context.resources.getColor(R.color.spinner_origin)
-        guildSpinner.nameEnLabel.textColor = context.resources.getColor(R.color.spinner_origin)
-        guildSpinner.valueTextView.textColor = context.resources.getColor(R.color.spinner_origin)
         guildSpinner.spinnerLayout.backgroundResource = R.drawable.spinner_background_origin
         guildSpinner.arrowImageView.imageResource = R.drawable.spinner_orange_arrow
 
         classSpinner.nameZhLabel.text = "职业"
         classSpinner.nameEnLabel.text = "Class"
-        classSpinner.nameZhLabel.textColor = context.resources.getColor(R.color.spinner_blue)
-        classSpinner.nameEnLabel.textColor = context.resources.getColor(R.color.spinner_blue)
-        classSpinner.valueTextView.textColor = context.resources.getColor(R.color.spinner_blue)
         classSpinner.spinnerLayout.backgroundResource = R.drawable.spinner_background_blue
         classSpinner.arrowImageView.imageResource = R.drawable.spinner_blue_arrow
 

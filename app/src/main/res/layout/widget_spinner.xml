@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="工会"
             android:textSize="16sp"
-            android:textColor="@color/spinner_origin"
+            android:textColor="@color/poolTextColor"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"/>
 
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="Guild"
             android:textSize="14sp"
-            android:textColor="@color/spinner_origin"
+            android:textColor="@color/poolTextColor"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"/>
 
@@ -39,7 +39,7 @@
             android:layout_weight="1"
             android:text="请选择"
             android:textSize="14sp"
-            android:textColor="@color/spinner_origin"
+            android:textColor="@color/poolTextColor"
             android:layout_gravity="center_vertical"
             android:gravity="center"/>
 
