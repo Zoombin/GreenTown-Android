@@ -9,26 +9,44 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/white">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-        <ScrollView
+        <EditText
+            android:id="@+id/messageEditText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:hint="请输入您的留言"
+            android:textSize="14sp"
+            android:background="@null"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/spinner_origin"/>
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none">
+            android:textSize="14sp"
+            android:textColor="@color/poolTextColor"
+            android:text="留言给镇长，镇长将通过邮件恢复你"
+            android:layout_marginTop="10dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+        <Button
+            android:id="@+id/sendButton"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:background="@drawable/spinner_background_origin"
+            android:text="发送"
+            android:textColor="@color/spinner_origin"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="center_horizontal"/>
 
-
-            </LinearLayout>
-
-        </ScrollView>
 
     </LinearLayout>
 
