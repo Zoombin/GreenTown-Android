@@ -31,7 +31,7 @@
                     android:orientation="horizontal"
                     android:gravity="center"
                     android:layout_marginBottom="10dp">
-                    
+
                     <ImageButton
                         android:id="@+id/inauguralButton"
                         android:layout_width="124dp"

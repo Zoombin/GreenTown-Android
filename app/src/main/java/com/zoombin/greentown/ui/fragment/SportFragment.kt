@@ -98,8 +98,8 @@ class SportFragment : BaseBackFragment() {
                 percent4ImageView.imageResource = if (percent >= 0.6) selectedRes else unSelectedRes
                 percent5ImageView.imageResource = if (percent >= 0.8) selectedRes else unSelectedRes
 
-                joinButton.text = if (item.is_joined == 0) "参加" else "已参加"
-                joinButton.isEnabled = item.is_joined == 0
+                joinButton.text = if (item.joined == 0) "参加" else "已参加"
+                joinButton.isEnabled = item.joined == 0
 
                 setOnClickListener { listener(item) }
 

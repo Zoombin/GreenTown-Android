@@ -42,10 +42,16 @@ class TaskFragment : BaseBackFragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = ListAdapter(items, {
             // 领取
-        }) {
-            // 完成
-        }
+            it.pickTask({
+                loadData()
+            }) { message ->
+                if (message != null) toast(message)
+            }
+        })
+        loadData()
+    }
 
+    fun loadData() {
         Task.tasks({ tasks ->
             items.clear()
             items.addAll(tasks)
@@ -58,27 +64,38 @@ class TaskFragment : BaseBackFragment() {
     }
 
     class ListAdapter(val tasks: ArrayList<Task>,
-                      val pickListener: (Task) -> Unit,
-                      val finishListener: (Task) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+                      val pickListener: (Task) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder {
             return ViewHolder(View.inflate(parent.context, R.layout.layout_task_cell, null))
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.bind(tasks[position], position, pickListener, finishListener)
+            holder.bind(tasks[position], position, pickListener)
         }
 
         override fun getItemCount() = tasks.size
 
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-            fun bind(item: Task, position: Int, pickListener: (Task) -> Unit, finishListener: (Task) -> Unit) = with(itemView) {
+            fun bind(item: Task, position: Int, pickListener: (Task) -> Unit) = with(itemView) {
                 when(position % 4) {
                     0 -> { layout.backgroundResource = R.drawable.cell_blue_xml }
                     1 -> { layout.backgroundResource = R.drawable.cell_green_xml }
                     2 -> { layout.backgroundResource = R.drawable.cell_purple_xml }
                     3 -> { layout.backgroundResource = R.drawable.cell_red_xml }
+                }
+
+                nameTextView.text = item.task_name
+                rewardValueTextView.text = "成就点${item.points}，绿币${item.coins}，金币${item.golds}"
+                pickButton.text = if (item.picked == 1) "已领取" else "领取"
+                finishButton.text = if (item.finished == 1) "已完成" else "未完成"
+                finishButton.isEnabled = false
+                pickButton.isEnabled = item.picked == 0
+
+                pickButton.setOnClickListener {
+                    if (item.picked == 1) { return@setOnClickListener }
+                    pickListener(item)
                 }
 //                avatarImageView.imageResource = if (item.role_id >= 3) R.drawable.female else R.drawable.male
 //                nameTextView.text = item.fullname

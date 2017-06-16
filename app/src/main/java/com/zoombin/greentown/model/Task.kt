@@ -49,7 +49,7 @@ class Task : Any() {
         if (User.current()?.user_id != null)
             map.put("user_id", User.current()!!.user_id)
         map.put("task_id", task_id)
-        Net.get("task/pick_task", map, { json ->
+        Net.post("task/pick_task", map, { json ->
             success()
         }, failure)
     }
@@ -61,7 +61,7 @@ class Task : Any() {
         if (User.current()?.user_id != null)
             map.put("user_id", User.current()!!.user_id)
         map.put("task_id", task_id)
-        Net.get("task/finish_task", map, { json ->
+        Net.post("task/finish_task", map, { json ->
             success()
         }, failure)
     }
