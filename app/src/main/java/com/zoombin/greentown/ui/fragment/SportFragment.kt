@@ -38,14 +38,19 @@ class SportFragment : BaseBackFragment() {
         val layoutManager = GridLayoutManager(context, 1)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = ListAdapter(items) {
-            start(SportInfoFragment(it))
+        recyclerView.adapter = ListAdapter(items, {
+            // 规则
+        }, {
+            // 参加
+        }) {
+            start(SportInfoFragment(it, poolTextView.text.toString()))
         }
 
         Sport.sports({ sports ->
             items.clear()
             items.addAll(sports)
             recyclerView.adapter.notifyDataSetChanged()
+            emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
         }) { message ->
             if (message != null) toast(message)
         }
@@ -57,35 +62,48 @@ class SportFragment : BaseBackFragment() {
     }
 
 
-    class ListAdapter(val cars: ArrayList<Sport>, val listener: (Sport) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+    class ListAdapter(val cars: ArrayList<Sport>,
+                      val ruleListener: (Sport) -> Unit,
+                      val joinListener: (Sport) -> Unit,
+                      val listener: (Sport) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder {
             return ViewHolder(View.inflate(parent.context, R.layout.layout_sport_cell, null))
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.bind(cars[position], listener)
+            holder.bind(cars[position], ruleListener, joinListener, listener)
         }
 
         override fun getItemCount() = cars.size
 
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-            fun bind(item: Sport, listener: (Sport) -> Unit) = with(itemView) {
+            fun bind(item: Sport,
+                     ruleListener: (Sport) -> Unit,
+                     joinListener: (Sport) -> Unit,
+                     listener: (Sport) -> Unit) = with(itemView) {
                 nameTextView.text = item.title
                 descTextView.text = item.sub_title
 
                 Glide.with(context).load(item.logo).into(avatarImageView)
 
-                percent1ImageView.imageResource = R.drawable.sport_percent_selected
-                percent2ImageView.imageResource = R.drawable.sport_percent_selected
-                percent3ImageView.imageResource = R.drawable.sport_percent_selected
-                percent4ImageView.imageResource = R.drawable.sport_percent_selected
-                percent5ImageView.imageResource = R.drawable.sport_percent_selected
+                val selectedRes = R.drawable.sport_percent_selected
+                val unSelectedRes = R.drawable.sport_percent_unselected
+                val percent = item.cur_quantity / item.quantity.toFloat()
+                percent1ImageView.imageResource = if (percent >= 0) selectedRes else unSelectedRes
+                percent2ImageView.imageResource = if (percent >= 0.2) selectedRes else unSelectedRes
+                percent3ImageView.imageResource = if (percent >= 0.4) selectedRes else unSelectedRes
+                percent4ImageView.imageResource = if (percent >= 0.6) selectedRes else unSelectedRes
+                percent5ImageView.imageResource = if (percent >= 0.8) selectedRes else unSelectedRes
 
-                commitButton.text = if (item.is_joined == 0) "参加" else "已参加"
+                joinButton.text = if (item.is_joined == 0) "参加" else "已参加"
+                joinButton.isEnabled = item.is_joined == 0
 
                 setOnClickListener { listener(item) }
+
+                joinButton.setOnClickListener { joinListener(item) }
+                ruleButton.setOnClickListener { ruleListener(item) }
             }
 
         }

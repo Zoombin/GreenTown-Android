@@ -109,7 +109,7 @@
                 android:layout_height="match_parent"/>
 
             <Button
-                android:id="@+id/commitButton"
+                android:id="@+id/joinButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

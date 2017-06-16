@@ -72,7 +72,7 @@ class JobFragment : BaseBackFragment() {
         guildSpinner.setOnClickListener {
             Department.departments({
                 // 弹框
-                AlertDialog.Builder(activity)
+                AlertDialog.Builder(context)
                         .setTitle("选择工会")
                         .setItems(it.map { it.department_name }.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
                             updateDepartment(it.get(which))
@@ -85,7 +85,7 @@ class JobFragment : BaseBackFragment() {
 
         classSpinner.setOnClickListener {
             department?.positions({
-                AlertDialog.Builder(activity)
+                AlertDialog.Builder(context)
                         .setTitle("选择职位")
                         .setItems(it.map { it.position_name }.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
                             updatePosition(it.get(which))

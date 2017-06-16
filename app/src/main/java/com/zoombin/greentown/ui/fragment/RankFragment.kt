@@ -40,7 +40,7 @@ class RankFragment : BaseBackFragment() {
 
         titleLabel.text = "歌林排行"
 
-        val layoutManager = GridLayoutManager(activity, 1)
+        val layoutManager = GridLayoutManager(context, 1)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = ListAdapter(items) {

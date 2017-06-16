@@ -41,7 +41,7 @@ class GuildFragment : BaseBackFragment() {
 
         titleLabel.text = "歌林工会"
 
-        val layoutManager = GridLayoutManager(activity, 1)
+        val layoutManager = GridLayoutManager(context, 1)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = ListAdapter(items, {
@@ -64,7 +64,7 @@ class GuildFragment : BaseBackFragment() {
                 return@setOnClickListener
             }
             val items = departments.map { it.department_name }.toTypedArray()
-            AlertDialog.Builder(activity)
+            AlertDialog.Builder(context)
                     .setTitle("选择工会")
                     .setItems(items, DialogInterface.OnClickListener { dialog, which ->
                         selectDepartment(departments.get(which))

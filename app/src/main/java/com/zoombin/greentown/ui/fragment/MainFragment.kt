@@ -43,7 +43,7 @@ class MainFragment : SupportFragment() {
             val items = ArrayList<String>()
             items.add("关于")
             items.add("退出登录")
-            AlertDialog.Builder(activity)
+            AlertDialog.Builder(context)
                     .setTitle("菜单")
                     .setItems(items.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
                         when(which) {

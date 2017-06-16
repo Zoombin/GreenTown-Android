@@ -44,7 +44,7 @@ class MessageFragment : BaseBackFragment() {
         navigationLeftButton.imageResource = R.drawable.navigation_close
         titleLabel.text = "消息"
 
-        val layoutManager = GridLayoutManager(activity, 1)
+        val layoutManager = GridLayoutManager(context, 1)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = ListAdapter(items) {
