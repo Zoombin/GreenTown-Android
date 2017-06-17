@@ -1,5 +1,6 @@
 package com.zoombin.greentown.ui.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -40,12 +41,33 @@ class SportFragment : BaseBackFragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = ListAdapter(items, {
             // 规则
+            val dialog = AlertDialog.Builder(context)
+            dialog.setTitle("参赛规则")
+            dialog.setMessage(it.rule)
+            dialog.setPositiveButton("确定", null)
+            dialog.show()
         }, {
             // 参加
+            val dialog = AlertDialog.Builder(context)
+            dialog.setTitle("确认参加？")
+            dialog.setPositiveButton("确定") { dialog, which ->
+                // 退出登录
+                it.enroll({
+                    toast("参加成功！")
+                    loadData()
+                }) { message ->
+                    if (message != null) toast(message)
+                }
+            }
+            dialog.setNegativeButton("取消", null)
+            dialog.show()
         }) {
             start(SportInfoFragment(it, poolTextView.text.toString()))
         }
+        loadData()
+    }
 
+    fun loadData() {
         Sport.sports({ sports ->
             items.clear()
             items.addAll(sports)
@@ -61,7 +83,6 @@ class SportFragment : BaseBackFragment() {
             if (message != null) toast(message)
         }
     }
-
 
     class ListAdapter(val cars: ArrayList<Sport>,
                       val ruleListener: (Sport) -> Unit,

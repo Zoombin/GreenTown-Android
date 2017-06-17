@@ -18,7 +18,6 @@
         android:paddingRight="20dp"
         android:orientation="vertical">
 
-
         <TextView
             android:id="@+id/nameTextView"
             android:layout_width="match_parent"

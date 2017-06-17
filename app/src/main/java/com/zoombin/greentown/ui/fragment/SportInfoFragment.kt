@@ -1,9 +1,11 @@
 package com.zoombin.greentown.ui.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Sport
 import kotlinx.android.synthetic.main.fragment_sportinfo.*
@@ -31,13 +33,21 @@ class SportInfoFragment(sport: Sport, pool: String) : BaseBackFragment() {
         titleLabel.text = sport.title
         poolTextView.text = pool
 
-        ruleButton.setOnClickListener {  }
+        ruleButton.setOnClickListener {
+            val dialog = AlertDialog.Builder(context)
+            dialog.setTitle("参赛规则")
+            dialog.setMessage(sport.rule)
+            dialog.setPositiveButton("确定", null)
+            dialog.show() }
 
         playerButton.setOnClickListener { start(SportPlayerFragment(sport)) }
 
+        Glide.with(context).load(sport.logo).into(avatarImageView)
 
-        sport.rank({
-
+        sport.rank({ users ->
+            firstNameTextView.text = users[0]
+            secondNameTextView.text = users[1]
+            thirdNameTextView.text = users[2]
         }) { message ->
             if (message != null) toast(message)
         }

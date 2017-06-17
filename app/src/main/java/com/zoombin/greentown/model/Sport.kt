@@ -99,7 +99,7 @@ class Sport : Any() {
         if (User.current()?.user_id != null)
             map.put("user_id", User.current()!!.user_id)
         map.put("sport_id", sport_id)
-        Net.get("sports/joinSport", map, { json ->
+        Net.post("sports/joinSport", map, { json ->
             success()
         }, failure)
     }
