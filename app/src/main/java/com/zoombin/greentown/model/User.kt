@@ -186,10 +186,13 @@ class User: Any() {
     }
 
     // 获取绿币
-    fun queryUserPoint(success: () -> Unit,
-                       failure: (String?) -> Unit) {
+    fun queryUserInfo(success: () -> Unit,
+                      failure: (String?) -> Unit) {
         val map = HashMap<String, Any>()
-        Net.get("queryUserPoint", map, { json ->
+        map.put("userId", user_id)
+        Net.get("user/getUserInfo", map, { json ->
+            val user = JSON.parseObject(JSONObject(json).getString("data").toString(), User::class.java)
+            user.save()
             success()
         }, failure)
     }

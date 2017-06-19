@@ -33,6 +33,19 @@ class UserFragment : SupportFragment() {
         navigationRightButton.imageResource = R.drawable.navigation_close
         navigationRightButton.setOnClickListener { pop() }
 
+        loadUI()
+        User.current()?.queryUserInfo({
+            loadUI()
+        }) {
+
+        }
+    }
+
+    override fun onCreateFragmentAnimator(): FragmentAnimator {
+        return DefaultVerticalAnimator()
+    }
+
+    fun loadUI() {
         val user = User.current()
         if (user != null) {
             avatarImageView.imageResource = if (user.role_id >= 3) R.drawable.female else R.drawable.male
@@ -42,10 +55,6 @@ class UserFragment : SupportFragment() {
             integralTextView.text = "成就点：${user.points}"
             positionTextView.text = "${user.department_name} · ${user.position_name}"
         }
-    }
-
-    override fun onCreateFragmentAnimator(): FragmentAnimator {
-        return DefaultVerticalAnimator()
     }
 
 }
