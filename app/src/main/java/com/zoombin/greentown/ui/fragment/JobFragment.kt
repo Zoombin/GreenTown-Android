@@ -44,11 +44,13 @@ class JobFragment : BaseBackFragment() {
 
         guildSpinner.nameZhLabel.text = "工会"
         guildSpinner.nameEnLabel.text = "Guild"
+        guildSpinner.arrowImageView.visibility = View.GONE
         guildSpinner.spinnerLayout.backgroundResource = R.drawable.spinner_background_origin
         guildSpinner.arrowImageView.imageResource = R.drawable.spinner_orange_arrow
 
         classSpinner.nameZhLabel.text = "职业"
         classSpinner.nameEnLabel.text = "Class"
+        classSpinner.arrowImageView.visibility = View.GONE
         classSpinner.spinnerLayout.backgroundResource = R.drawable.spinner_background_blue
         classSpinner.arrowImageView.imageResource = R.drawable.spinner_blue_arrow
 
@@ -63,54 +65,8 @@ class JobFragment : BaseBackFragment() {
 
         }
 
-        guildSpinner.setOnClickListener {
-            Department.departments({
-                // 弹框
-                AlertDialog.Builder(context)
-                        .setTitle("选择工会")
-                        .setItems(it.map { it.department_name }.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
-                            updateDepartment(it.get(which))
-                        })
-                        .show()
-            }) {
-
-            }
-        }
-
-        classSpinner.setOnClickListener {
-            department?.positions({
-                AlertDialog.Builder(context)
-                        .setTitle("选择职位")
-                        .setItems(it.map { it.position_name }.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
-                            updatePosition(it.get(which))
-                        })
-                        .show()
-            }) {
-
-            }
-        }
-
         submitButton.setOnClickListener {
-            if (department == null) {
-                toast("请选择工会")
-                 return@setOnClickListener
-            }
-            if (position == null) {
-                toast("请选择职位")
-                return@setOnClickListener
-            }
-            User.current()?.completeProfile(departmentId = department!!.department_id, positionId = position!!.position_id, success = {
-                toast("修改成功")
-                val user = User.current()
-                user?.department_id = department!!.department_id
-                user?.department_name = department!!.department_name
-                user?.position_id = position!!.position_id
-                user?.position_name = position!!.position_name
-                user?.save()
-                pop()
-            }) { message ->
-                if (message != null) toast(message)
-            }
+            pop()
         }
     }
 

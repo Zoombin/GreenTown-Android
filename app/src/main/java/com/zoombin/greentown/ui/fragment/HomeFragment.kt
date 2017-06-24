@@ -27,7 +27,7 @@ class HomeFragment : BaseBackFragment() {
 
         titleLabel.text = "歌林小屋"
 
-        inauguralButton.setOnClickListener { start(UserFragment()) }
+        inauguralButton.setOnClickListener { start(JobFragment()) }
 
         giftButton.setOnClickListener { start(GiftFragment()) }
 
