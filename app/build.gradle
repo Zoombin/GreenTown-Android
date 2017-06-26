@@ -53,8 +53,12 @@ dependencies {
     // fragment框架 https://github.com/YoKeyword/Fragmentation
     compile 'me.yokeyword:fragmentation:0.10.7'
     // Glide https://github.com/bumptech/glide
-    compile 'com.github.bumptech.glide:glide:4.0.0-RC0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC0'
+    compile 'com.github.bumptech.glide:glide:4.0.0-RC1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC1'
+    // 七牛
+    compile 'com.qiniu:qiniu-android-sdk:7.3.+'
+    // 圆形头像
+    compile 'de.hdodenhof:circleimageview:2.1.0'
     // 依赖库
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.android.support:recyclerview-v7:25.0.0'

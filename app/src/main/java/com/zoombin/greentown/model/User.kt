@@ -3,6 +3,7 @@ package com.zoombin.greentown.model
 import android.content.Intent
 import com.alibaba.fastjson.JSON
 import com.zoombin.greentown.GTApplication
+import com.zoombin.greentown.R
 import com.zoombin.greentown.net.Net
 import org.json.JSONArray
 import org.json.JSONObject
@@ -25,8 +26,6 @@ class User: Any() {
 
     var coins = 0
 
-    var golds = 0
-
     var points = 0
 
     var department_id = 0
@@ -42,6 +41,10 @@ class User: Any() {
     var nickname = ""
 
     var role_id = 0
+
+    fun avatar(): Int {
+        return if (role_id >= 3) R.drawable.female else R.drawable.male
+    }
 
     fun save() {
         val json = JSON.toJSONString(this)
@@ -193,6 +196,30 @@ class User: Any() {
         Net.get("user/getUserInfo", map, { json ->
             val user = JSON.parseObject(JSONObject(json).getString("data").toString(), User::class.java)
             user.save()
+            success()
+        }, failure)
+    }
+
+    // 七牛上传token
+    fun qiniuToken(success: (String, String) -> Unit,
+                   failure: (String?) -> Unit) {
+        val key = "${System.currentTimeMillis()}_$user_id"
+        val map = HashMap<String, Any>()
+        map.put("key", key)
+        Net.get("qiniu/uptoken", map, { json ->
+            val token = JSONObject(json).getJSONObject("data").getString("token")
+            success(key, token)
+        }, failure)
+    }
+
+    // 上传头像
+    fun uploadAvatar(avatar: String,
+                     success: () -> Unit,
+                     failure: (String?) -> Unit) {
+        val map = HashMap<String, Any>()
+        map.put("userId", user_id)
+        map.put("logo", avatar)
+        Net.post("user/updateUserLogo", map, { json ->
             success()
         }, failure)
     }

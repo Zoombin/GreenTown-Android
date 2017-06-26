@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Sport
 import com.zoombin.greentown.model.User
@@ -15,6 +16,7 @@ import kotlinx.android.synthetic.main.layout_rank_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import me.yokeyword.fragmentation.SupportFragment
 import org.jetbrains.anko.backgroundResource
+import org.jetbrains.anko.image
 import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.support.v4.toast
 
@@ -123,7 +125,10 @@ class RankFragment : BaseBackFragment() {
                     2 -> { layout.backgroundResource = R.drawable.cell_purple_xml }
                     3 -> { layout.backgroundResource = R.drawable.cell_red_xml }
                 }
-                avatarImageView.imageResource = if (item.role_id >= 3) R.drawable.female else R.drawable.male
+                if (avatarImageView.image == null) {
+                    avatarImageView.imageResource = item.avatar()
+                }
+                Glide.with(context).load(item.logo).into(avatarImageView)
                 rankTextView.text = "${position + 1}"
                 nameTextView.text = item.fullname
                 titleTextView.text = if (selectedIndex == 0) "" else "${item.title_name}"

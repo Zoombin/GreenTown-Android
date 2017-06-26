@@ -19,6 +19,9 @@ import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.support.v4.toast
 import android.content.DialogInterface
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.fragment_user.*
+import org.jetbrains.anko.image
 import java.util.stream.Collector
 
 
@@ -113,7 +116,10 @@ class GuildFragment : BaseBackFragment() {
                     2 -> { layout.backgroundResource = R.drawable.cell_purple_xml }
                     3 -> { layout.backgroundResource = R.drawable.cell_red_xml }
                 }
-                avatarImageView.imageResource = if (item.role_id >= 3) R.drawable.female else R.drawable.male
+                if (avatarImageView.image == null) {
+                    avatarImageView.imageResource = item.avatar()
+                }
+                Glide.with(context).load(item.logo).into(avatarImageView)
                 nameTextView.text = item.fullname
                 positionTextView.text = "${item.department_name} · ${item.position_name}"
                 spurButton.setOnClickListener { spurLlistener(item) }

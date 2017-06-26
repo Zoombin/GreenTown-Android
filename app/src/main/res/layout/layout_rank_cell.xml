@@ -38,7 +38,7 @@
             android:layout_toRightOf="@id/nameTextView"
             android:layout_marginTop="17.5dp" />
         
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/avatarImageView"
             android:layout_width="80dp"
             android:layout_height="80dp"

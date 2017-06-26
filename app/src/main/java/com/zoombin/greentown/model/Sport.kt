@@ -21,6 +21,8 @@ class Sport : Any() {
     var rule = ""
     // 总奖金
     var total_reward = 0
+    // 报名费
+    var fee = 0
     // 已报名人数
     var cur_quantity = 0
     // 总人数

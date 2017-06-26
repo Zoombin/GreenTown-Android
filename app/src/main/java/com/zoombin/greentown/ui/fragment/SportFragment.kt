@@ -78,7 +78,7 @@ class SportFragment : BaseBackFragment() {
             emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
         }
         Sport.pool({ pool ->
-            poolTextView.text = "总奖金：$pool"
+            poolTextView.text = "总奖池：${pool}绿币"
         }) { message ->
             if (message != null) toast(message)
         }
@@ -107,6 +107,7 @@ class SportFragment : BaseBackFragment() {
                      listener: (Sport) -> Unit) = with(itemView) {
                 nameTextView.text = item.title
                 descTextView.text = item.sub_title
+                moneyTextView.text = "报名费: ${item.fee}绿币"
 
                 Glide.with(context).load(item.logo).into(avatarImageView)
 
