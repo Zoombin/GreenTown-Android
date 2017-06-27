@@ -32,12 +32,8 @@ class MainFragment : SupportFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navigationTitleImageView.visibility = View.VISIBLE
-        navigationLeftButton.visibility = View.VISIBLE
         navigationRightButton.visibility = View.VISIBLE
-        navigationLeftButton.imageResource = R.drawable.navigation_user
         navigationRightButton.imageResource = R.drawable.navigation_menu
-
-        navigationLeftButton.setOnClickListener { start(UserFragment()) }
 
         navigationRightButton.setOnClickListener {
             val items = ArrayList<String>()

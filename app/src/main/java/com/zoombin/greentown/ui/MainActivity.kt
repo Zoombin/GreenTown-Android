@@ -24,7 +24,6 @@ class MainActivity : SupportActivity() {
             loadRootFragment(R.id.layout, MainFragment())
         }
 
-
         if (Build.VERSION.SDK_INT >= 23) {
             val checkCallPhonePermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
             if (checkCallPhonePermission != PackageManager.PERMISSION_GRANTED) {
