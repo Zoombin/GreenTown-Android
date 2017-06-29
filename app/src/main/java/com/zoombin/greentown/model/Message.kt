@@ -10,9 +10,17 @@ import org.json.JSONObject
 
 class Message : Any() {
 
-    var department_name = ""
+    var logo: String? = null
+
+    var department_name: String? = null
+
+    var msg_id = 0
 
     var msg_content = ""
+    //1：公告    2：事件   3：工会    4：系统
+    var msg_type = 1
+
+    var haveResponse = false
 
     companion object {
 
@@ -26,6 +34,17 @@ class Message : Any() {
             map.put("msg_content", message)
             Net.post("chat/msg_to_mayor", map, { json ->
                 success()
+            }, failure)
+        }
+
+        fun allMessages(success: (List<Message>) -> Unit,
+                          failure: (String?) -> Unit) {
+            val map = HashMap<String, Any>()
+            if (User.current()?.user_id != null)
+                map.put("userId", User.current()!!.user_id)
+            Net.get("chat/allMessages", map, { json ->
+                val messages = JSON.parseArray(JSONObject(json).getString("data").toString(), Message::class.java)
+                success(messages)
             }, failure)
         }
 

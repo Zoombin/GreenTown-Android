@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/cell_blue"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -15,7 +15,8 @@
         android:layout_marginBottom="10dp"
         android:orientation="vertical"
         android:paddingTop="15dp"
-        android:paddingLeft="30dp">
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
 
         <TextView
             android:id="@+id/nameTextView"
@@ -41,7 +42,8 @@
             android:textSize="16sp"
             android:text="123"
             android:layout_below="@id/line"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"/>
 
     </RelativeLayout>
 

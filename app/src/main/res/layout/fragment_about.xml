@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@color/white">
 
     <include layout="@layout/layout_titlebar"/>
 
@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="关于歌林小镇"/>
 
             <ImageView
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="版本 1.0"
                 android:layout_marginTop="10dp"/>
 
@@ -48,7 +48,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:textSize="15sp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="歌林小镇是一款可以和好友进行互动的软件，包含职业工会、歌林排行、歌林竞技等功能"
                 android:layout_marginTop="10dp"/>
 
