@@ -81,5 +81,17 @@ class Message : Any() {
         }
 
     }
+
+    // 消息回复
+    fun replayContent(success: (String) -> Unit,
+                      failure: (String?) -> Unit) {
+        val map = HashMap<String, Any>()
+        if (User.current()?.user_id != null)
+            map.put("userId", User.current()!!.user_id)
+        map.put("msgId", msg_id)
+        Net.get("chat/messageResponse", map, { json ->
+            success(JSONObject(JSONObject(json).getJSONArray("data")[0].toString()).getString("content"))
+        }, failure)
+    }
     
 }

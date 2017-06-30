@@ -9,47 +9,146 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <EditText
-            android:id="@+id/messageEditText"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:hint="请输入您的留言"
-            android:gravity="left|top"
-            android:textSize="14sp"
-            android:background="@null"/>
+        android:layout_height="35dp"
+        android:orientation="horizontal">
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/spinner_origin"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="@color/poolTextColor"
-            android:text="留言给镇长，镇长将通过邮件恢复你"
-            android:layout_marginTop="10dp"/>
+        <LinearLayout
+            android:id="@+id/levelButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/sendButton"
-            android:layout_width="120dp"
-            android:layout_height="30dp"
-            android:background="@drawable/spinner_background_origin"
-            android:text="发送"
-            android:textColor="@color/spinner_origin"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
-            android:layout_gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="我要留言"
+                android:textColor="@color/white"
+                android:textSize="14sp"/>
 
+            <ImageView
+                android:id="@+id/coinsTriangle"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/triangle"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:id="@+id/listButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="留言列表"
+                android:textColor="@color/white"
+                android:textSize="14sp"/>
+
+            <ImageView
+                android:id="@+id/pointTriangle"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/triangle"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"/>
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/levelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <EditText
+                android:id="@+id/messageEditText"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:hint="请输入您的留言"
+                android:gravity="left|top"
+                android:textSize="14sp"
+                android:background="@null"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/spinner_origin"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/poolTextColor"
+                android:text="留言给镇长，镇长将通过邮件恢复你"
+                android:layout_marginTop="10dp"/>
+
+            <Button
+                android:id="@+id/sendButton"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:background="@drawable/spinner_background_origin"
+                android:text="发送"
+                android:textColor="@color/spinner_origin"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_gravity="center_horizontal"/>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/listLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/emptyView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/data_empty"
+                android:layout_centerInParent="true"
+                android:visibility="gone"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>
