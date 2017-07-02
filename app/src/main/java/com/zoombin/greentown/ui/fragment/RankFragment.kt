@@ -1,5 +1,7 @@
 package com.zoombin.greentown.ui.fragment
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -19,6 +21,7 @@ import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.image
 import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.support.v4.toast
+import java.util.*
 
 /**
  * Created by gejw on 2017/6/9.
@@ -28,6 +31,8 @@ class RankFragment : BaseBackFragment() {
 
     var items = ArrayList<User>()
     var selectedIndex = 0
+    var month = 0
+    var currentMonth = 0
 
     private var coinsUsers = ArrayList<User>()
     private var pointsUsers = ArrayList<User>()
@@ -42,6 +47,22 @@ class RankFragment : BaseBackFragment() {
 
         titleLabel.text = "歌林排行"
 
+        navigationRightButton.visibility = View.VISIBLE
+        navigationRightButton.imageResource = R.drawable.navigation_menu
+
+        navigationRightButton.setOnClickListener {
+            val items = ArrayList<String>()
+            items.add("${month(currentMonth - 2)}月")
+            items.add("${month(currentMonth - 1)}月")
+            items.add("${month(currentMonth)}月")
+            AlertDialog.Builder(context)
+                    .setTitle("选择月份")
+                    .setItems(items.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
+                        loadData(2 - which)
+                    })
+                    .show()
+        }
+
         val layoutManager = GridLayoutManager(context, 1)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
@@ -53,17 +74,35 @@ class RankFragment : BaseBackFragment() {
         pointButton.setOnClickListener { selectSegment(1) }
         selectSegment(0, true)
 
-        User.coinsRank(0, { users ->
-            coinsUsers.clear()
-            coinsUsers.addAll(users)
-            reloadData()
+        loadData(month)
+
+        val c = Calendar.getInstance()
+        currentMonth = c.get(Calendar.MONTH) + 1
+    }
+
+    fun month(month: Int): Int {
+        if (month <= 0) {
+            return 12 + month
+        }
+        return month
+    }
+
+    fun loadData(month: Int) {
+        User.coinsRank(0, month, { users ->
+            if (this.month == month) {
+                coinsUsers.clear()
+                coinsUsers.addAll(users)
+                reloadData()
+            }
         }) { message ->
             if (message != null) toast(message)
             reloadData()
         }
-        User.pointsRank(0, { users ->
-            pointsUsers.clear()
-            pointsUsers.addAll(users)
+        User.pointsRank(0, month, { users ->
+            if (this.month == month) {
+                pointsUsers.clear()
+                pointsUsers.addAll(users)
+            }
             reloadData()
         }) { message ->
             if (message != null) toast(message)

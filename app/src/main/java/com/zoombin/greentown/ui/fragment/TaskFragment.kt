@@ -97,11 +97,6 @@ class TaskFragment : BaseBackFragment() {
                     if (item.picked == 1) { return@setOnClickListener }
                     pickListener(item)
                 }
-//                avatarImageView.imageResource = if (item.role_id >= 3) R.drawable.female else R.drawable.male
-//                nameTextView.text = item.fullname
-//                positionTextView.text = "${item.department_name} · ${item.position_name}"
-//                spurButton.setOnClickListener { spurLlistener(item) }
-//                inspireButton.setOnClickListener { inspireLlistener(item) }
             }
 
         }

@@ -99,11 +99,12 @@ class User: Any() {
 
         // 成就排行
         fun pointsRank(page: Int,
+                       month: Int,
                        success: (List<User>) -> Unit,
                        failure: (String?) -> Unit) {
             val map = HashMap<String, Any>()
             map.put("START", page)
-            map.put("PAGESIZE", 20)
+            map.put("monthBack", month)
             Net.get("user/points_ranking", map, { json ->
                 val users = JSON.parseArray(JSONObject(json).getString("data").toString(), User::class.java)
                 success(users)
@@ -112,11 +113,12 @@ class User: Any() {
 
         // 绿币排行
         fun coinsRank(page: Int,
+                      month: Int,
                       success: (List<User>) -> Unit,
                       failure: (String?) -> Unit) {
             val map = HashMap<String, Any>()
             map.put("START", page)
-            map.put("PAGESIZE", 20)
+            map.put("monthBack", month)
             Net.get("user/coins_ranking", map, { json ->
                 val users = JSON.parseArray(JSONObject(json).getString("data").toString(), User::class.java)
                 success(users)
