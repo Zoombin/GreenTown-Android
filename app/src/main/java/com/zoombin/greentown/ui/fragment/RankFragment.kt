@@ -31,7 +31,6 @@ class RankFragment : BaseBackFragment() {
 
     var items = ArrayList<User>()
     var selectedIndex = 0
-    var month = 0
     var currentMonth = 0
 
     private var coinsUsers = ArrayList<User>()
@@ -74,7 +73,7 @@ class RankFragment : BaseBackFragment() {
         pointButton.setOnClickListener { selectSegment(1) }
         selectSegment(0, true)
 
-        loadData(month)
+        loadData(0)
 
         val c = Calendar.getInstance()
         currentMonth = c.get(Calendar.MONTH) + 1
@@ -89,20 +88,16 @@ class RankFragment : BaseBackFragment() {
 
     fun loadData(month: Int) {
         User.coinsRank(0, month, { users ->
-            if (this.month == month) {
-                coinsUsers.clear()
-                coinsUsers.addAll(users)
-                reloadData()
-            }
+            coinsUsers.clear()
+            coinsUsers.addAll(users)
+            reloadData()
         }) { message ->
             if (message != null) toast(message)
             reloadData()
         }
         User.pointsRank(0, month, { users ->
-            if (this.month == month) {
-                pointsUsers.clear()
-                pointsUsers.addAll(users)
-            }
+            pointsUsers.clear()
+            pointsUsers.addAll(users)
             reloadData()
         }) { message ->
             if (message != null) toast(message)
