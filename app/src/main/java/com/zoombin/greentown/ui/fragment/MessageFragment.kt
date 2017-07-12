@@ -90,7 +90,7 @@ class MessageFragment : BaseBackFragment() {
                     1 -> { nameTextView.text = "公告" }
                     2 -> { nameTextView.text = if (item.msg_content.contains("鞭策")) "鞭策" else "鼓舞" }
                     3 -> { nameTextView.text = item.department_name }
-                    4 -> { nameTextView.text = "系统" }
+                    4 -> { nameTextView.text = "我的留言" }
                 }
                 contentTextView.text = item.msg_content
                 setOnClickListener { listener(item) }
