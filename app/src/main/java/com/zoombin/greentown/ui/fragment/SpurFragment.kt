@@ -47,8 +47,8 @@ class SpurFragment(user: User? = null) : BaseBackFragment() {
         reasonSpinner.spinnerLayout.backgroundResource = R.drawable.spinner_background_blue
         reasonSpinner.arrowImageView.imageResource = R.drawable.spinner_blue_arrow
 
-        rewardSpinner.nameZhLabel.text = "奖励"
-        rewardSpinner.nameEnLabel.text = "Reward"
+        rewardSpinner.nameZhLabel.text = "惩罚"
+        rewardSpinner.nameEnLabel.text = "Penalty"
         rewardSpinner.spinnerLayout.backgroundResource = R.drawable.spinner_background_green
         rewardSpinner.arrowImageView.imageResource = R.drawable.spinner_green_arrow
 
