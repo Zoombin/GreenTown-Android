@@ -42,7 +42,7 @@ class JobFragment : BaseBackFragment() {
 
         titleLabel.text = "我要就职"
 
-        guildSpinner.nameZhLabel.text = "工会"
+        guildSpinner.nameZhLabel.text = "公会"
         guildSpinner.nameEnLabel.text = "Guild"
         guildSpinner.arrowImageView.visibility = View.GONE
         guildSpinner.spinnerLayout.backgroundResource = R.drawable.spinner_background_origin

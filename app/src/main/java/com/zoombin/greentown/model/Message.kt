@@ -17,7 +17,7 @@ class Message : Any() {
     var msg_id = 0
 
     var msg_content = ""
-    //1：公告    2：事件   3：工会    4：系统
+    //1：公告    2：事件   3：home_guild    4：系统
     var msg_type = 1
 
     var haveResponse = false
