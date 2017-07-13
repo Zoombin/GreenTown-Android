@@ -13,9 +13,9 @@ class Position : Any() {
     var position_id = 0
     // 职位名称
     var position_name = ""
-    // 工会id
+    // 公会id
     var department_id = 0
-    // 工会名称
+    // 公会名称
     var department_name = ""
     
 }

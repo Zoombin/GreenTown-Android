@@ -49,7 +49,7 @@
                 android:layout_marginRight="40dp"
                 android:textSize="15sp"
                 android:textColor="@color/black"
-                android:text="歌林小镇是一款可以和好友进行互动的软件，包含职业工会、歌林排行、歌林竞技等功能"
+                android:text="歌林小镇是一款可以和好友进行互动的软件，包含职业公会、歌林排行、歌林竞技等功能"
                 android:layout_marginTop="10dp"/>
 
         </LinearLayout>

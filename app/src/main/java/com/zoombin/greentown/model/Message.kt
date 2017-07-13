@@ -48,7 +48,7 @@ class Message : Any() {
             }, failure)
         }
 
-        // 工会消息
+        // 公会消息
         fun departmentMessages(success: (List<Message>) -> Unit,
                                failure: (String?) -> Unit) {
             val map = HashMap<String, Any>()

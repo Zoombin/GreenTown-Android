@@ -42,7 +42,7 @@ class GuildFragment : BaseBackFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        titleLabel.text = "歌林工会"
+        titleLabel.text = "歌林公会"
 
         val layoutManager = GridLayoutManager(context, 1)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -68,7 +68,7 @@ class GuildFragment : BaseBackFragment() {
             }
             val items = departments.map { it.department_name }.toTypedArray()
             AlertDialog.Builder(context)
-                    .setTitle("选择工会")
+                    .setTitle("选择公会")
                     .setItems(items, DialogInterface.OnClickListener { dialog, which ->
                         selectDepartment(departments.get(which))
                     })

@@ -10,9 +10,9 @@ import org.json.JSONObject
 
 class Department : Any() {
 
-    // 工会id
+    // 公会id
     var department_id = 0
-    // 工会名称
+    // 公会名称
     var department_name = ""
 
     companion object {
