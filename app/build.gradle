@@ -10,8 +10,8 @@ android {
         applicationId "com.zoombin.greentown"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName '1.0.1'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -25,6 +25,8 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+    productFlavors {
+    }
 }
 
 allprojects {
@@ -34,7 +36,7 @@ allprojects {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "org.jetbrains.anko:anko-sdk25:$anko_version"
     compile "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
