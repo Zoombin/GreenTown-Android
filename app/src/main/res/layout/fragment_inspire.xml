@@ -39,6 +39,12 @@
 
             <include android:id="@+id/rewardSpinner" layout="@layout/widget_spinner"/>
 
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"/>
+
+            <include android:id="@+id/remarkView" layout="@layout/widget_remark"/>
+
             <Button
                 android:id="@+id/submitButton"
                 android:layout_width="match_parent"

@@ -12,6 +12,7 @@ import com.zoombin.greentown.model.Reason
 import com.zoombin.greentown.model.User
 import kotlinx.android.synthetic.main.fragment_spur.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
+import kotlinx.android.synthetic.main.widget_remark.view.*
 import kotlinx.android.synthetic.main.widget_spinner.view.*
 import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.imageResource
@@ -51,6 +52,9 @@ class SpurFragment(user: User? = null) : BaseBackFragment() {
         rewardSpinner.nameEnLabel.text = "Penalty"
         rewardSpinner.spinnerLayout.backgroundResource = R.drawable.spinner_background_green
         rewardSpinner.arrowImageView.imageResource = R.drawable.spinner_green_arrow
+
+        remarkView.remarkNameZhLabel.text = "备注"
+        remarkView.remarkNameEnLabel.text = "Remarks"
 
         if (user != null)
             playerSpinner.valueTextView.text = user!!.fullname
@@ -101,7 +105,8 @@ class SpurFragment(user: User? = null) : BaseBackFragment() {
                 toast("请选择理由")
                 return@setOnClickListener
             }
-            user?.spur(reason!!.reason_id, {
+            user?.spur(reason!!.reason_id,
+                    remarkView.remarkEditText.text.toString(), {
                 toast("鞭策成功")
                 pop()
             }) { message ->

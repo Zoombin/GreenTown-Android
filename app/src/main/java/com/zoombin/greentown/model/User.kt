@@ -168,11 +168,13 @@ class User: Any() {
 
     // 鞭策
     fun spur(reasonId: Int,
+             reasonDesc: String,
              success: () -> Unit,
              failure: (String?) -> Unit) {
         val map = HashMap<String, Any>()
         map.put("reason_id", reasonId)
         map.put("user_id", user_id)
+        map.put("reasonDesc", reasonDesc)
         Net.post("user/spur", map, { json ->
             success()
         }, failure)
@@ -180,11 +182,13 @@ class User: Any() {
 
     // 鼓舞
     fun inspire(reasonId: Int,
+                reasonDesc: String,
                 success: () -> Unit,
                 failure: (String?) -> Unit) {
         val map = HashMap<String, Any>()
         map.put("reason_id", reasonId)
         map.put("user_id", user_id)
+        map.put("reasonDesc", reasonDesc)
         Net.post("user/inspire", map, { json ->
             success()
         }, failure)
