@@ -28,6 +28,9 @@ class Gift : Any() {
     var gift_start = ""
     // 结束时间
     var gift_end = ""
+    // 是否开始
+    @JSONField(name="isPickStart")
+    var pickStart = 0
 
     companion object {
 

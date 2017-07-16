@@ -41,7 +41,7 @@ class GiftFragment : BaseBackFragment() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = ListAdapter(items, {
-            if (it.picked == 1) { return@ListAdapter }
+            if (it.picked == 1 || it.pickStart == 0) { return@ListAdapter }
             // 领取
             it.pickGift({
                 toast("领取成功")
@@ -83,7 +83,7 @@ class GiftFragment : BaseBackFragment() {
             fun bind(item: Gift, position: Int, pickListener: (Gift) -> Unit) = with(itemView) {
                 nameTextView.text = item.gift_name
                 timeTextView.text = item.gift_end
-                pickButton.text = if (item.picked == 1) "已领取" else "领取"
+                pickButton.text = if (item.pickStart == 0) "未开始" else if (item.picked == 1) "已领取" else "领取"
                 pickButton.setOnClickListener { pickListener(item) }
             }
 
