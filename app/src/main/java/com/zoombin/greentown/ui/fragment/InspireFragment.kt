@@ -51,6 +51,7 @@ class InspireFragment(user: User? = null) : BaseBackFragment() {
         rewardSpinner.nameEnLabel.text = "Reward"
         rewardSpinner.spinnerLayout.backgroundResource = R.drawable.spinner_background_green
         rewardSpinner.arrowImageView.imageResource = R.drawable.spinner_green_arrow
+        rewardSpinner.arrowImageView.visibility = View.GONE
 
         remarkView.remarkNameZhLabel.text = "备注"
         remarkView.remarkNameEnLabel.text = "Remarks"

@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="@color/poolTextColor"
-                android:text="留言给镇长，镇长将通过邮件恢复你"
+                android:text="留言给镇长，镇长将通过邮件回复你"
                 android:layout_marginTop="10dp"/>
 
             <Button
