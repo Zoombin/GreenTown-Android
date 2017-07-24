@@ -20,6 +20,9 @@ class Task : Any() {
     var coins = 0
     // 成就点
     var points = 0
+    // 0:未开始 1：已开始
+    @JSONField(name="isStart")
+    var started = 0
     // 0:未领取 1：已领取
     @JSONField(name="is_picked")
     var picked = 0
