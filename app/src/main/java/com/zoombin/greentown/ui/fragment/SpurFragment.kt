@@ -42,6 +42,7 @@ class SpurFragment(user: User? = null) : BaseBackFragment() {
         playerSpinner.nameEnLabel.text = "Player"
         playerSpinner.spinnerLayout.backgroundResource = R.drawable.spinner_background_origin
         playerSpinner.arrowImageView.imageResource = R.drawable.spinner_orange_arrow
+        playerSpinner.arrowImageView.visibility = View.INVISIBLE
 
         reasonSpinner.nameZhLabel.text = "理由"
         reasonSpinner.nameEnLabel.text = "Reason"
@@ -52,7 +53,7 @@ class SpurFragment(user: User? = null) : BaseBackFragment() {
         rewardSpinner.nameEnLabel.text = "Penalty"
         rewardSpinner.spinnerLayout.backgroundResource = R.drawable.spinner_background_green
         rewardSpinner.arrowImageView.imageResource = R.drawable.spinner_green_arrow
-        rewardSpinner.arrowImageView.visibility = View.GONE
+        rewardSpinner.arrowImageView.visibility = View.INVISIBLE
 
         remarkView.remarkNameZhLabel.text = "备注"
         remarkView.remarkNameEnLabel.text = "Remarks"
@@ -66,14 +67,10 @@ class SpurFragment(user: User? = null) : BaseBackFragment() {
                     toast("无数据")
                     return@allUsers
                 }
-                val items = users.map { it.fullname }.toTypedArray()
-                AlertDialog.Builder(context)
-                        .setTitle("选择玩家")
-                        .setItems(items, DialogInterface.OnClickListener { dialog, which ->
-                            user = users.get(which)
-                            playerSpinner.valueTextView.text = user!!.fullname
-                        })
-                        .show()
+                start(UserListFragment(ArrayList(users), { user ->
+                    this.user = user
+                    playerSpinner.valueTextView.text = user!!.fullname
+                }))
             }) { message ->
                 if (message != null) toast(message)
             }
