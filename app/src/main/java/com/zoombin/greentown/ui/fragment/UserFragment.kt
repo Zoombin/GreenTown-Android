@@ -68,6 +68,13 @@ class UserFragment : SupportFragment() {
         }) {
 
         }
+        submitButton.setOnClickListener {
+            User.current()?.updateInfo(constellationEditText.text.toString(), hobbyEditText.text.toString(), {
+                toast("更新成功")
+            }) { message ->
+                if (message != null) toast(message)
+            }
+        }
     }
 
     fun loadUI() {
@@ -82,6 +89,8 @@ class UserFragment : SupportFragment() {
             goalTextView.text = "绿币：${user.coins}"
             integralTextView.text = "成就点：${user.points}"
             positionTextView.text = "${user.department_name} · ${user.position_name}"
+            constellationEditText.setText(user.constellation)
+            hobbyEditText.setText(user.hobby)
         }
     }
 

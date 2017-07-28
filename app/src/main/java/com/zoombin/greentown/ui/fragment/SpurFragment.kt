@@ -84,7 +84,7 @@ class SpurFragment(user: User? = null) : BaseBackFragment() {
                 val items = reasons.map { it.reason }.toTypedArray()
                 AlertDialog.Builder(context)
                         .setTitle("选择理由")
-                        .setItems(items, DialogInterface.OnClickListener { dialog, which ->
+                        .setItems(items, { dialog, which ->
                             reason = reasons.get(which)
                             reasonSpinner.valueTextView.text = reason!!.reason
                             rewardSpinner.valueTextView.text = reason!!.value

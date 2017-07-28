@@ -40,6 +40,10 @@ class User: Any() {
 
     var nickname = ""
 
+    var constellation = ""
+
+    var hobby = ""
+
     var role_id = 0
 
     fun avatar(): Int {
@@ -228,6 +232,25 @@ class User: Any() {
         map.put("userId", user_id)
         map.put("logo", avatar)
         Net.post("user/updateUserLogo", map, { json ->
+            success()
+        }, failure)
+    }
+
+    // 完善信息
+    fun updateInfo(constellation: String? = null,
+                   hobby: String? = null,
+                   success: () -> Unit,
+                   failure: (String?) -> Unit) {
+        val map = HashMap<String, Any>()
+        if (User.current()?.user_id != null)
+            map.put("user_id", User.current()!!.user_id)
+        if (constellation != null)
+            map.put("constellation", constellation)
+        if (hobby != null)
+            map.put("hobby", hobby)
+        Net.post("user/updateUserInfo", map, { json ->
+            val user = JSON.parseObject(JSONObject(json).getString("data").toString(), User::class.java)
+            user.save()
             success()
         }, failure)
     }
