@@ -243,7 +243,7 @@ class User: Any() {
                    failure: (String?) -> Unit) {
         val map = HashMap<String, Any>()
         if (User.current()?.user_id != null)
-            map.put("user_id", User.current()!!.user_id)
+            map.put("userId", User.current()!!.user_id)
         if (constellation != null)
             map.put("constellation", constellation)
         if (hobby != null)
