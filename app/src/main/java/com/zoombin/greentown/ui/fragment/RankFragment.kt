@@ -167,7 +167,7 @@ class RankFragment : BaseBackFragment() {
                 nameTextView.text = item.fullname
                 titleTextView.text = if (selectedIndex == 0) "" else "${item.title_name}"
                 moneyTextView.text = if (selectedIndex == 0) "绿币：${item.coins}" else "成就点：${item.points}"
-                positionTextView.text = "${item.department_name} · ${item.position_name}"
+                positionTextView.text = "${item.department_name}"
                 setOnClickListener { listener(item) }
             }
 

@@ -102,7 +102,7 @@ class UserListFragment(users: ArrayList<User>, selectedLlistener: (User) -> Unit
                 }
                 Glide.with(context).load(item.logo).into(avatarImageView)
                 nameTextView.text = item.fullname
-                positionTextView.text = "${item.department_name} · ${item.position_name}"
+                positionTextView.text = "${item.department_name}"
                 spurButton.visibility = View.GONE
                 inspireButton.visibility = View.GONE
                 layout.setOnClickListener { selectedLlistener(item) }

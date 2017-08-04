@@ -121,7 +121,7 @@ class GuildFragment : BaseBackFragment() {
                 }
                 Glide.with(context).load(item.logo).into(avatarImageView)
                 nameTextView.text = item.fullname
-                positionTextView.text = "${item.department_name} · ${item.position_name}"
+                positionTextView.text = "${item.department_name}"
                 spurButton.setOnClickListener { spurLlistener(item) }
                 inspireButton.setOnClickListener { inspireLlistener(item) }
             }

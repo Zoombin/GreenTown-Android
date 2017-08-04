@@ -89,7 +89,7 @@ class UserFragment : SupportFragment() {
             nameTextView.text = user.fullname
             goalTextView.text = "绿币：${user.coins}"
             integralTextView.text = "成就点：${user.points}"
-            positionTextView.text = "${user.department_name} · ${user.position_name}"
+            positionTextView.text = "${user.department_name}"
             constellationEditText.setText(user.constellation)
             hobbyEditText.setText(user.hobby)
         }
