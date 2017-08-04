@@ -98,6 +98,7 @@ class User: Any() {
             Net.post("user/login", map, { json ->
                 val user = JSON.parseObject(JSONObject(json).getString("data").toString(), User::class.java)
                 user.save()
+                user.statistics()
                 success(user)
             }, failure)
         }
@@ -254,6 +255,17 @@ class User: Any() {
             user.save()
             success()
         }, failure)
+    }
+
+    // 完善信息
+    fun statistics() {
+        val map = HashMap<String, Any>()
+        if (User.current()?.user_id != null)
+            map.put("userId", User.current()!!.user_id)
+        Net.post("userOpenApp/addRecord", map, { json ->
+        }, {
+
+        })
     }
 
 }

@@ -51,7 +51,6 @@ class SportFragment : BaseBackFragment() {
             val dialog = AlertDialog.Builder(context)
             dialog.setTitle("确认参加？")
             dialog.setPositiveButton("确定") { dialog, which ->
-                // 退出登录
                 it.enroll({
                     toast("参加成功！")
                     loadData()

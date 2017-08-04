@@ -71,6 +71,9 @@ class MainFragment : SupportFragment() {
 
         if (User.current() == null)
             start(LoginFragment())
+        else {
+            User.current()?.statistics()
+        }
 
 
         context.registerReceiver(null, IntentFilter("logout"))
