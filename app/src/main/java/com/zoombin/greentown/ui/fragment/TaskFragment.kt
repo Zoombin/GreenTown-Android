@@ -88,7 +88,7 @@ class TaskFragment : BaseBackFragment() {
 
                 nameTextView.text = item.task_name
                 rewardValueTextView.text = "成就点${item.points}，绿币${item.coins}，金币${item.golds}"
-                pickButton.text = if (item.started == 0) "未开始" else if (item.picked == 1) "已领取" else "领取"
+                pickButton.text = if (item.started == 2) "已截止" else if (item.started == 0) "未开始" else if (item.picked == 1) "已领取" else "领取"
                 finishButton.text = if (item.finished == 1) "已完成" else "未完成"
                 finishButton.isEnabled = false
                 pickButton.isEnabled = item.picked == 0 && item.started == 1
