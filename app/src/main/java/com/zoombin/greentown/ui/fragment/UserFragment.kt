@@ -53,6 +53,7 @@ class UserFragment : SupportFragment() {
         navigationRightButton.imageResource = R.drawable.navigation_close
         navigationRightButton.setOnClickListener { pop() }
         uploadButton.setOnClickListener { selectImage() }
+        constellationButton.setOnClickListener { selectConstellation() }
 
         loadUI()
         load()
@@ -92,6 +93,16 @@ class UserFragment : SupportFragment() {
             constellationEditText.setText(user.constellation)
             hobbyEditText.setText(user.hobby)
         }
+    }
+
+    fun selectConstellation() {
+        val items = arrayOf<CharSequence>("白羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "摩羯座", "水瓶座", "双鱼座")
+        AlertDialog.Builder(context)
+                .setTitle("选择星座")
+                .setItems(items) { dialog, which ->
+                    constellationEditText.setText(items[which])
+                }
+                .create().show()
     }
 
     fun selectImage() {

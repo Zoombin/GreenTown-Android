@@ -2,6 +2,7 @@ package com.zoombin.greentown.model
 
 import android.content.Intent
 import com.alibaba.fastjson.JSON
+import com.alibaba.fastjson.annotation.JSONField
 import com.zoombin.greentown.GTApplication
 import com.zoombin.greentown.R
 import com.zoombin.greentown.net.Net
@@ -40,9 +41,9 @@ class User: Any() {
 
     var nickname = ""
 
-    var constellation = ""
+    var constellation: String? = ""
 
-    var hobby = ""
+    var hobby: String? = ""
 
     var role_id = 0
 
