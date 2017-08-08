@@ -22,6 +22,8 @@ class Message : Any() {
 
     var haveResponse = false
 
+    var created_date = ""
+
     companion object {
 
         // 留言

@@ -92,6 +92,7 @@ class MessageFragment : BaseBackFragment() {
                     3 -> { nameTextView.text = item.department_name }
                     4 -> { nameTextView.text = "我的留言" }
                 }
+                nameTextView.text = "${nameTextView.text} ${item.created_date}"
                 contentTextView.text = item.msg_content
                 setOnClickListener { listener(item) }
             }

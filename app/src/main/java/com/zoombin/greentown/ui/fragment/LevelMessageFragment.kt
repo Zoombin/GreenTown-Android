@@ -1,5 +1,7 @@
 package com.zoombin.greentown.ui.fragment
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -57,8 +59,9 @@ class LevelMessageFragment : BaseBackFragment() {
             }
 
             Message.levelMessage(message, {
-                toast("发送成功")
-                loadData()
+                AlertDialog.Builder(activity).setTitle("发送成功").setPositiveButton("确定", { dialog, whitch ->
+                    pop()
+                }).show()
             }) { message ->
                 if (message != null) toast(message)
             }
