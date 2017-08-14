@@ -94,6 +94,17 @@ class Sport : Any() {
         }, failure)
     }
 
+    // 参赛选手
+    fun rewardList(success: (List<User>) -> Unit,
+                   failure: (String?) -> Unit) {
+        val map = HashMap<String, Any>()
+        map.put("sport_id", sport_id)
+        Net.get("sports/rewardList", map, { json ->
+            val users = JSON.parseArray(JSONObject(json).getString("data").toString(), User::class.java)
+            success(users)
+        }, failure)
+    }
+
     // 报名
     fun enroll(success: () -> Unit,
                failure: (String?) -> Unit) {

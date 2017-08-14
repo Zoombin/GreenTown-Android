@@ -47,6 +47,8 @@ class User: Any() {
 
     var role_id = 0
 
+    var reward = ""
+
     fun avatar(): Int {
         return if (role_id >= 3) R.drawable.female else R.drawable.male
     }
