@@ -14,8 +14,18 @@ android {
         versionName '1.0.3'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    //签名配置
+    signingConfigs {
+        releaseConfig {
+            keyAlias "gejw"
+            keyPassword "123456"
+            storeFile file("gejw.jks")
+            storePassword "123456"
+        }
+    }
     buildTypes {
         release {
+            signingConfig signingConfigs.releaseConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
