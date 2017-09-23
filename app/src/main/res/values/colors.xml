@@ -2,7 +2,8 @@
 <resources>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
-    <color name="themeColor">#F08600</color>
+    <!-- 主题色 -->
+    <color name="themeColor">#83BD00</color>
     <color name="backgroundColor">#EEEEEE</color>
     <color name="mainTextColor">#FAFAFA</color>
 
@@ -11,4 +12,7 @@
     <color name="spinner_origin">#FF8C00</color>
     <color name="spinner_green">#10E382</color>
     <color name="spinner_blue">#0096E6</color>
+
+    <color name="gray_chateau">#A5A5A5</color>
+
 </resources>
