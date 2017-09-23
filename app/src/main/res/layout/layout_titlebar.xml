@@ -4,7 +4,8 @@
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:background="@color/white">
         
         <ImageButton
             android:id="@+id/navigationLeftButton"
@@ -33,7 +34,7 @@
             android:layout_centerVertical="true"
             android:text="@string/app_name"
             android:textSize="18sp"
-            android:textColor="@color/mainTextColor"
+            android:textColor="@color/black"
             android:gravity="center"
             android:visibility="gone"/>
 
@@ -48,6 +49,12 @@
             android:scaleType="centerInside"
             android:background="@null"
             android:visibility="gone"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/gray_chateau"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 
