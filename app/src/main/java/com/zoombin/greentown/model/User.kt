@@ -24,9 +24,9 @@ class User: Any() {
     var title_name = ""
 
     var logo = ""
-
+    //  绿币
     var coins = 0
-
+    // 成就点
     var points = 0
 
     var department_id = 0

@@ -75,7 +75,6 @@ class MainFragment : SupportFragment() {
             User.current()?.statistics()
         }
 
-
         context.registerReceiver(null, IntentFilter("logout"))
     }
 

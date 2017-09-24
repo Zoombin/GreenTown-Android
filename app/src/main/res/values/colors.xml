@@ -4,9 +4,12 @@
     <color name="white">#ffffff</color>
     <!-- 主题色 -->
     <color name="themeColor">#83BD00</color>
-    <color name="backgroundColor">#EEEEEE</color>
+    <color name="backgroundColor">#F8F8F8</color>
     <color name="mainTextColor">#FAFAFA</color>
 
+    <color name="line">#A5A5A5</color>
+
+    <color name="desert_storm">#F8F8F8</color>
     <color name="poolTextColor">#f5774b00</color>
 
     <color name="spinner_origin">#FF8C00</color>

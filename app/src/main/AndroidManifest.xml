@@ -59,6 +59,9 @@
         <activity android:name=".ui.MainActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".ui.LoginActivity"
+            android:screenOrientation="portrait"/>
+
         <!-- JPUSH 服务 -->
         <service
             android:name="cn.jpush.android.service.PushService"

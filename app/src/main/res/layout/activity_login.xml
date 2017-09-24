@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_title"
+            android:textSize="25sp"
+            android:textColor="@color/mainTextColor"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/login_logo"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"/>
+
+        <EditText
+            android:id="@+id/usernameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:hint="请输入手机号"
+            android:textSize="14sp"
+            android:textColor="@color/mainTextColor"
+            android:textColorHint="@color/mainTextColor"
+            android:textCursorDrawable="@color/mainTextColor"
+            android:background="@drawable/edittext_background"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:singleLine="true"/>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/codeEditText"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:hint="请输入验证码"
+                android:textSize="14sp"
+                android:textColor="@color/mainTextColor"
+                android:textColorHint="@color/mainTextColor"
+                android:textCursorDrawable="@color/mainTextColor"
+                android:background="@drawable/edittext_background"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:singleLine="true"/>
+
+            <Button
+                android:id="@+id/codeButton"
+                android:layout_width="94dp"
+                android:layout_height="30dp"
+                android:text="请求验证码"
+                android:paddingLeft="16dp"
+                android:textColor="@color/mainTextColor"
+                android:textSize="12dp"
+                android:background="@drawable/smscode_background"/>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/login_button"
+            android:layout_marginTop="50dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

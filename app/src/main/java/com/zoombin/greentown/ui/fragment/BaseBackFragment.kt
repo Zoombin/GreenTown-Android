@@ -14,7 +14,7 @@ import org.jetbrains.anko.imageResource
  * Created by gejw on 2017/6/10.
  */
 
-open class BaseBackFragment : SupportFragment() {
+open class BaseBackFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return null
@@ -22,12 +22,7 @@ open class BaseBackFragment : SupportFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        titleLabel.visibility = View.VISIBLE
         navigationLeftButton.imageResource = R.drawable.navigation_back
-        navigationLeftButton.visibility = View.VISIBLE
-        navigationLeftButton.setOnClickListener { pop() }
-        navigationRightButton.image = null
-        navigationRightButton.visibility = View.VISIBLE
+
     }
 }

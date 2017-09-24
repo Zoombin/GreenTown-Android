@@ -1,12 +1,19 @@
 package com.zoombin.greentown.ui
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.View
 import com.zoombin.greentown.R
+import com.zoombin.greentown.model.User
+import com.zoombin.greentown.ui.fragment.LoginFragment
 import com.zoombin.greentown.ui.fragment.main.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_main_tab.view.*
 import me.yokeyword.fragmentation.SupportActivity
+import me.yokeyword.fragmentation.SupportFragment
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator
 import me.yokeyword.fragmentation.anim.FragmentAnimator
 
@@ -34,11 +41,14 @@ class MainActivity : SupportActivity() {
             MeFragment::class.java)
     private var tabs = arrayListOf<View>()
 
+    private var isInitBroadcastReceiver = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initTab()
+        checkLoginState()
     }
 
     private fun initTab() {
@@ -76,6 +86,46 @@ class MainActivity : SupportActivity() {
 
     override fun onCreateFragmentAnimator(): FragmentAnimator {
         return DefaultHorizontalAnimator()
+    }
+
+    private val broadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context : Context?, intent : Intent?) {
+            when(intent!!.action){
+                "logout" -> { didLogout() }
+                "login" -> { didLogin() }
+            }
+        }
+    }
+
+    override fun onPause(){
+        super.onPause()
+        if (isInitBroadcastReceiver) {
+            unregisterReceiver(broadcastReceiver)
+            isInitBroadcastReceiver = false
+        }
+    }
+    override fun onResume(){
+        super.onResume()
+        isInitBroadcastReceiver = true
+        registerReceiver(broadcastReceiver, IntentFilter("logout"))
+        registerReceiver(broadcastReceiver, IntentFilter("login"))
+    }
+
+    fun didLogout() {
+        checkLoginState()
+    }
+
+    fun didLogin() {
+        checkLoginState()
+    }
+
+    fun checkLoginState() {
+        if (User.current() == null) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        } else {
+            User.current()?.statistics()
+        }
     }
 
 }
