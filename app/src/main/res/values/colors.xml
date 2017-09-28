@@ -5,7 +5,9 @@
     <!-- 主题色 -->
     <color name="themeColor">#83BD00</color>
     <color name="backgroundColor">#F8F8F8</color>
-    <color name="mainTextColor">#FAFAFA</color>
+    <color name="mainTextColor">#000000</color>
+    <color name="edttext_textcolor">#000000</color>
+    <color name="edttext_placecolor">#444444</color>
 
     <color name="line">#A5A5A5</color>
 

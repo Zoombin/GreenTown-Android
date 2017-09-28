@@ -47,6 +47,7 @@ class LoginActivity: SupportActivity() {
             User.login(phone, code, {
                 toast("登录成功！")
                 startActivity(Intent(this, MainActivity::class.java))
+                finish()
             }) { if (it != null) toast(it) }
         }
     }
