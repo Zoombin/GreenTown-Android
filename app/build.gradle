@@ -75,9 +75,11 @@ dependencies {
     compile 'com.qiniu:qiniu-android-sdk:7.3.+'
     // 圆形头像
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    // 权限检测 https://github.com/yewei02538/HiPermission/blob/master/README-CN.md
+    compile 'me.weyye.hipermission:library:1.0.7'
     // 依赖库
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.android.support:recyclerview-v7:25.0.0'
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:recyclerview-v7:25.1.0'
     compile files('libs/jcore-android_v1.1.3.jar')
     compile files('libs/jpush-android_v3.0.6.jar')
 }

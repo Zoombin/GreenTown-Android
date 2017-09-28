@@ -236,7 +236,7 @@ class User: Any() {
         map.put("userId", user_id)
         map.put("logo", avatar)
         Net.post("user/updateUserLogo", map, { json ->
-            success()
+            queryUserInfo(success, failure)
         }, failure)
     }
 

@@ -1,7 +1,10 @@
 package com.zoombin.greentown.ui.fragment.main
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.provider.MediaStore
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -9,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.qiniu.android.storage.UploadManager
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
 import com.zoombin.greentown.ui.fragment.BaseFragment
@@ -19,7 +23,18 @@ import kotlinx.android.synthetic.main.layout_guild_cell.view.*
 import kotlinx.android.synthetic.main.layout_me_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import me.yokeyword.fragmentation.SupportFragment
+import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.textColor
+import com.zoombin.greentown.Manifest
+import cn.jpush.android.e.a.b.showToast
+import me.weyye.hipermission.PermissionCallback
+import me.weyye.hipermission.HiPermission
+import android.Manifest.permission.CALL_PHONE
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import me.weyye.hipermission.PermissionItem
+import java.io.ByteArrayOutputStream
+
 
 /**
  * Created by gejw on 2017/9/23.
@@ -29,8 +44,12 @@ class MeFragment : BaseFragment() {
 
     class CellItem(var title: String,
                    var value: String = "",
-                   var valueColor: Int = Color.BLACK,
+                   var valueColor: Int = Color.DKGRAY,
                    var isShowArrow: Boolean = false)
+
+
+    val SELECT_PICTURE = 0
+    val SELECT_CAMER = 1
 
     var items = arrayListOf<CellItem>()
 
@@ -44,11 +63,29 @@ class MeFragment : BaseFragment() {
         titleLabel.visibility = View.VISIBLE
         titleLabel.text = "我的"
 
+        avatarImageView.setOnClickListener {
+            selectImage()
+        }
 
         val layoutManager = GridLayoutManager(context, 1)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = ListAdapter(items) {
+        recyclerView.adapter = ListAdapter(items) { t ->
+            when (t.title) {
+                "星座" -> {
+                    selectConstellation()
+                }
+                "爱好" -> {
+
+                }
+                "留言" -> {
+
+                }
+            }
+        }
+        User.current()?.queryUserInfo({
+            reloadItems()
+        }) {
 
         }
     }
@@ -62,7 +99,7 @@ class MeFragment : BaseFragment() {
 
         items.clear()
         items.add(CellItem(
-                "歌林科技部"))
+                user.department_name))
         items.add(CellItem(
                 "绿币",
                 "${user.coins}",
@@ -73,17 +110,21 @@ class MeFragment : BaseFragment() {
         items.add(CellItem(
                 "星座",
                 if (user.constellation == null) "请选择" else user.constellation!!,
-                Color.BLACK,
+                Color.DKGRAY,
                 true))
         items.add(CellItem(
                 "爱好",
                 if (user.hobby == null) "请输入" else user.hobby!!,
-                Color.BLACK,
+                Color.DKGRAY,
                 true))
         items.add(CellItem(
                 "留言",
-                "", Color.BLACK,
+                "",
+                Color.DKGRAY,
                 true))
+
+        recyclerView.adapter.notifyDataSetChanged()
+
     }
 
     override fun onResume() {
@@ -94,6 +135,100 @@ class MeFragment : BaseFragment() {
     override fun didLogin() {
         super.didLogin()
         reloadItems()
+    }
+
+    fun selectConstellation() {
+        val items = arrayOf<String>("白羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "摩羯座", "水瓶座", "双鱼座")
+        AlertDialog.Builder(context)
+                .setTitle("选择星座")
+                .setItems(items) { dialog, which ->
+                    var user = User.current()
+                    User.current()?.updateInfo(items[which], user!!.hobby, {
+                        toast("更新成功")
+                        reloadItems()
+                    }) { message ->
+                        if (message != null) toast(message)
+                    }
+                }
+                .create().show()
+    }
+
+    fun selectImage() {
+        val items = arrayOf<CharSequence>("相册", "相机")
+        AlertDialog.Builder(context)
+                .setTitle("选择图片来源")
+                .setItems(items) { dialog, which ->
+                    when (which) {
+                        0 -> {
+                            val intent = Intent(Intent.ACTION_GET_CONTENT)
+                            intent.addCategory(Intent.CATEGORY_OPENABLE)
+                            intent.type = "image/*"
+                            startActivityForResult(intent, SELECT_PICTURE)
+                        }
+                        1 -> {
+                            val permissions = ArrayList<PermissionItem>()
+                            permissions.add(PermissionItem(android.Manifest.permission.CAMERA, getString(R.string.permission_camera), R.drawable.permission_ic_camera))
+                            HiPermission.create(context)
+                                    .permissions(permissions)
+                                    .checkMutiPermission(object : PermissionCallback {
+                                        override fun onClose() {
+                                            toast("用户关闭权限申请")
+                                        }
+
+                                        override fun onFinish() {
+                                            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                                            startActivityForResult(intent, SELECT_CAMER)
+                                        }
+
+                                        override fun onDeny(permission: String, position: Int) {
+                                        }
+
+                                        override fun onGuarantee(permission: String, position: Int) {
+                                        }
+                                    })
+                        }
+                    }
+                }
+                .create().show()
+    }
+
+    fun uploadImage(bytes: ByteArray) {
+        User.current()?.qiniuToken({ key, token ->
+            val uploadManager = UploadManager()
+            uploadManager.put(bytes, key, token, { key, info, response ->
+                User.current()?.uploadAvatar(key, {
+                    toast("上传成功")
+                    reloadItems()
+                }) { message ->
+                    if (message != null) toast(message)
+                }
+            }, null)
+        }) { message ->
+            if (message != null) toast(message)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+            val uri = data?.data
+            var bitmap: Bitmap?
+            if (uri == null) {
+                val bundle = data?.extras
+                bitmap = bundle?.get("data") as? Bitmap
+            } else {
+                bitmap = BitmapFactory.decodeStream(context.contentResolver.openInputStream(uri))
+            }
+            if (bitmap == null) {
+                toast("异常错误！")
+                return
+            }
+            var baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos)
+            val bytes = baos.toByteArray()
+            bitmap.recycle()
+            uploadImage(bytes)
+        }
     }
 
     class ListAdapter(val items: ArrayList<CellItem>, val listener: (CellItem) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
