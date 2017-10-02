@@ -3,6 +3,7 @@ package com.zoombin.greentown.ui
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
+import com.zoombin.greentown.BuildConfig
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
 import kotlinx.android.synthetic.main.activity_login.*
@@ -18,6 +19,10 @@ class LoginActivity: SupportActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        if (BuildConfig.DEBUG) {
+            usernameEditText.setText("13625286286")
+        }
 
         codeButton.setOnClickListener {
             val phone = usernameEditText.text.toString().trim()

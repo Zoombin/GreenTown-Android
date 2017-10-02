@@ -1,5 +1,6 @@
 package com.zoombin.greentown.ui.fragment
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -19,6 +20,7 @@ import me.yokeyword.fragmentation.SupportFragment
 import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.image
 import org.jetbrains.anko.imageResource
+import org.jetbrains.anko.toast
 
 /**
  * Created by gejw on 2017/7/28.

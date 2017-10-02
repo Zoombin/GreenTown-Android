@@ -30,9 +30,13 @@ import cn.jpush.android.e.a.b.showToast
 import me.weyye.hipermission.PermissionCallback
 import me.weyye.hipermission.HiPermission
 import android.Manifest.permission.CALL_PHONE
+import android.content.DialogInterface
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import com.zoombin.greentown.ui.fragment.AboutFragment
+import kotlinx.android.synthetic.main.fragment_messagecontent.view.*
 import me.weyye.hipermission.PermissionItem
+import org.jetbrains.anko.imageResource
 import java.io.ByteArrayOutputStream
 
 
@@ -62,6 +66,32 @@ class MeFragment : BaseFragment() {
 
         titleLabel.visibility = View.VISIBLE
         titleLabel.text = "我的"
+
+        navigationRightButton.visibility = View.VISIBLE
+        navigationRightButton.imageResource = R.drawable.navigation_menu
+
+        navigationRightButton.setOnClickListener {
+            val items = ArrayList<String>()
+            items.add("退出登录")
+            AlertDialog.Builder(context)
+                    .setTitle("菜单")
+                    .setItems(items.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
+                        when(which) {
+//                            0 -> { start(AboutFragment()) }
+                            0 -> {
+                                val dialog = AlertDialog.Builder(context)
+                                dialog.setTitle("确认退出？")
+                                dialog.setPositiveButton("确定") { dialog, which ->
+                                    // 退出登录
+                                    User.logout()
+                                }
+                                dialog.setNegativeButton("取消", null)
+                                dialog.show()
+                            }
+                        }
+                    })
+                    .show()
+        }
 
         avatarImageView.setOnClickListener {
             selectImage()

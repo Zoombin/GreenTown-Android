@@ -5,12 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import com.zoombin.greentown.R
+import org.jetbrains.anko.toast
 
 /**
  * Created by gejw on 2017/6/27.
  */
 
 class LaunchActivity: Activity() {
+
+    var s: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

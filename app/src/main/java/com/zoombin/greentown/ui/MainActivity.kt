@@ -10,6 +10,7 @@ import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
 import com.zoombin.greentown.ui.fragment.LoginFragment
 import com.zoombin.greentown.ui.fragment.main.*
+import com.zoombin.greentown.ui.fragment.main.rank.RankFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_main_tab.view.*
 import me.yokeyword.fragmentation.SupportActivity

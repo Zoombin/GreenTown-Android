@@ -1,5 +1,7 @@
 package com.zoombin.greentown.ui.fragment
 
+import android.app.Activity
+import android.app.Fragment
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -8,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Toast
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Message
 import kotlinx.android.synthetic.main.fragment_message.*
@@ -19,6 +22,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator
 import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
 
 /**
  * Created by gejw on 2017/6/9.

@@ -5,11 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
-import com.zoombin.greentown.model.Task
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
-import me.yokeyword.fragmentation.SupportFragment
-import java.util.logging.Level
 
 /**
  * Created by gejw on 2017/6/9.
