@@ -15,6 +15,17 @@ import me.yokeyword.fragmentation.SupportFragment
 
 class NoticeFragment : BaseFragment() {
 
+    companion object {
+
+        fun newInstance(): NoticeFragment {
+            val args = Bundle()
+            val fragment = NoticeFragment()
+            fragment.arguments = args
+            return fragment
+        }
+
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_main_notice, null)
     }

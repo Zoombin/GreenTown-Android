@@ -53,13 +53,13 @@ class MainFragment : SupportFragment() {
                     .show()
         }
 
-        messageButton.setOnClickListener { start(MessageFragment()) }
-
-        homeButton.setOnClickListener { start(HomeFragment()) }
-
-        guildButton.setOnClickListener { start(GuildFragment()) }
-
-        sportButton.setOnClickListener { start(SportFragment()) }
+//        messageButton.setOnClickListener { start(MessageFragment()) }
+//
+//        homeButton.setOnClickListener { start(HomeFragment()) }
+//
+//        guildButton.setOnClickListener { start(GuildFragment()) }
+//
+//        sportButton.setOnClickListener { start(SportFragment()) }
 
 //        rankButton.setOnClickListener { start(RankFragment()) }
 

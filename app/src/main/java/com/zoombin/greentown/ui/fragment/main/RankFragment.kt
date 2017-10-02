@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
 import com.zoombin.greentown.ui.fragment.BaseBackFragment
+import com.zoombin.greentown.ui.fragment.main.NoticeFragment
 import kotlinx.android.synthetic.main.fragment_rank.*
 import kotlinx.android.synthetic.main.layout_rank_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -27,6 +28,17 @@ import java.util.*
  */
 
 class RankFragment : BaseBackFragment() {
+
+    companion object {
+
+        fun newInstance(): RankFragment {
+            val args = Bundle()
+            val fragment = RankFragment()
+            fragment.arguments = args
+            return fragment
+        }
+
+    }
 
     var items = ArrayList<User>()
     var selectedIndex = 0
@@ -45,10 +57,11 @@ class RankFragment : BaseBackFragment() {
 
         titleLabel.text = "歌林排行"
 
-        navigationRightButton.visibility = View.VISIBLE
-        navigationRightButton.imageResource = R.drawable.navigation_menu
+        navigationLeftButton.visibility = View.GONE
+        navigationRightTextView.visibility = View.VISIBLE
+        navigationRightTextView.text = "选择日期"
 
-        navigationRightButton.setOnClickListener {
+        navigationRightTextView.setOnClickListener {
             val items = ArrayList<String>()
             items.add("${month(currentMonth - 2)}月")
             items.add("${month(currentMonth - 1)}月")

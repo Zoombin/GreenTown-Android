@@ -15,6 +15,17 @@ import me.yokeyword.fragmentation.SupportFragment
 
 class MemberFragment: BaseFragment() {
 
+    companion object {
+
+        fun newInstance(): MemberFragment {
+            val args = Bundle()
+            val fragment = MemberFragment()
+            fragment.arguments = args
+            return fragment
+        }
+
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_main_member, null)
     }

@@ -46,6 +46,17 @@ import java.io.ByteArrayOutputStream
 
 class MeFragment : BaseFragment() {
 
+    companion object {
+
+        fun newInstance(): MeFragment {
+            val args = Bundle()
+            val fragment = MeFragment()
+            fragment.arguments = args
+            return fragment
+        }
+
+    }
+
     class CellItem(var title: String,
                    var value: String = "",
                    var valueColor: Int = Color.DKGRAY,

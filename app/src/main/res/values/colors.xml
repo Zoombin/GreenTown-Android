@@ -18,6 +18,15 @@
     <color name="spinner_green">#10E382</color>
     <color name="spinner_blue">#0096E6</color>
 
+
+    <color name="colorPrimary">#F44336</color>
+    <color name="colorPrimaryDark">#D32F2F</color>
+    <color name="colorAccent">#536DFE</color>
+    <color name="bg_app">#F1F1F1</color>
+
+    <color name="tab_select">@color/themeColor</color>
+    <color name="tab_unselect">#444444</color>
+    <color name="bg_btn">#dadada</color>
     <color name="gray_chateau">#A5A5A5</color>
 
 </resources>

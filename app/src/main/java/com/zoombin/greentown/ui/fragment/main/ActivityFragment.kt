@@ -20,6 +20,17 @@ import org.jetbrains.anko.support.v4.toast
 
 class ActivityFragment : BaseFragment() {
 
+    companion object {
+
+        fun newInstance(): ActivityFragment {
+            val args = Bundle()
+            val fragment = ActivityFragment()
+            fragment.arguments = args
+            return fragment
+        }
+
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_main_activity, null)
     }
