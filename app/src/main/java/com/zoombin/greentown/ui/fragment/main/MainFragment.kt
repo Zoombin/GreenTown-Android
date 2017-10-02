@@ -1,6 +1,7 @@
 package com.zoombin.greentown.ui.fragment.main
 
 import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.view.ViewCompat
@@ -9,6 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import com.zoombin.greentown.R
+import com.zoombin.greentown.model.User
+import com.zoombin.greentown.ui.LoginActivity
+import com.zoombin.greentown.ui.fragment.BaseFragment
 import com.zoombin.greentown.ui.fragment.main.rank.RankFragment
 import com.zoombin.greentown.ui.widget.BottomBar
 import com.zoombin.greentown.ui.widget.BottomBarTab
@@ -20,7 +24,7 @@ import java.lang.reflect.Member
  * Created by gejw on 2017/10/2.
  */
 
-class MainFragment: SupportFragment() {
+class MainFragment: BaseFragment() {
 
     private val mFragments = arrayOfNulls<SupportFragment>(5)
 
@@ -73,6 +77,8 @@ class MainFragment: SupportFragment() {
             mFragments[FOUR] = findChildFragment(ActivityFragment::class.java)
             mFragments[FIVE] = findChildFragment(MeFragment::class.java)
         }
+
+        checkLoginState()
     }
 
     private fun initView(view: View) {
@@ -139,6 +145,25 @@ class MainFragment: SupportFragment() {
      */
     fun startBrotherFragment(targetFragment: SupportFragment) {
         start(targetFragment)
+    }
+
+    fun checkLoginState() {
+        if (User.current() == null) {
+            activity.startActivity(Intent(activity, LoginActivity::class.java))
+            activity.finish()
+        } else {
+            User.current()?.statistics()
+        }
+    }
+
+    override fun didLogin() {
+        super.didLogin()
+        checkLoginState()
+    }
+
+    override fun didLogout() {
+        super.didLogout()
+        checkLoginState()
     }
 
 }

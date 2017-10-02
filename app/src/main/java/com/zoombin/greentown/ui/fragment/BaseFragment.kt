@@ -31,12 +31,12 @@ open class BaseFragment : SupportFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        titleLabel.visibility = View.VISIBLE
-        navigationLeftButton.image = null
-        navigationLeftButton.visibility = View.VISIBLE
-        navigationLeftButton.setOnClickListener { pop() }
-        navigationRightButton.image = null
-        navigationRightButton.visibility = View.VISIBLE
+        titleLabel?.visibility = View.VISIBLE
+        navigationLeftButton?.image = null
+        navigationLeftButton?.visibility = View.VISIBLE
+        navigationLeftButton?.setOnClickListener { pop() }
+        navigationRightButton?.image = null
+        navigationRightButton?.visibility = View.VISIBLE
     }
 
     private val broadcastReceiver = object : BroadcastReceiver() {
@@ -48,18 +48,21 @@ open class BaseFragment : SupportFragment() {
         }
     }
 
-    override fun onPause(){
-        super.onPause()
+    override fun onDestroy(){
+        super.onDestroy()
         if (isInitBroadcastReceiver) {
             context.unregisterReceiver(broadcastReceiver)
             isInitBroadcastReceiver = false
         }
     }
+
     override fun onResume(){
         super.onResume()
-        isInitBroadcastReceiver = true
-        context.registerReceiver(broadcastReceiver, IntentFilter("logout"))
-        context.registerReceiver(broadcastReceiver, IntentFilter("login"))
+        if (!isInitBroadcastReceiver) {
+            isInitBroadcastReceiver = true
+            context.registerReceiver(broadcastReceiver, IntentFilter("logout"))
+            context.registerReceiver(broadcastReceiver, IntentFilter("login"))
+        }
     }
 
     override fun onCreateFragmentAnimator(): FragmentAnimator {

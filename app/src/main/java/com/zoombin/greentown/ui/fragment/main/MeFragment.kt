@@ -78,8 +78,8 @@ class MeFragment : BaseFragment() {
         titleLabel.visibility = View.VISIBLE
         titleLabel.text = "我的"
 
-        navigationRightButton.visibility = View.VISIBLE
-        navigationRightButton.imageResource = R.drawable.navigation_menu
+        navigationRightTextView.visibility = View.VISIBLE
+        navigationRightTextView.text = "菜单"
 
         navigationRightButton.setOnClickListener {
             val items = ArrayList<String>()
