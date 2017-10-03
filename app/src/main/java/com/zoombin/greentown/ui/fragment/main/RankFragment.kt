@@ -55,7 +55,7 @@ class RankFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        title = "歌林排行"
+        title = "排行"
         setRightBarButtonItem(BarButtonItem("选择日期", {
             showSelectDateDialog()
         }))

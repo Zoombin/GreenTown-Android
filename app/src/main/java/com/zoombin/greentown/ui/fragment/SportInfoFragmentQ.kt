@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Sport
 import com.zoombin.greentown.model.User
-import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
+import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
 import kotlinx.android.synthetic.main.fragment_sportinfo.*
 import kotlinx.android.synthetic.main.layout_sport_reward_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -22,7 +22,7 @@ import org.jetbrains.anko.support.v4.toast
  * Created by gejw on 2017/6/9.
  */
 
-class SportInfoFragment(sport: Sport, pool: String) : BaseBackFragment() {
+class SportInfoFragmentQ(sport: Sport, pool: String) : QBaseBackFragment() {
 
     var sport = sport
     var pool = pool
@@ -51,7 +51,7 @@ class SportInfoFragment(sport: Sport, pool: String) : BaseBackFragment() {
             dialog.setPositiveButton("确定", null)
             dialog.show() }
 
-        playerButton.setOnClickListener { start(SportPlayerFragment(sport)) }
+        playerButton.setOnClickListener { start(SportPlayerFragmentQ(sport)) }
 
         Glide.with(context).load(sport.logo).into(avatarImageView)
 

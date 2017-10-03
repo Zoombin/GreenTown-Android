@@ -8,7 +8,7 @@ import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Department
 import com.zoombin.greentown.model.Position
 import com.zoombin.greentown.model.User
-import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
+import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
 import kotlinx.android.synthetic.main.fragment_job.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import kotlinx.android.synthetic.main.widget_spinner.view.*
@@ -19,7 +19,7 @@ import org.jetbrains.anko.imageResource
  * Created by gejw on 2017/6/9.
  */
 
-class JobFragment : BaseBackFragment() {
+class JobFragmentQ : QBaseBackFragment() {
 
     var department: Department? = null
 

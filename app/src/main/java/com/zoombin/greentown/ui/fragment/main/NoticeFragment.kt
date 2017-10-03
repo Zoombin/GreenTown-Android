@@ -29,7 +29,7 @@ class NoticeFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        title = "公告信息"
+        title = "公告"
     }
 
 }

@@ -1,5 +1,6 @@
 package com.zoombin.greentown.ui.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -9,60 +10,96 @@ import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Message
-import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
-import kotlinx.android.synthetic.main.fragment_message.*
+import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import kotlinx.android.synthetic.main.fragment_levelmessage.*
 import kotlinx.android.synthetic.main.layout_message_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
-import me.yokeyword.fragmentation.anim.DefaultVerticalAnimator
-import me.yokeyword.fragmentation.anim.FragmentAnimator
 import org.jetbrains.anko.backgroundResource
-import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.support.v4.toast
 
 /**
  * Created by gejw on 2017/6/9.
  */
 
-class MessageFragment : BaseBackFragment() {
+class LevelMessageFragmentQ : QBaseBackFragment() {
 
     var items = ArrayList<Message>()
+    var selectedIndex = 0
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_message, null)
+        val view = inflater?.inflate(R.layout.fragment_levelmessage, null)
         return view
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navigationLeftButton.imageResource = R.drawable.navigation_close
-        titleLabel.text = "消息"
+        titleLabel.text = "我要留言"
 
         val layoutManager = GridLayoutManager(context, 1)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = ListAdapter(items) {
-
+            start(MessageContentFragmentQ(it))
         }
 
+        levelButton.setOnClickListener { selectSegment(0) }
+        listButton.setOnClickListener { selectSegment(1) }
+        selectSegment(0)
+
+        sendButton.setOnClickListener {
+            val message = messageEditText.text.toString().trim()
+            if (message == "") {
+                toast("请输入内容")
+                return@setOnClickListener
+            }
+
+            Message.levelMessage(message, {
+                AlertDialog.Builder(activity).setTitle("发送成功").setPositiveButton("确定", { dialog, whitch ->
+                    pop()
+                }).show()
+            }) { message ->
+                if (message != null) toast(message)
+            }
+        }
+        loadData()
+    }
+
+    fun loadData() {
         Message.allMessages({ messages ->
             items.clear()
             items.addAll(messages)
+            recyclerView.adapter.notifyDataSetChanged()
             reloadData()
         }) { message ->
-            reloadData()
             if (message != null) toast(message)
         }
-    }
-
-    override fun onCreateFragmentAnimator(): FragmentAnimator {
-        return DefaultVerticalAnimator()
     }
 
     fun reloadData() {
         recyclerView.adapter.notifyDataSetChanged()
         emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
     }
+
+    fun selectSegment(index: Int) {
+        selectedIndex = index
+        when(index) {
+            0 -> {
+                levelLayout.visibility = View.VISIBLE
+                listLayout.visibility = View.INVISIBLE
+                coinsTriangle.visibility = View.VISIBLE
+                pointTriangle.visibility = View.INVISIBLE
+            }
+            1 -> {
+                levelLayout.visibility = View.INVISIBLE
+                listLayout.visibility = View.VISIBLE
+                coinsTriangle.visibility = View.INVISIBLE
+                pointTriangle.visibility = View.VISIBLE
+            }
+        }
+    }
+
+
 
     class ListAdapter(val users: ArrayList<Message>, val listener: (Message) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
@@ -85,13 +122,7 @@ class MessageFragment : BaseBackFragment() {
                     2 -> { layout.backgroundResource = R.drawable.cell_purple_xml }
                     3 -> { layout.backgroundResource = R.drawable.cell_red_xml }
                 }
-                when(item.msg_type) {
-                    1 -> { nameTextView.text = "公告" }
-                    2 -> { nameTextView.text = if (item.msg_content.contains("鞭策")) "鞭策" else "鼓舞" }
-                    3 -> { nameTextView.text = item.department_name }
-                    4 -> { nameTextView.text = "我的留言" }
-                }
-                nameTextView.text = "${nameTextView.text} ${item.created_date}"
+                nameTextView.text = "我的留言${if (item.haveResponse) "【有回复】" else ""}"
                 contentTextView.text = item.msg_content
                 setOnClickListener { listener(item) }
             }

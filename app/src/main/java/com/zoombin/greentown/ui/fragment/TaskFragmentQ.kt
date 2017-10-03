@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Task
-import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
+import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
 import kotlinx.android.synthetic.main.fragment_task.*
 import kotlinx.android.synthetic.main.layout_task_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -20,7 +20,7 @@ import org.jetbrains.anko.support.v4.toast
  * Created by gejw on 2017/6/9.
  */
 
-class TaskFragment : BaseBackFragment() {
+class TaskFragmentQ : QBaseBackFragment() {
 
     var items = ArrayList<Task>()
 

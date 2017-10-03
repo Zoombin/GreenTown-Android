@@ -32,7 +32,7 @@ class MemberFragment: BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        title = "成员信息"
+        title = "成员"
     }
 
     override fun onResume() {

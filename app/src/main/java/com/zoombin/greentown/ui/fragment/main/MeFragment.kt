@@ -8,7 +8,6 @@ import android.provider.MediaStore
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
@@ -16,9 +15,7 @@ import com.qiniu.android.storage.UploadManager
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
 import com.zoombin.greentown.ui.fragment.common.BaseFragment
-import kotlinx.android.synthetic.main.fragment_main_me.*
 import kotlinx.android.synthetic.main.layout_me_cell.view.*
-import kotlinx.android.synthetic.main.layout_titlebar.*
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.textColor
 import me.weyye.hipermission.PermissionCallback
@@ -30,7 +27,6 @@ import com.zoombin.greentown.ui.fragment.common.BarButtonItem
 import com.zoombin.greentown.ui.fragment.common.setRightBarButtonItem
 import com.zoombin.greentown.ui.fragment.me.HobbyFragment
 import com.zoombin.greentown.ui.fragment.message.MessageFragment
-import kotlinx.android.synthetic.main.fragment_base.*
 import kotlinx.android.synthetic.main.fragment_main_me.view.*
 import me.weyye.hipermission.PermissionItem
 import java.io.ByteArrayOutputStream

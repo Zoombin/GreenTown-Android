@@ -13,7 +13,7 @@ import org.jetbrains.anko.imageResource
  * Created by gejw on 2017/6/10.
  */
 
-open abstract class BaseBackFragment : BaseFragment() {
+open abstract class QBaseBackFragment : QBaseFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

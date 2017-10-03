@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Sport
-import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
+import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
 import kotlinx.android.synthetic.main.fragment_sport.*
 import kotlinx.android.synthetic.main.layout_sport_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -22,7 +22,7 @@ import org.jetbrains.anko.support.v4.toast
  * Created by gejw on 2017/6/9.
  */
 
-class SportFragment : BaseBackFragment() {
+class SportFragmentQ : QBaseBackFragment() {
 
     var items = ArrayList<Sport>()
 
@@ -61,7 +61,7 @@ class SportFragment : BaseBackFragment() {
             dialog.setNegativeButton("取消", null)
             dialog.show()
         }) {
-            start(SportInfoFragment(it, poolTextView.text.toString()))
+            start(SportInfoFragmentQ(it, poolTextView.text.toString()))
         }
         loadData()
     }

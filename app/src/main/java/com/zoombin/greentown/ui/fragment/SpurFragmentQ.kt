@@ -1,7 +1,6 @@
 package com.zoombin.greentown.ui.fragment
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +8,8 @@ import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Reason
 import com.zoombin.greentown.model.User
-import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
-import kotlinx.android.synthetic.main.fragment_inspire.*
+import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import kotlinx.android.synthetic.main.fragment_spur.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import kotlinx.android.synthetic.main.widget_remark.view.*
 import kotlinx.android.synthetic.main.widget_spinner.view.*
@@ -22,20 +21,20 @@ import org.jetbrains.anko.support.v4.toast
  * Created by gejw on 2017/6/9.
  */
 
-class InspireFragment(user: User? = null) : BaseBackFragment() {
+class SpurFragmentQ(user: User? = null) : QBaseBackFragment() {
 
     var user = user
     var reason: Reason? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_inspire, null)
+        val view = inflater?.inflate(R.layout.fragment_spur, null)
         return view
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        titleLabel.text = "我要鼓舞"
+        titleLabel.text = "我要鞭策"
 
         playerSpinner.nameZhLabel.text = "玩家"
         playerSpinner.nameEnLabel.text = "Player"
@@ -48,8 +47,8 @@ class InspireFragment(user: User? = null) : BaseBackFragment() {
         reasonSpinner.spinnerLayout.backgroundResource = R.drawable.spinner_background_blue
         reasonSpinner.arrowImageView.imageResource = R.drawable.spinner_blue_arrow
 
-        rewardSpinner.nameZhLabel.text = "奖励"
-        rewardSpinner.nameEnLabel.text = "Reward"
+        rewardSpinner.nameZhLabel.text = "惩罚"
+        rewardSpinner.nameEnLabel.text = "Penalty"
         rewardSpinner.spinnerLayout.backgroundResource = R.drawable.spinner_background_green
         rewardSpinner.arrowImageView.imageResource = R.drawable.spinner_green_arrow
         rewardSpinner.arrowImageView.visibility = View.INVISIBLE
@@ -66,7 +65,7 @@ class InspireFragment(user: User? = null) : BaseBackFragment() {
                     toast("无数据")
                     return@allUsers
                 }
-                start(UserListFragment(ArrayList(users), { user ->
+                start(UserListFragmentQ(ArrayList(users), { user ->
                     this.user = user
                     playerSpinner.valueTextView.text = user!!.fullname
                 }))
@@ -75,15 +74,15 @@ class InspireFragment(user: User? = null) : BaseBackFragment() {
             }
         }
         reasonSpinner.setOnClickListener {
-            Reason.inspireReason({ reasons ->
+            Reason.spurReason({ reasons ->
                 if (reasons.size == 0) {
                     toast("无数据")
-                    return@inspireReason
+                    return@spurReason
                 }
                 val items = reasons.map { it.reason }.toTypedArray()
                 AlertDialog.Builder(context)
                         .setTitle("选择理由")
-                        .setItems(items, DialogInterface.OnClickListener { dialog, which ->
+                        .setItems(items, { dialog, which ->
                             reason = reasons.get(which)
                             reasonSpinner.valueTextView.text = reason!!.reason
                             rewardSpinner.valueTextView.text = reason!!.value
@@ -102,9 +101,9 @@ class InspireFragment(user: User? = null) : BaseBackFragment() {
                 toast("请选择理由")
                 return@setOnClickListener
             }
-            user?.inspire(reason!!.reason_id,
+            user?.spur(reason!!.reason_id,
                     remarkView.remarkEditText.text.toString(), {
-                toast("鼓舞成功")
+                toast("鞭策成功")
                 pop()
             }) { message ->
                 if (message != null) toast(message)

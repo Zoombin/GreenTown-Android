@@ -19,7 +19,7 @@ import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.support.v4.toast
 import android.content.DialogInterface
 import com.bumptech.glide.Glide
-import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
+import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
 import org.jetbrains.anko.image
 
 
@@ -27,7 +27,7 @@ import org.jetbrains.anko.image
  * Created by gejw on 2017/6/9.
  */
 
-class GuildFragment : BaseBackFragment() {
+class GuildFragmentQ : QBaseBackFragment() {
 
     var items = ArrayList<User>()
     var departments = ArrayList<Department>()
@@ -46,9 +46,9 @@ class GuildFragment : BaseBackFragment() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = ListAdapter(items, {
-            start(SpurFragment(it))
+            start(SpurFragmentQ(it))
         }) {
-            start(InspireFragment(it))
+            start(InspireFragmentQ(it))
         }
 
         Department.departments({ departments ->

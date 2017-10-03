@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Gift
-import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
+import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
 import kotlinx.android.synthetic.main.fragment_gift.*
 import kotlinx.android.synthetic.main.layout_gift_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -19,7 +19,7 @@ import org.jetbrains.anko.support.v4.toast
  * Created by gejw on 2017/6/9.
  */
 
-class GiftFragment : BaseBackFragment() {
+class GiftFragmentQ : QBaseBackFragment() {
 
     var items = ArrayList<Gift>()
 

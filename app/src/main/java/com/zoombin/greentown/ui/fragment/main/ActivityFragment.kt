@@ -32,7 +32,7 @@ class ActivityFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        title = "歌林活动"
+        title = "活动"
     }
 
 }
