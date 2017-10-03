@@ -4,35 +4,25 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import com.zoombin.greentown.R
-import kotlinx.android.synthetic.main.fragment_base.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import me.yokeyword.fragmentation.SupportFragment
 import me.yokeyword.fragmentation.anim.DefaultNoAnimator
 import me.yokeyword.fragmentation.anim.FragmentAnimator
-import org.jetbrains.anko.backgroundColor
-import org.jetbrains.anko.image
 import org.jetbrains.anko.imageResource
-import android.view.Gravity
-import com.blankj.utilcode.util.ToastUtils.setGravity
 import android.widget.LinearLayout
 import com.zoombin.greentown.ui.fragment.main.MainFragment
-import com.zoombin.greentown.ui.fragment.me.HobbyFragment
 
 
 /**
  * Created by gejw on 2017/6/10.
  */
 
-open abstract class BaseFragment : SupportFragment() {
-
-    private var isInitBroadcastReceiver = false
+open abstract class QBaseFragment : SupportFragment() {
 
     var leftBarButtonItem: BarButtonItem? = null
 
@@ -78,42 +68,8 @@ open abstract class BaseFragment : SupportFragment() {
     // 布局
     public abstract fun layoutId(): Int
 
-    private val broadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context : Context?, intent : Intent?) {
-            when(intent!!.action){
-                "logout" -> { didLogout() }
-                "login" -> { didLogin() }
-            }
-        }
-    }
-
-    override fun onDestroy(){
-        super.onDestroy()
-        if (isInitBroadcastReceiver) {
-            context.unregisterReceiver(broadcastReceiver)
-            isInitBroadcastReceiver = false
-        }
-    }
-
-    override fun onResume(){
-        super.onResume()
-        if (!isInitBroadcastReceiver) {
-            isInitBroadcastReceiver = true
-            context.registerReceiver(broadcastReceiver, IntentFilter("logout"))
-            context.registerReceiver(broadcastReceiver, IntentFilter("login"))
-        }
-    }
-
     override fun onCreateFragmentAnimator(): FragmentAnimator {
         return DefaultNoAnimator()
-    }
-
-    open fun didLogout() {
-        // 退出登录
-    }
-
-    open fun didLogin() {
-        // 登录成功
     }
 
     public fun push(targetFragment: SupportFragment) {
@@ -140,7 +96,7 @@ public class BarButtonItem {
 
 }
 
-public fun BaseFragment.setLeftBarButtonItem(item: BarButtonItem) {
+public fun QBaseFragment.setLeftBarButtonItem(item: BarButtonItem) {
     this.leftBarButtonItem = item
     if (item.title != "") {
         navigationLeftTextView.visibility = View.VISIBLE
@@ -157,7 +113,7 @@ public fun BaseFragment.setLeftBarButtonItem(item: BarButtonItem) {
 
 }
 
-public fun BaseFragment.setRightBarButtonItem(item: BarButtonItem) {
+public fun QBaseFragment.setRightBarButtonItem(item: BarButtonItem) {
     this.rightBarButtonItem = item
     if (item.title != "") {
         navigationRightTextView.visibility = View.VISIBLE
