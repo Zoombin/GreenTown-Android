@@ -7,15 +7,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Task
+import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
 import kotlinx.android.synthetic.main.fragment_task.*
 import kotlinx.android.synthetic.main.layout_task_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
-import me.yokeyword.fragmentation.SupportFragment
-import me.yokeyword.fragmentation.anim.DefaultVerticalAnimator
-import me.yokeyword.fragmentation.anim.FragmentAnimator
 import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.support.v4.toast
 
@@ -100,6 +97,10 @@ class TaskFragment : BaseBackFragment() {
             }
 
         }
+    }
+
+    override fun layoutId(): Int {
+        return 0
     }
 
 }

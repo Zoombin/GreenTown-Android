@@ -1,15 +1,14 @@
 package com.zoombin.greentown.ui.fragment
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Reason
 import com.zoombin.greentown.model.User
+import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
 import kotlinx.android.synthetic.main.fragment_spur.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import kotlinx.android.synthetic.main.widget_remark.view.*
@@ -17,7 +16,6 @@ import kotlinx.android.synthetic.main.widget_spinner.view.*
 import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.support.v4.toast
-import org.jetbrains.anko.textColor
 
 /**
  * Created by gejw on 2017/6/9.
@@ -112,6 +110,10 @@ class SpurFragment(user: User? = null) : BaseBackFragment() {
             }
         }
 
+    }
+
+    override fun layoutId(): Int {
+        return 0
     }
 
 }

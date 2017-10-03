@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Message
+import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
 import kotlinx.android.synthetic.main.fragment_messagecontent.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
-import me.yokeyword.fragmentation.SupportFragment
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -36,6 +36,10 @@ class MessageContentFragment(message: Message): BaseBackFragment() {
             if (message != null) toast(message)
         }
 
+    }
+
+    override fun layoutId(): Int {
+        return 0
     }
 
 }

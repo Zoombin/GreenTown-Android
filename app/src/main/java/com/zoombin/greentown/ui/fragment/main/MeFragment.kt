@@ -15,28 +15,21 @@ import com.bumptech.glide.Glide
 import com.qiniu.android.storage.UploadManager
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
-import com.zoombin.greentown.ui.fragment.BaseFragment
-import com.zoombin.greentown.ui.fragment.LevelMessageFragment
-import com.zoombin.greentown.ui.fragment.MessageContentFragment
+import com.zoombin.greentown.ui.fragment.common.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main_me.*
-import kotlinx.android.synthetic.main.layout_guild_cell.view.*
 import kotlinx.android.synthetic.main.layout_me_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
-import me.yokeyword.fragmentation.SupportFragment
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.textColor
-import com.zoombin.greentown.Manifest
-import cn.jpush.android.e.a.b.showToast
 import me.weyye.hipermission.PermissionCallback
 import me.weyye.hipermission.HiPermission
-import android.Manifest.permission.CALL_PHONE
 import android.content.DialogInterface
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import com.zoombin.greentown.ui.fragment.AboutFragment
-import kotlinx.android.synthetic.main.fragment_messagecontent.view.*
+import com.zoombin.greentown.ui.fragment.me.HobbyFragment
+import kotlinx.android.synthetic.main.fragment_base.*
+import kotlinx.android.synthetic.main.fragment_main_me.view.*
 import me.weyye.hipermission.PermissionItem
-import org.jetbrains.anko.imageResource
 import java.io.ByteArrayOutputStream
 
 
@@ -68,10 +61,9 @@ class MeFragment : BaseFragment() {
 
     var items = arrayListOf<CellItem>()
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_main_me, null)
+    override fun layoutId(): Int {
+        return R.layout.fragment_main_me
     }
-
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -104,20 +96,20 @@ class MeFragment : BaseFragment() {
                     .show()
         }
 
-        avatarImageView.setOnClickListener {
+        contentView.avatarImageView.setOnClickListener {
             selectImage()
         }
 
         val layoutManager = GridLayoutManager(context, 1)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = ListAdapter(items) { t ->
+        contentView.recyclerView?.layoutManager = layoutManager
+        contentView.recyclerView?.adapter = ListAdapter(items) { t ->
             when (t.title) {
                 "星座" -> {
                     selectConstellation()
                 }
                 "爱好" -> {
-
+                    (parentFragment as MainFragment).startBrotherFragment(HobbyFragment())
                 }
                 "留言" -> {
 
@@ -135,8 +127,8 @@ class MeFragment : BaseFragment() {
         var user = User.current()
         if (user == null) user = User()
 
-        Glide.with(context).load(user.logo).into(avatarImageView)
-        nameLabel.text = user.fullname
+        Glide.with(context).load(user.logo).into(contentView.avatarImageView)
+        contentView.nameLabel.text = user.fullname
 
         items.clear()
         items.add(CellItem(
@@ -164,7 +156,7 @@ class MeFragment : BaseFragment() {
                 Color.DKGRAY,
                 true))
 
-        recyclerView.adapter.notifyDataSetChanged()
+        contentView.recyclerView.adapter.notifyDataSetChanged()
 
     }
 

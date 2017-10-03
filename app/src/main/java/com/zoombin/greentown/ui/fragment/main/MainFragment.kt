@@ -1,34 +1,27 @@
 package com.zoombin.greentown.ui.fragment.main
 
-import android.app.Activity
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
-import android.graphics.Color
+import android.content.IntentFilter
 import android.os.Bundle
-import android.support.v4.view.ViewCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
 import com.zoombin.greentown.ui.LoginActivity
-import com.zoombin.greentown.ui.fragment.BaseFragment
+import com.zoombin.greentown.ui.fragment.common.BaseFragment
 import com.zoombin.greentown.ui.fragment.main.rank.RankFragment
 import com.zoombin.greentown.ui.widget.BottomBar
 import com.zoombin.greentown.ui.widget.BottomBarTab
 import me.yokeyword.fragmentation.SupportFragment
-import org.greenrobot.eventbus.EventBus
-import java.lang.reflect.Member
 
 /**
  * Created by gejw on 2017/10/2.
  */
 
-class MainFragment: BaseFragment() {
-
-    private val mFragments = arrayOfNulls<SupportFragment>(5)
-
-    private var mBottomBar: BottomBar? = null
+class MainFragment: SupportFragment() {
 
     companion object {
 
@@ -45,6 +38,12 @@ class MainFragment: BaseFragment() {
             return fragment
         }
     }
+
+    private val mFragments = arrayOfNulls<SupportFragment>(5)
+
+    private var mBottomBar: BottomBar? = null
+
+    private var isInitBroadcastReceiver = false
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_main, container, false)
@@ -156,13 +155,37 @@ class MainFragment: BaseFragment() {
         }
     }
 
-    override fun didLogin() {
-        super.didLogin()
+    private val broadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context : Context?, intent : Intent?) {
+            when(intent!!.action){
+                "logout" -> { didLogout() }
+                "login" -> { didLogin() }
+            }
+        }
+    }
+
+    override fun onDestroy(){
+        super.onDestroy()
+        if (isInitBroadcastReceiver) {
+            context.unregisterReceiver(broadcastReceiver)
+            isInitBroadcastReceiver = false
+        }
+    }
+
+    override fun onResume(){
+        super.onResume()
+        if (!isInitBroadcastReceiver) {
+            isInitBroadcastReceiver = true
+            context.registerReceiver(broadcastReceiver, IntentFilter("logout"))
+            context.registerReceiver(broadcastReceiver, IntentFilter("login"))
+        }
+    }
+
+    fun didLogin() {
         checkLoginState()
     }
 
-    override fun didLogout() {
-        super.didLogout()
+    fun didLogout() {
         checkLoginState()
     }
 

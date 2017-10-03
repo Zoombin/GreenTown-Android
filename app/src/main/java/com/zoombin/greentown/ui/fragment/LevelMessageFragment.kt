@@ -1,7 +1,6 @@
 package com.zoombin.greentown.ui.fragment
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -9,15 +8,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Message
+import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
 import kotlinx.android.synthetic.main.fragment_levelmessage.*
 import kotlinx.android.synthetic.main.layout_message_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
-import me.yokeyword.fragmentation.SupportFragment
-import me.yokeyword.fragmentation.anim.DefaultVerticalAnimator
-import me.yokeyword.fragmentation.anim.FragmentAnimator
 import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.support.v4.toast
 
@@ -132,6 +128,10 @@ class LevelMessageFragment : BaseBackFragment() {
             }
 
         }
+    }
+
+    override fun layoutId(): Int {
+        return 0
     }
 
 }

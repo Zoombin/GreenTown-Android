@@ -11,10 +11,10 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Sport
+import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
 import kotlinx.android.synthetic.main.fragment_sport.*
 import kotlinx.android.synthetic.main.layout_sport_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
-import me.yokeyword.fragmentation.SupportFragment
 import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.support.v4.toast
 
@@ -129,6 +129,10 @@ class SportFragment : BaseBackFragment() {
             }
 
         }
+    }
+
+    override fun layoutId(): Int {
+        return 0
     }
 
 }

@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Reason
 import com.zoombin.greentown.model.User
+import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
 import kotlinx.android.synthetic.main.fragment_inspire.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import kotlinx.android.synthetic.main.widget_remark.view.*
@@ -111,6 +111,10 @@ class InspireFragment(user: User? = null) : BaseBackFragment() {
             }
         }
 
+    }
+
+    override fun layoutId(): Int {
+        return 0
     }
 
 }

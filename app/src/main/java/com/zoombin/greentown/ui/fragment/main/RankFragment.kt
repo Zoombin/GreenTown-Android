@@ -12,8 +12,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
-import com.zoombin.greentown.ui.fragment.BaseBackFragment
-import com.zoombin.greentown.ui.fragment.main.NoticeFragment
+import com.zoombin.greentown.ui.fragment.common.BaseFragment
 import kotlinx.android.synthetic.main.fragment_rank.*
 import kotlinx.android.synthetic.main.layout_rank_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -27,7 +26,7 @@ import java.util.*
  * Created by gejw on 2017/6/9.
  */
 
-class RankFragment : BaseBackFragment() {
+class RankFragment : BaseFragment() {
 
     companion object {
 
@@ -186,6 +185,10 @@ class RankFragment : BaseBackFragment() {
             }
 
         }
+    }
+
+    override fun layoutId(): Int {
+        return 0
     }
 
 }

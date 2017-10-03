@@ -13,8 +13,6 @@ import org.jetbrains.anko.toast
 
 class LaunchActivity: Activity() {
 
-    var s: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launcher)

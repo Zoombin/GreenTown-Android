@@ -1,18 +1,12 @@
 package com.zoombin.greentown.ui.fragment.main
 
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
-import com.zoombin.greentown.ui.fragment.BaseFragment
-import com.zoombin.greentown.ui.fragment.GiftFragment
-import kotlinx.android.synthetic.main.fragment_gift.*
+import com.zoombin.greentown.ui.fragment.common.BaseFragment
 import kotlinx.android.synthetic.main.layout_titlebar.*
-import me.yokeyword.fragmentation.SupportFragment
-import org.jetbrains.anko.support.v4.toast
 
 /**
  * Created by gejw on 2017/9/23.
@@ -31,8 +25,8 @@ class ActivityFragment : BaseFragment() {
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_main_activity, null)
+    override fun layoutId(): Int {
+        return R.layout.fragment_main_activity
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {

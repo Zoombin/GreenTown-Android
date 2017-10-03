@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
+import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 
@@ -35,6 +36,10 @@ class HomeFragment : BaseBackFragment() {
         taskButton.setOnClickListener { start(TaskFragment()) }
 
         messageButton.setOnClickListener { start(LevelMessageFragment()) }
+    }
+
+    override fun layoutId(): Int {
+        return 0
     }
 
 }

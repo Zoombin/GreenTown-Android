@@ -1,6 +1,5 @@
 package com.zoombin.greentown.ui.fragment
 
-import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -11,16 +10,14 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
-import com.zoombin.greentown.model.Message
 import com.zoombin.greentown.model.User
+import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
 import kotlinx.android.synthetic.main.fragment_users.*
 import kotlinx.android.synthetic.main.layout_guild_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
-import me.yokeyword.fragmentation.SupportFragment
 import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.image
 import org.jetbrains.anko.imageResource
-import org.jetbrains.anko.toast
 
 /**
  * Created by gejw on 2017/7/28.
@@ -111,6 +108,10 @@ class UserListFragment(users: ArrayList<User>, selectedLlistener: (User) -> Unit
             }
 
         }
+    }
+
+    override fun layoutId(): Int {
+        return 0
     }
 
 }

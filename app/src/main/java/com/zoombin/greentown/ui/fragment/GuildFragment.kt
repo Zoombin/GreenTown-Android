@@ -14,15 +14,13 @@ import com.zoombin.greentown.model.User
 import kotlinx.android.synthetic.main.fragment_guild.*
 import kotlinx.android.synthetic.main.layout_guild_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
-import me.yokeyword.fragmentation.SupportFragment
 import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.support.v4.toast
 import android.content.DialogInterface
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.fragment_user.*
+import com.zoombin.greentown.ui.fragment.common.BaseBackFragment
 import org.jetbrains.anko.image
-import java.util.stream.Collector
 
 
 /**
@@ -127,6 +125,10 @@ class GuildFragment : BaseBackFragment() {
             }
 
         }
+    }
+
+    override fun layoutId(): Int {
+        return 0
     }
 
 }
