@@ -12,7 +12,9 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
+import com.zoombin.greentown.ui.fragment.common.BarButtonItem
 import com.zoombin.greentown.ui.fragment.common.BaseFragment
+import com.zoombin.greentown.ui.fragment.common.setRightBarButtonItem
 import kotlinx.android.synthetic.main.fragment_rank.*
 import kotlinx.android.synthetic.main.layout_rank_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -46,48 +48,63 @@ class RankFragment : BaseFragment() {
     private var coinsUsers = ArrayList<User>()
     private var pointsUsers = ArrayList<User>()
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_rank, null)
-        return view
+    override fun layoutId(): Int {
+        return R.layout.fragment_recyclerview
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        titleLabel.text = "歌林排行"
+        title = "歌林排行"
+        setRightBarButtonItem(BarButtonItem("选择日期", {
+            showSelectDateDialog()
+        }))
 
-        navigationLeftButton.visibility = View.GONE
-        navigationRightTextView.visibility = View.VISIBLE
-        navigationRightTextView.text = "选择日期"
+//        navigationLeftButton.visibility = View.GONE
+//        navigationRightTextView.visibility = View.VISIBLE
+//        navigationRightTextView.text = "选择日期"
+//
+//        navigationRightTextView.setOnClickListener {
+//            val items = ArrayList<String>()
+//            items.add("${month(currentMonth - 2)}月")
+//            items.add("${month(currentMonth - 1)}月")
+//            items.add("${month(currentMonth)}月")
+//            AlertDialog.Builder(context)
+//                    .setTitle("选择月份")
+//                    .setItems(items.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
+//                        loadData(2 - which)
+//                    })
+//                    .show()
+//        }
+//
+//        val layoutManager = GridLayoutManager(context, 1)
+//        layoutManager.orientation = LinearLayoutManager.VERTICAL
+//        recyclerView.layoutManager = layoutManager
+//        recyclerView.adapter = ListAdapter(items) {
+//
+//        }
+//
+//        coinsButton.setOnClickListener { selectSegment(0) }
+//        pointButton.setOnClickListener { selectSegment(1) }
+//        selectSegment(0, true)
+//
+//        loadData(0)
+//
+//        val c = Calendar.getInstance()
+//        currentMonth = c.get(Calendar.MONTH) + 1
+    }
 
-        navigationRightTextView.setOnClickListener {
-            val items = ArrayList<String>()
-            items.add("${month(currentMonth - 2)}月")
-            items.add("${month(currentMonth - 1)}月")
-            items.add("${month(currentMonth)}月")
-            AlertDialog.Builder(context)
-                    .setTitle("选择月份")
-                    .setItems(items.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
-                        loadData(2 - which)
-                    })
-                    .show()
-        }
-
-        val layoutManager = GridLayoutManager(context, 1)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = ListAdapter(items) {
-
-        }
-
-        coinsButton.setOnClickListener { selectSegment(0) }
-        pointButton.setOnClickListener { selectSegment(1) }
-        selectSegment(0, true)
-
-        loadData(0)
-
-        val c = Calendar.getInstance()
-        currentMonth = c.get(Calendar.MONTH) + 1
+    fun showSelectDateDialog() {
+        val items = ArrayList<String>()
+        items.add("${month(currentMonth - 2)}月")
+        items.add("${month(currentMonth - 1)}月")
+        items.add("${month(currentMonth)}月")
+        AlertDialog.Builder(context)
+                .setTitle("选择月份")
+                .setItems(items.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
+                    loadData(2 - which)
+                })
+                .show()
     }
 
     fun month(month: Int): Int {
@@ -185,10 +202,6 @@ class RankFragment : BaseFragment() {
             }
 
         }
-    }
-
-    override fun layoutId(): Int {
-        return 0
     }
 
 }

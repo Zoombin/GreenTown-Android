@@ -22,7 +22,8 @@ import org.jetbrains.anko.imageResource
 import android.view.Gravity
 import com.blankj.utilcode.util.ToastUtils.setGravity
 import android.widget.LinearLayout
-
+import com.zoombin.greentown.ui.fragment.main.MainFragment
+import com.zoombin.greentown.ui.fragment.me.HobbyFragment
 
 
 /**
@@ -33,7 +34,16 @@ open abstract class BaseFragment : SupportFragment() {
 
     private var isInitBroadcastReceiver = false
 
-    lateinit var contentView: View
+    var leftBarButtonItem: BarButtonItem? = null
+
+    var rightBarButtonItem: BarButtonItem? = null
+
+    public lateinit var contentView: View
+
+    public var title: String = ""
+        set(title) {
+            titleLabel.text = title
+        }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_base, null)
@@ -53,14 +63,20 @@ open abstract class BaseFragment : SupportFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         titleLabel?.visibility = View.VISIBLE
-        navigationLeftButton?.image = null
-        navigationLeftButton?.visibility = View.VISIBLE
-        navigationRightButton?.image = null
-        navigationRightButton?.visibility = View.VISIBLE
+
+        navigationLeftButton?.visibility = View.GONE
+        navigationLeftButton.setOnClickListener{ leftBarButtonItem?.callback?.invoke() }
+        navigationLeftTextView?.visibility = View.GONE
+        navigationLeftTextView.setOnClickListener{ leftBarButtonItem?.callback?.invoke() }
+
+        navigationRightButton?.visibility = View.GONE
+        navigationRightButton.setOnClickListener{ rightBarButtonItem?.callback?.invoke() }
+        navigationRightTextView?.visibility = View.GONE
+        navigationRightTextView.setOnClickListener{ rightBarButtonItem?.callback?.invoke() }
     }
 
     // 布局
-    abstract fun layoutId(): Int
+    public abstract fun layoutId(): Int
 
     private val broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context : Context?, intent : Intent?) {
@@ -100,4 +116,60 @@ open abstract class BaseFragment : SupportFragment() {
         // 登录成功
     }
 
+    public fun push(targetFragment: SupportFragment) {
+        (parentFragment as MainFragment).startBrotherFragment(targetFragment)
+    }
+
+}
+
+public class BarButtonItem {
+
+    public var title: String = ""
+    public var image: Int = 0
+    public var callback: () -> Unit
+
+    public constructor(title: String, callback: () -> Unit) {
+        this.title = title
+        this.callback = callback
+    }
+
+    public constructor(image: Int, callback: () -> Unit) {
+        this.image = image
+        this.callback = callback
+    }
+
+}
+
+
+public fun BaseFragment.setLeftBarButtonItem(item: BarButtonItem) {
+    this.leftBarButtonItem = item
+    if (item.title != "") {
+        navigationLeftTextView.visibility = View.VISIBLE
+        navigationLeftTextView.text = item.title
+    } else {
+        navigationLeftTextView.visibility = View.GONE
+    }
+    if (item.image != 0) {
+        navigationLeftButton.visibility = View.VISIBLE
+        navigationLeftButton.imageResource = item.image
+    } else {
+        navigationLeftButton.visibility = View.GONE
+    }
+
+}
+
+public fun BaseFragment.setRightBarButtonItem(item: BarButtonItem) {
+    this.rightBarButtonItem = item
+    if (item.title != "") {
+        navigationRightTextView.visibility = View.VISIBLE
+        navigationRightTextView.text = item.title
+    } else {
+        navigationRightTextView.visibility = View.GONE
+    }
+    if (item.image != 0) {
+        navigationRightButton.visibility = View.VISIBLE
+        navigationRightButton.imageResource = item.image
+    } else {
+        navigationRightButton.visibility = View.GONE
+    }
 }

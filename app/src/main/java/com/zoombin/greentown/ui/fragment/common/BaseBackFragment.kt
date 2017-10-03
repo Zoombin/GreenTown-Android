@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.View
 import com.zoombin.greentown.R
 import kotlinx.android.synthetic.main.layout_titlebar.*
+import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator
+import me.yokeyword.fragmentation.anim.DefaultNoAnimator
+import me.yokeyword.fragmentation.anim.FragmentAnimator
 import org.jetbrains.anko.imageResource
 
 /**
@@ -14,8 +17,11 @@ open abstract class BaseBackFragment : BaseFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navigationLeftButton?.imageResource = R.drawable.navigation_back
-        navigationLeftButton.setOnClickListener { pop() }
+        setLeftBarButtonItem(BarButtonItem(R.drawable.navigation_back, { pop() }))
+    }
+
+    override fun onCreateFragmentAnimator(): FragmentAnimator {
+        return DefaultHorizontalAnimator()
     }
 
 }

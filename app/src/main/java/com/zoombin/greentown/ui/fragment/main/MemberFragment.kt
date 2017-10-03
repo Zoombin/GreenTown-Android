@@ -25,7 +25,6 @@ class MemberFragment: BaseFragment() {
 
     }
 
-
     override fun layoutId(): Int {
         return R.layout.fragment_main_member
     }
@@ -33,8 +32,7 @@ class MemberFragment: BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        titleLabel.visibility = View.VISIBLE
-        titleLabel.text = "成员信息"
+        title = "成员信息"
     }
 
     override fun onResume() {

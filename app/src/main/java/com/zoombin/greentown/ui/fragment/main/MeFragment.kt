@@ -26,7 +26,10 @@ import me.weyye.hipermission.HiPermission
 import android.content.DialogInterface
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import com.zoombin.greentown.ui.fragment.common.BarButtonItem
+import com.zoombin.greentown.ui.fragment.common.setRightBarButtonItem
 import com.zoombin.greentown.ui.fragment.me.HobbyFragment
+import com.zoombin.greentown.ui.fragment.message.MessageFragment
 import kotlinx.android.synthetic.main.fragment_base.*
 import kotlinx.android.synthetic.main.fragment_main_me.view.*
 import me.weyye.hipermission.PermissionItem
@@ -64,37 +67,15 @@ class MeFragment : BaseFragment() {
     override fun layoutId(): Int {
         return R.layout.fragment_main_me
     }
+
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        titleLabel.visibility = View.VISIBLE
-        titleLabel.text = "我的"
+        title = "我的"
 
-        navigationRightTextView.visibility = View.VISIBLE
-        navigationRightTextView.text = "菜单"
-
-        navigationRightButton.setOnClickListener {
-            val items = ArrayList<String>()
-            items.add("退出登录")
-            AlertDialog.Builder(context)
-                    .setTitle("菜单")
-                    .setItems(items.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
-                        when(which) {
-//                            0 -> { start(AboutFragment()) }
-                            0 -> {
-                                val dialog = AlertDialog.Builder(context)
-                                dialog.setTitle("确认退出？")
-                                dialog.setPositiveButton("确定") { dialog, which ->
-                                    // 退出登录
-                                    User.logout()
-                                }
-                                dialog.setNegativeButton("取消", null)
-                                dialog.show()
-                            }
-                        }
-                    })
-                    .show()
-        }
+        setRightBarButtonItem(BarButtonItem("菜单", {
+            showMenu()
+        }))
 
         contentView.avatarImageView.setOnClickListener {
             selectImage()
@@ -109,10 +90,10 @@ class MeFragment : BaseFragment() {
                     selectConstellation()
                 }
                 "爱好" -> {
-                    (parentFragment as MainFragment).startBrotherFragment(HobbyFragment())
+                    push(HobbyFragment())
                 }
                 "留言" -> {
-
+                    push(MessageFragment())
                 }
             }
         }
@@ -121,6 +102,29 @@ class MeFragment : BaseFragment() {
         }) {
 
         }
+    }
+
+    fun showMenu() {
+        val items = ArrayList<String>()
+        items.add("退出登录")
+        AlertDialog.Builder(context)
+                .setTitle("菜单")
+                .setItems(items.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
+                    when(which) {
+//                            0 -> { start(AboutFragment()) }
+                        0 -> {
+                            val dialog = AlertDialog.Builder(context)
+                            dialog.setTitle("确认退出？")
+                            dialog.setPositiveButton("确定") { dialog, which ->
+                                // 退出登录
+                                User.logout()
+                            }
+                            dialog.setNegativeButton("取消", null)
+                            dialog.show()
+                        }
+                    }
+                })
+                .show()
     }
 
     fun reloadItems() {

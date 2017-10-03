@@ -1,12 +1,9 @@
 package com.zoombin.greentown.ui.fragment.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.ui.fragment.common.BaseFragment
-import kotlinx.android.synthetic.main.layout_titlebar.*
 
 /**
  * Created by gejw on 2017/9/23.
@@ -26,14 +23,13 @@ class NoticeFragment : BaseFragment() {
     }
 
     override fun layoutId(): Int {
-        return R.layout.fragment_main_notice
+        return R.layout.fragment_recyclerview
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        titleLabel.visibility = View.VISIBLE
-        titleLabel.text = "公告信息"
+        title = "公告信息"
     }
 
 }

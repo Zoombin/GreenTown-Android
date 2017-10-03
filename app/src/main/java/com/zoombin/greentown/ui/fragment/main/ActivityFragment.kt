@@ -32,8 +32,7 @@ class ActivityFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        titleLabel.visibility = View.VISIBLE
-        titleLabel.text = "歌林活动"
+        title = "歌林活动"
     }
 
 }
