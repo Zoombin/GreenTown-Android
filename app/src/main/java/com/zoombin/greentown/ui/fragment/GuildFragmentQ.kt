@@ -20,6 +20,8 @@ import org.jetbrains.anko.support.v4.toast
 import android.content.DialogInterface
 import com.bumptech.glide.Glide
 import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import com.zoombin.greentown.ui.fragment.member.InspireFragment
+import com.zoombin.greentown.ui.fragment.member.SpurFragment
 import org.jetbrains.anko.image
 
 
@@ -46,9 +48,9 @@ class GuildFragmentQ : QBaseBackFragment() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = ListAdapter(items, {
-            start(SpurFragmentQ(it))
+            start(SpurFragment.newInstance(it))
         }) {
-            start(InspireFragmentQ(it))
+            start(InspireFragment.newInstance(it))
         }
 
         Department.departments({ departments ->

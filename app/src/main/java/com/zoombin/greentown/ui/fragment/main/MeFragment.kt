@@ -107,7 +107,6 @@ class MeFragment : BaseFragment() {
                 .setTitle("菜单")
                 .setItems(items.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
                     when(which) {
-//                            0 -> { start(AboutFragment()) }
                         0 -> {
                             val dialog = AlertDialog.Builder(context)
                             dialog.setTitle("确认退出？")
@@ -167,6 +166,11 @@ class MeFragment : BaseFragment() {
 
     override fun didLogin() {
         super.didLogin()
+        reloadItems()
+    }
+
+    override fun didUpdateUserInfo() {
+        super.didUpdateUserInfo()
         reloadItems()
     }
 

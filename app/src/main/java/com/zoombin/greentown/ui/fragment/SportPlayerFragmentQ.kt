@@ -12,6 +12,8 @@ import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Sport
 import com.zoombin.greentown.model.User
 import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import com.zoombin.greentown.ui.fragment.member.InspireFragment
+import com.zoombin.greentown.ui.fragment.member.SpurFragment
 import kotlinx.android.synthetic.main.fragment_guild.*
 import kotlinx.android.synthetic.main.layout_guild_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -43,9 +45,9 @@ class SportPlayerFragmentQ(sport: Sport) : QBaseBackFragment() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = ListAdapter(items, {
-            start(SpurFragmentQ(it))
+            start(SpurFragment.newInstance(it))
         }) {
-            start(InspireFragmentQ(it))
+            start(InspireFragment.newInstance(it))
         }
         sport.players({ users ->
             items.clear()

@@ -1,4 +1,4 @@
-package com.zoombin.greentown.ui.fragment
+package com.zoombin.greentown.ui.fragment.member
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Reason
 import com.zoombin.greentown.model.User
+import com.zoombin.greentown.ui.fragment.UserListFragmentQ
 import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
 import kotlinx.android.synthetic.main.fragment_inspire.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -22,14 +23,33 @@ import org.jetbrains.anko.support.v4.toast
  * Created by gejw on 2017/6/9.
  */
 
-class InspireFragmentQ(user: User? = null) : QBaseBackFragment() {
+class InspireFragment: QBaseBackFragment() {
 
-    var user = user
+    companion object {
+
+        fun newInstance(user: User): InspireFragment {
+            val fragment = InspireFragment()
+            val args = Bundle()
+            args.putSerializable("user", user)
+            fragment.arguments = args
+            return fragment
+        }
+
+    }
+
+    var user: User? = null
     var reason: Reason? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_inspire, null)
-        return view
+    override fun layoutId(): Int {
+        return R.layout.fragment_inspire
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val args = arguments
+        if (args != null) {
+            user = args.getSerializable("user") as? User
+        }
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -112,9 +132,4 @@ class InspireFragmentQ(user: User? = null) : QBaseBackFragment() {
         }
 
     }
-
-    override fun layoutId(): Int {
-        return 0
-    }
-
 }

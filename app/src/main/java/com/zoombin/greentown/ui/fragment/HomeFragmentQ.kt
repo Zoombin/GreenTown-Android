@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import com.zoombin.greentown.ui.fragment.member.InspireFragment
+import com.zoombin.greentown.ui.fragment.member.SpurFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 
@@ -29,9 +31,9 @@ class HomeFragmentQ : QBaseBackFragment() {
 
         giftButton.setOnClickListener { start(GiftFragmentQ()) }
 
-        encourageButton.setOnClickListener { start(InspireFragmentQ()) }
+        encourageButton.setOnClickListener { start(InspireFragment()) }
 
-        pushButton.setOnClickListener { start(SpurFragmentQ()) }
+        pushButton.setOnClickListener { start(SpurFragment()) }
 
         taskButton.setOnClickListener { start(TaskFragmentQ()) }
 

@@ -18,6 +18,7 @@ abstract class BaseFragment: QBaseFragment() {
             when(intent!!.action){
                 "logout" -> { didLogout() }
                 "login" -> { didLogin() }
+                "user_update" -> { didUpdateUserInfo() }
             }
         }
     }
@@ -36,6 +37,7 @@ abstract class BaseFragment: QBaseFragment() {
             isInitBroadcastReceiver = true
             context.registerReceiver(broadcastReceiver, IntentFilter("logout"))
             context.registerReceiver(broadcastReceiver, IntentFilter("login"))
+            context.registerReceiver(broadcastReceiver, IntentFilter("user_update"))
         }
     }
 
@@ -46,5 +48,11 @@ abstract class BaseFragment: QBaseFragment() {
     open fun didLogin() {
         // 登录成功
     }
+
+    open fun didUpdateUserInfo() {
+        // 更新用户信息
+    }
+
+
 
 }
