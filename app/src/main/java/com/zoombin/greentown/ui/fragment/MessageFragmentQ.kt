@@ -40,10 +40,10 @@ class MessageFragmentQ : QBaseBackFragment() {
 
         val layoutManager = GridLayoutManager(context, 1)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = ListAdapter(items) {
-
-        }
+//        recyclerView.layoutManager = layoutManager
+//        recyclerView.adapter = ListAdapter(items) {
+//
+//        }
 
         Message.allMessages({ messages ->
             items.clear()
@@ -60,8 +60,8 @@ class MessageFragmentQ : QBaseBackFragment() {
     }
 
     fun reloadData() {
-        recyclerView.adapter.notifyDataSetChanged()
-        emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
+//        recyclerView.adapter.notifyDataSetChanged()
+//        emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
     }
 
     class ListAdapter(val users: ArrayList<Message>, val listener: (Message) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
