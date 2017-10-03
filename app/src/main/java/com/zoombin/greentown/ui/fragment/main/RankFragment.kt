@@ -59,39 +59,14 @@ class RankFragment : BaseFragment() {
         setRightBarButtonItem(BarButtonItem("选择日期", {
             showSelectDateDialog()
         }))
+        val layoutManager = GridLayoutManager(context, 1)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = ListAdapter(items) {
 
-//        navigationLeftButton.visibility = View.GONE
-//        navigationRightTextView.visibility = View.VISIBLE
-//        navigationRightTextView.text = "选择日期"
-//
-//        navigationRightTextView.setOnClickListener {
-//            val items = ArrayList<String>()
-//            items.add("${month(currentMonth - 2)}月")
-//            items.add("${month(currentMonth - 1)}月")
-//            items.add("${month(currentMonth)}月")
-//            AlertDialog.Builder(context)
-//                    .setTitle("选择月份")
-//                    .setItems(items.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
-//                        loadData(2 - which)
-//                    })
-//                    .show()
-//        }
-//
-//        val layoutManager = GridLayoutManager(context, 1)
-//        layoutManager.orientation = LinearLayoutManager.VERTICAL
-//        recyclerView.layoutManager = layoutManager
-//        recyclerView.adapter = ListAdapter(items) {
-//
-//        }
-//
-//        coinsButton.setOnClickListener { selectSegment(0) }
-//        pointButton.setOnClickListener { selectSegment(1) }
-//        selectSegment(0, true)
-//
-//        loadData(0)
-//
-//        val c = Calendar.getInstance()
-//        currentMonth = c.get(Calendar.MONTH) + 1
+        }
+        val c = Calendar.getInstance()
+        currentMonth = c.get(Calendar.MONTH) + 1
     }
 
     fun showSelectDateDialog() {

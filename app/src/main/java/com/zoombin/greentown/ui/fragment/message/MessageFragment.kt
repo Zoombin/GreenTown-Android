@@ -49,7 +49,7 @@ class MessageFragment : QBaseBackFragment() {
                 mTabHost.tabWidget.getChildAt(i).setBackgroundResource(R.drawable.tab_background)
             } else {//不选中
                 tv.setTextColor(this.resources.getColor(R.color.tab_unselect))
-                mTabHost.tabWidget.getChildAt(i).setBackgroundColor(Color.TRANSPARENT)
+                mTabHost.tabWidget.getChildAt(i).setBackgroundColor(Color.WHITE)
             }
         }
     }
