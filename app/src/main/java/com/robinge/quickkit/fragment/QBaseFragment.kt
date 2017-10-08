@@ -1,9 +1,5 @@
-package com.zoombin.greentown.ui.fragment.common
+package com.robinge.quickkit.fragment
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -63,7 +59,12 @@ open abstract class QBaseFragment : SupportFragment() {
         navigationRightButton.setOnClickListener{ rightBarButtonItem?.callback?.invoke() }
         navigationRightTextView?.visibility = View.GONE
         navigationRightTextView.setOnClickListener{ rightBarButtonItem?.callback?.invoke() }
+
+        initView()
     }
+
+    // 初始化View
+    public abstract fun initView()
 
     // 布局
     public abstract fun layoutId(): Int

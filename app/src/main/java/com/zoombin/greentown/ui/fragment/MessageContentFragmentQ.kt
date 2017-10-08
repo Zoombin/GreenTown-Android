@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Message
-import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import com.robinge.quickkit.fragment.QBaseBackFragment
 import kotlinx.android.synthetic.main.fragment_messagecontent.*
-import kotlinx.android.synthetic.main.layout_titlebar.*
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -27,7 +26,7 @@ class MessageContentFragmentQ(message: Message): QBaseBackFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        titleLabel.text = "留言回复"
+        title = "留言回复"
 
         message.replayContent({ content ->
             textLabel.text = "我的留言: ${message.msg_content}"
@@ -35,6 +34,10 @@ class MessageContentFragmentQ(message: Message): QBaseBackFragment() {
         }) { message ->
             if (message != null) toast(message)
         }
+
+    }
+
+    override fun initView() {
 
     }
 

@@ -13,9 +13,9 @@ import org.xutils.x
 
 object Net {
 
-    private val TAG = "NET"
+    private val TAG = "GREENTOWN-NET"
 
-    private val BaseURL = "http://112.124.98.9:8004/api/"
+    private val BaseURL = "http://112.124.98.9:3004/api/"
 
     fun get(url: String,
             params: HashMap<String, Any>,

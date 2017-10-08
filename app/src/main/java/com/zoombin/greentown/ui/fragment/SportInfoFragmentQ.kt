@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Sport
 import com.zoombin.greentown.model.User
-import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import com.robinge.quickkit.fragment.QBaseBackFragment
 import kotlinx.android.synthetic.main.fragment_sportinfo.*
 import kotlinx.android.synthetic.main.layout_sport_reward_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -64,6 +64,10 @@ class SportInfoFragmentQ(sport: Sport, pool: String) : QBaseBackFragment() {
             if (message != null) toast(message)
             emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
         }
+    }
+
+    override fun initView() {
+
     }
 
     class ListAdapter(val users: ArrayList<User>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import com.zoombin.greentown.R
-import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import com.robinge.quickkit.fragment.QBaseBackFragment
 import kotlinx.android.synthetic.main.fragment_message.view.*
 import android.widget.TextView
 import android.widget.TabHost
@@ -26,6 +26,12 @@ class MessageFragment : QBaseBackFragment() {
         super.onViewCreated(view, savedInstanceState)
         title = "留言"
 
+        Handler().postDelayed({
+            upDateTab(contentView.tabhost)
+        }, 100)
+    }
+
+    override fun initView() {
         val tabhost = contentView.tabhost
         tabhost.setup()
 
@@ -34,9 +40,6 @@ class MessageFragment : QBaseBackFragment() {
         tabhost.setOnTabChangedListener {
             upDateTab(tabhost)
         }
-        Handler().postDelayed({
-            upDateTab(tabhost)
-        }, 100)
     }
 
     private fun upDateTab(mTabHost: TabHost) {

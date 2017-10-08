@@ -23,8 +23,8 @@ import me.weyye.hipermission.HiPermission
 import android.content.DialogInterface
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import com.zoombin.greentown.ui.fragment.common.BarButtonItem
-import com.zoombin.greentown.ui.fragment.common.setRightBarButtonItem
+import com.robinge.quickkit.fragment.BarButtonItem
+import com.robinge.quickkit.fragment.setRightBarButtonItem
 import com.zoombin.greentown.ui.fragment.me.HobbyFragment
 import com.zoombin.greentown.ui.fragment.message.MessageFragment
 import kotlinx.android.synthetic.main.fragment_main_me.view.*
@@ -66,7 +66,10 @@ class MeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        query()
+    }
 
+    override fun initView() {
         title = "我的"
 
         setRightBarButtonItem(BarButtonItem("菜单", {
@@ -93,11 +96,6 @@ class MeFragment : BaseFragment() {
                 }
             }
         }
-        User.current()?.queryUserInfo({
-            reloadItems()
-        }) {
-
-        }
     }
 
     fun showMenu() {
@@ -122,7 +120,16 @@ class MeFragment : BaseFragment() {
                 .show()
     }
 
+    fun query() {
+        User.current()?.queryUserInfo({
+            reloadItems()
+        }) {
+
+        }
+    }
+
     fun reloadItems() {
+        if (contentView.avatarImageView == null) return
         var user = User.current()
         if (user == null) user = User()
 

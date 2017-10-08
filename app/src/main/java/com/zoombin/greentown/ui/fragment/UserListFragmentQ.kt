@@ -11,7 +11,7 @@ import android.widget.SearchView
 import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
-import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import com.robinge.quickkit.fragment.QBaseBackFragment
 import kotlinx.android.synthetic.main.fragment_users.*
 import kotlinx.android.synthetic.main.layout_guild_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -69,6 +69,10 @@ class UserListFragmentQ(users: ArrayList<User>, selectedLlistener: (User) -> Uni
             }
 
         })
+    }
+
+    override fun initView() {
+
     }
 
 

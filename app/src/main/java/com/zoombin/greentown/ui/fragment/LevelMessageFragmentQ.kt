@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Message
-import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import com.robinge.quickkit.fragment.QBaseBackFragment
 import kotlinx.android.synthetic.main.fragment_levelmessage.*
 import kotlinx.android.synthetic.main.layout_message_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -63,6 +63,10 @@ class LevelMessageFragmentQ : QBaseBackFragment() {
             }
         }
         loadData()
+    }
+
+    override fun initView() {
+
     }
 
     fun loadData() {

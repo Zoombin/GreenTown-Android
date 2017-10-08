@@ -65,6 +65,10 @@ class ActivityFragment : BaseFragment() {
         loadData()
     }
 
+    override fun initView() {
+
+    }
+
 
     private fun upDateTab(mTabHost: TabHost) {
         for (i in 0 until mTabHost.tabWidget.childCount) {

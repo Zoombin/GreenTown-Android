@@ -8,7 +8,7 @@ import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Department
 import com.zoombin.greentown.model.Position
 import com.zoombin.greentown.model.User
-import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import com.robinge.quickkit.fragment.QBaseBackFragment
 import kotlinx.android.synthetic.main.fragment_job.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import kotlinx.android.synthetic.main.widget_spinner.view.*
@@ -61,6 +61,10 @@ class JobFragmentQ : QBaseBackFragment() {
         submitButton.setOnClickListener {
             pop()
         }
+    }
+
+    override fun initView() {
+
     }
 
     fun updateDepartment(department: Department?) {

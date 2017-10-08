@@ -6,18 +6,16 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
-import com.zoombin.greentown.ui.fragment.common.BarButtonItem
+import com.robinge.quickkit.fragment.BarButtonItem
 import com.zoombin.greentown.ui.fragment.common.BaseFragment
-import com.zoombin.greentown.ui.fragment.common.setRightBarButtonItem
+import com.robinge.quickkit.fragment.setRightBarButtonItem
 import kotlinx.android.synthetic.main.fragment_rank.*
 import kotlinx.android.synthetic.main.layout_rank_cell.view.*
-import kotlinx.android.synthetic.main.layout_titlebar.*
 import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.image
 import org.jetbrains.anko.imageResource
@@ -55,6 +53,11 @@ class RankFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val c = Calendar.getInstance()
+        currentMonth = c.get(Calendar.MONTH) + 1
+    }
+
+    override fun initView() {
         title = "排行"
         setRightBarButtonItem(BarButtonItem("选择日期", {
             showSelectDateDialog()
@@ -65,8 +68,6 @@ class RankFragment : BaseFragment() {
         recyclerView.adapter = ListAdapter(items) {
 
         }
-        val c = Calendar.getInstance()
-        currentMonth = c.get(Calendar.MONTH) + 1
     }
 
     fun showSelectDateDialog() {

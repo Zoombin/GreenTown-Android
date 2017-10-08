@@ -32,4 +32,8 @@ class NoticeFragment : BaseFragment() {
         title = "公告"
     }
 
+    override fun initView() {
+
+    }
+
 }

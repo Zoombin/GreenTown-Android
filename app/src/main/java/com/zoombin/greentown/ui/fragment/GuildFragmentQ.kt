@@ -13,13 +13,12 @@ import com.zoombin.greentown.model.Department
 import com.zoombin.greentown.model.User
 import kotlinx.android.synthetic.main.fragment_guild.*
 import kotlinx.android.synthetic.main.layout_guild_cell.view.*
-import kotlinx.android.synthetic.main.layout_titlebar.*
 import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.support.v4.toast
 import android.content.DialogInterface
 import com.bumptech.glide.Glide
-import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import com.robinge.quickkit.fragment.QBaseBackFragment
 import com.zoombin.greentown.ui.fragment.member.InspireFragment
 import com.zoombin.greentown.ui.fragment.member.SpurFragment
 import org.jetbrains.anko.image
@@ -42,8 +41,24 @@ class GuildFragmentQ : QBaseBackFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        titleLabel.text = "歌林公会"
+        title = "歌林公会"
 
+        departmentSpinner.setOnClickListener {
+            if (departments.size == 0) {
+                toast("无数据")
+                return@setOnClickListener
+            }
+            val items = departments.map { it.department_name }.toTypedArray()
+            AlertDialog.Builder(context)
+                    .setTitle("选择公会")
+                    .setItems(items, DialogInterface.OnClickListener { dialog, which ->
+                        selectDepartment(departments.get(which))
+                    })
+                    .show()
+        }
+    }
+
+    override fun initView() {
         val layoutManager = GridLayoutManager(context, 1)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
@@ -59,20 +74,6 @@ class GuildFragmentQ : QBaseBackFragment() {
             selectDepartment(departments.first())
         }) { message ->
             if (message != null) toast(message)
-        }
-
-        departmentSpinner.setOnClickListener {
-            if (departments.size == 0) {
-                toast("无数据")
-                return@setOnClickListener
-            }
-            val items = departments.map { it.department_name }.toTypedArray()
-            AlertDialog.Builder(context)
-                    .setTitle("选择公会")
-                    .setItems(items, DialogInterface.OnClickListener { dialog, which ->
-                        selectDepartment(departments.get(which))
-                    })
-                    .show()
         }
     }
 

@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Task
-import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import com.robinge.quickkit.fragment.QBaseBackFragment
 import kotlinx.android.synthetic.main.fragment_task.*
 import kotlinx.android.synthetic.main.layout_task_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -46,6 +46,10 @@ class TaskFragmentQ : QBaseBackFragment() {
             }
         })
         loadData()
+    }
+
+    override fun initView() {
+
     }
 
     fun loadData() {

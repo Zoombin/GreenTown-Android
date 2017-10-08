@@ -27,7 +27,7 @@
 
         <LinearLayout
             android:id="@+id/departmentLayout"
-            android:layout_width="100dp"
+            android:layout_width="140dp"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:background="@drawable/edittext_background">

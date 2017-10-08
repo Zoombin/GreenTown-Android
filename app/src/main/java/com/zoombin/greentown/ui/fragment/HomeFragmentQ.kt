@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
-import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import com.robinge.quickkit.fragment.QBaseBackFragment
 import com.zoombin.greentown.ui.fragment.member.InspireFragment
 import com.zoombin.greentown.ui.fragment.member.SpurFragment
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -38,6 +38,10 @@ class HomeFragmentQ : QBaseBackFragment() {
         taskButton.setOnClickListener { start(TaskFragmentQ()) }
 
         messageButton.setOnClickListener { start(LevelMessageFragmentQ()) }
+    }
+
+    override fun initView() {
+
     }
 
     override fun layoutId(): Int {

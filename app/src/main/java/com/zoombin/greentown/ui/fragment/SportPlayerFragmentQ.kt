@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Sport
 import com.zoombin.greentown.model.User
-import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import com.robinge.quickkit.fragment.QBaseBackFragment
 import com.zoombin.greentown.ui.fragment.member.InspireFragment
 import com.zoombin.greentown.ui.fragment.member.SpurFragment
 import kotlinx.android.synthetic.main.fragment_guild.*
@@ -58,6 +58,10 @@ class SportPlayerFragmentQ(sport: Sport) : QBaseBackFragment() {
             if (message != null) toast(message)
             emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
         }
+
+    }
+
+    override fun initView() {
 
     }
 

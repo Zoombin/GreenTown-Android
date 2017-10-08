@@ -8,13 +8,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.robinge.quickkit.widget.tabbar.QBottomBar
+import com.robinge.quickkit.widget.tabbar.QBottomBarTab
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
 import com.zoombin.greentown.ui.LoginActivity
-import com.zoombin.greentown.ui.fragment.common.BaseFragment
 import com.zoombin.greentown.ui.fragment.main.rank.RankFragment
-import com.zoombin.greentown.ui.widget.BottomBar
-import com.zoombin.greentown.ui.widget.BottomBarTab
 import me.yokeyword.fragmentation.SupportFragment
 
 /**
@@ -41,7 +40,7 @@ class MainFragment: SupportFragment() {
 
     private val mFragments = arrayOfNulls<SupportFragment>(5)
 
-    private var mBottomBar: BottomBar? = null
+    private var mBottomBar: QBottomBar? = null
 
     private var isInitBroadcastReceiver = false
 
@@ -81,40 +80,40 @@ class MainFragment: SupportFragment() {
     }
 
     private fun initView(view: View) {
-        mBottomBar = view.findViewById(R.id.bottomBar) as BottomBar
+        mBottomBar = view.findViewById(R.id.bottomBar) as QBottomBar
 
         val normalColor = R.color.tab_unselect
         var selectedColor = R.color.tab_select
         mBottomBar
-                ?.addItem(BottomBarTab(
+                ?.addItem(QBottomBarTab(
                         _mActivity,
                         R.drawable.tab_member,
                         R.drawable.tab_member_selected,
                         normalColor,
                         selectedColor,
                         "成员"))
-                ?.addItem(BottomBarTab(
+                ?.addItem(QBottomBarTab(
                         _mActivity,
                         R.drawable.tab_rank,
                         R.drawable.tab_rank_selected,
                         normalColor,
                         selectedColor,
                         "排行"))
-                ?.addItem(BottomBarTab(
+                ?.addItem(QBottomBarTab(
                         _mActivity,
                         R.drawable.tab_notice,
                         R.drawable.tab_notice_selected,
                         normalColor,
                         selectedColor,
                         "公告"))
-                ?.addItem(BottomBarTab(
+                ?.addItem(QBottomBarTab(
                         _mActivity,
                         R.drawable.tab_activity,
                         R.drawable.tab_activity_selected,
                         normalColor,
                         selectedColor,
                         "活动"))
-                ?.addItem(BottomBarTab(
+                ?.addItem(QBottomBarTab(
                         _mActivity,
                         R.drawable.tab_me,
                         R.drawable.tab_me_selected,
@@ -123,10 +122,14 @@ class MainFragment: SupportFragment() {
                         "我的"))
 
 
-        mBottomBar?.setOnTabSelectedListener(object : BottomBar.OnTabSelectedListener {
+        mBottomBar?.setOnTabSelectedListener(object : QBottomBar.OnTabSelectedListener {
 
             override  fun onTabSelected(position: Int, prePosition: Int) {
                 showHideFragment(mFragments[position], mFragments[prePosition])
+
+                if (position == FIVE) {
+                    MeFragment.newInstance().query()
+                }
             }
 
             override fun onTabUnselected(position: Int) {

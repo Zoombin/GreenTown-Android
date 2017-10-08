@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Gift
-import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import com.robinge.quickkit.fragment.QBaseBackFragment
 import kotlinx.android.synthetic.main.fragment_gift.*
 import kotlinx.android.synthetic.main.layout_gift_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -59,6 +59,10 @@ class GiftFragmentQ : QBaseBackFragment() {
             emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
             if (message != null) toast(message)
         }
+    }
+
+    override fun initView() {
+
     }
 
     class ListAdapter(val tasks: ArrayList<Gift>,

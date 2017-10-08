@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Sport
-import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
+import com.robinge.quickkit.fragment.QBaseBackFragment
 import kotlinx.android.synthetic.main.fragment_sport.*
 import kotlinx.android.synthetic.main.layout_sport_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -64,6 +64,10 @@ class SportFragmentQ : QBaseBackFragment() {
             start(SportInfoFragmentQ(it, poolTextView.text.toString()))
         }
         loadData()
+    }
+
+    override fun initView() {
+
     }
 
     fun loadData() {

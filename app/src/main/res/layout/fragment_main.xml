@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:quick="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
@@ -11,7 +12,7 @@
         android:layout_marginBottom="@dimen/bottombar_wechat_height"
         android:layout_height="match_parent"/>
 
-    <com.zoombin.greentown.ui.widget.BottomBar
+    <com.robinge.quickkit.widget.tabbar.QBottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottombar_wechat_height"
@@ -23,4 +24,5 @@
         android:layout_gravity="bottom"
         android:layout_marginBottom="@dimen/bottombar_wechat_height"
         android:layout_height="wrap_content"/>
+
 </FrameLayout>

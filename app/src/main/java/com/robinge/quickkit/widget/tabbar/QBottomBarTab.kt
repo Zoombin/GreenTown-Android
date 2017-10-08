@@ -1,4 +1,4 @@
-package com.zoombin.greentown.ui.widget
+package com.robinge.quickkit.widget.tabbar
 
 import android.content.Context
 import android.graphics.Color
@@ -16,19 +16,19 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.zoombin.greentown.R
-import org.jetbrains.anko.backgroundColor
+import java.lang.Exception
 
 /**
  * Created by gejw on 2017/10/2.
  */
-class BottomBarTab(context: Context,
-                   attrs: AttributeSet?,
-                   defStyleAttr: Int,
-                   icon: Int,
-                   selectedIcon: Int,
-                   titleColor: Int,
-                   selectedColor: Int,
-                   title: CharSequence) : FrameLayout(context, attrs, defStyleAttr) {
+public class QBottomBarTab(context: Context,
+                           attrs: AttributeSet?,
+                           defStyleAttr: Int,
+                           icon: Int,
+                           selectedIcon: Int,
+                           titleColor: Int,
+                           selectedColor: Int,
+                           title: CharSequence) : FrameLayout(context, attrs, defStyleAttr) {
 
     private var mIcon: ImageView? = null
     private var mTvTitle: TextView? = null
@@ -104,7 +104,7 @@ class BottomBarTab(context: Context,
 
     private fun init(context: Context, icon: Int, title: CharSequence) {
         mContext = context
-        val typedArray = context.obtainStyledAttributes(intArrayOf(R.attr.selectableItemBackgroundBorderless))
+        val typedArray = context.obtainStyledAttributes(intArrayOf(android.R.attr.selectableItemBackgroundBorderless))
         val drawable = typedArray.getDrawable(0)
         setBackgroundDrawable(drawable)
         typedArray.recycle()
@@ -128,7 +128,6 @@ class BottomBarTab(context: Context,
         val paramsTv = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         paramsTv.topMargin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2f, resources.displayMetrics).toInt()
         mTvTitle?.textSize = 10f
-        mTvTitle?.setTextColor(ContextCompat.getColor(context, R.color.tab_unselect))
         mTvTitle?.layoutParams = paramsTv
         lLContainer.addView(mTvTitle)
 
@@ -137,7 +136,7 @@ class BottomBarTab(context: Context,
         val min = dip2px(context, 20f)
         val padding = dip2px(context, 5f)
         mTvUnreadCount = TextView(context)
-        mTvUnreadCount?.setBackgroundResource(R.drawable.bg_msg_bubble)
+        mTvUnreadCount?.setBackgroundResource(R.drawable.q_tabbar_bg_msg_bubble)
         mTvUnreadCount?.minWidth = min
         mTvUnreadCount?.setTextColor(Color.WHITE)
         mTvUnreadCount?.setPadding(padding, 0, padding, 0)

@@ -9,8 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Message
-import com.zoombin.greentown.ui.fragment.common.QBaseBackFragment
-import kotlinx.android.synthetic.main.fragment_message.*
+import com.robinge.quickkit.fragment.QBaseBackFragment
 import kotlinx.android.synthetic.main.layout_message_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import me.yokeyword.fragmentation.anim.DefaultVerticalAnimator
@@ -57,6 +56,10 @@ class MessageFragmentQ : QBaseBackFragment() {
 
     override fun onCreateFragmentAnimator(): FragmentAnimator {
         return DefaultVerticalAnimator()
+    }
+
+    override fun initView() {
+
     }
 
     fun reloadData() {

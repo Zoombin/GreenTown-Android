@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import com.robinge.quickkit.fragment.QBaseFragment
 
 /**
  * Created by gejw on 2017/10/3.

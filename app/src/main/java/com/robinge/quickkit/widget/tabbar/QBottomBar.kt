@@ -1,4 +1,4 @@
-package com.zoombin.greentown.ui.widget
+package com.robinge.quickkit.widget.tabbar
 
 import android.content.Context
 import android.graphics.Color
@@ -17,13 +17,25 @@ import java.util.ArrayList
  * Created by gejw on 2017/10/2.
  */
 
-class BottomBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
+public class QBottomBar : LinearLayout {
+
+    public constructor(context: Context) : super(context) {
+        init(context, null)
+    }
+
+    public constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        init(context, attrs)
+    }
+
+    public constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        init(context, attrs)
+    }
 
     private val mInterpolator = AccelerateDecelerateInterpolator()
     var isVisible = true
         private set
 
-    private val mTabs = ArrayList<BottomBarTab>()
+    private val mTabs = ArrayList<QBottomBarTab>()
 
     private var mTabLayout: LinearLayout? = null
 
@@ -31,10 +43,6 @@ class BottomBar @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     var currentItemPosition = 0
         private set
     private var mListener: OnTabSelectedListener? = null
-
-    init {
-        init(context, attrs)
-    }
 
     private fun init(context: Context, attrs: AttributeSet?) {
         orientation = LinearLayout.VERTICAL
@@ -52,7 +60,7 @@ class BottomBar @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         mTabParams!!.weight = 1f
     }
 
-    fun addItem(tab: BottomBarTab): BottomBar {
+    fun addItem(tab: QBottomBarTab): QBottomBar {
         tab.setOnClickListener {
             if (mListener == null) return@setOnClickListener
 
@@ -74,7 +82,7 @@ class BottomBar @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         return this
     }
 
-    fun setOnTabSelectedListener(onTabSelectedListener: OnTabSelectedListener) {
+    public fun setOnTabSelectedListener(onTabSelectedListener: OnTabSelectedListener) {
         mListener = onTabSelectedListener
     }
 
@@ -85,7 +93,7 @@ class BottomBar @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     /**
      * 获取 Tab
      */
-    fun getItem(index: Int): BottomBarTab? {
+    fun getItem(index: Int): QBottomBarTab? {
         return if (mTabs.size < index) null else mTabs[index]
     }
 
@@ -145,12 +153,10 @@ class BottomBar @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         }
     }
 
-    @JvmOverloads
     fun hide(anim: Boolean = true) {
         toggle(false, anim, false)
     }
 
-    @JvmOverloads
     fun show(anim: Boolean = true) {
         toggle(true, anim, false)
     }
