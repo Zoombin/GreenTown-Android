@@ -51,12 +51,11 @@ class MemberFragment: BaseFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        title = "成员"
         queryDepartments()
     }
 
     override fun initView() {
+        title = "成员"
         // 搜索输入框
 
         // 部门选择按钮
@@ -98,7 +97,6 @@ class MemberFragment: BaseFragment() {
         department?.users({ users ->
             reloadData(users)
         }) {
-            this.users.clear()
             reloadData()
         }
     }

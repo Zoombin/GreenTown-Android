@@ -47,6 +47,10 @@ class ActivityFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        loadData()
+    }
+
+    override fun initView() {
         title = "活动"
 
         val tabhost = contentView.tabhost
@@ -61,12 +65,6 @@ class ActivityFragment : BaseFragment() {
         Handler().postDelayed({
             upDateTab(tabhost)
         }, 100)
-
-        loadData()
-    }
-
-    override fun initView() {
-
     }
 
 
