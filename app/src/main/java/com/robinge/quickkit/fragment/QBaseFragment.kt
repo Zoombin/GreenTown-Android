@@ -74,7 +74,10 @@ open abstract class QBaseFragment : SupportFragment() {
     }
 
     public fun push(targetFragment: SupportFragment) {
-        (parentFragment as MainFragment).startBrotherFragment(targetFragment)
+        if (parentFragment is MainFragment)
+            (parentFragment as MainFragment).startBrotherFragment(targetFragment)
+        else
+            start(targetFragment)
     }
 
 }

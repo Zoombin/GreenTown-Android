@@ -10,8 +10,8 @@ android {
         applicationId "com.zoombin.greentown"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 5
-        versionName '1.0.4'
+        versionCode 6
+        versionName '1.2.6'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     //签名配置
@@ -59,7 +59,7 @@ dependencies {
     // 通用库
     compile 'org.xutils:xutils:3.5.0'
     // fastjson
-    compile 'com.alibaba:fastjson:1.1.55.android'
+    compile 'com.alibaba:fastjson:1.1.64.android'
     // 等待对话框 (https://github.com/d-max/spots-dialog)
     compile 'com.github.d-max:spots-dialog:0.7@aar'
     // android常用工具 (https://github.com/litesuits/android-common)

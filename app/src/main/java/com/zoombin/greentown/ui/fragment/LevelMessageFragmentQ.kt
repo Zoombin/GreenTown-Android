@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Message
 import com.robinge.quickkit.fragment.QBaseBackFragment
+import com.zoombin.greentown.ui.fragment.message.MessageContentFragment
 import kotlinx.android.synthetic.main.fragment_levelmessage.*
 import kotlinx.android.synthetic.main.layout_message_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
@@ -40,7 +41,7 @@ class LevelMessageFragmentQ : QBaseBackFragment() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = ListAdapter(items) {
-            start(MessageContentFragmentQ(it))
+//            start(MessageContentFragment(it))
         }
 
         levelButton.setOnClickListener { selectSegment(0) }
