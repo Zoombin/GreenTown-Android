@@ -55,8 +55,8 @@ class MeFragment : BaseFragment() {
                    var isShowArrow: Boolean = false)
 
 
-    val SELECT_PICTURE = 0
-    val SELECT_CAMER = 1
+    private val SELECT_PICTURE = 0
+    private val SELECT_CAMER = 1
 
     var items = arrayListOf<CellItem>()
 
@@ -98,7 +98,7 @@ class MeFragment : BaseFragment() {
         }
     }
 
-    fun showMenu() {
+    private fun showMenu() {
         val items = ArrayList<String>()
         items.add("退出登录")
         AlertDialog.Builder(context)
@@ -128,7 +128,7 @@ class MeFragment : BaseFragment() {
         }
     }
 
-    fun reloadItems() {
+    private fun reloadItems() {
         if (contentView.avatarImageView == null) return
         var user = User.current()
         if (user == null) user = User()
@@ -181,8 +181,8 @@ class MeFragment : BaseFragment() {
         reloadItems()
     }
 
-    fun selectConstellation() {
-        val items = arrayOf<String>("白羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "摩羯座", "水瓶座", "双鱼座")
+    private fun selectConstellation() {
+        val items = arrayOf("白羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "摩羯座", "水瓶座", "双鱼座")
         AlertDialog.Builder(context)
                 .setTitle("选择星座")
                 .setItems(items) { dialog, which ->
@@ -197,8 +197,8 @@ class MeFragment : BaseFragment() {
                 .create().show()
     }
 
-    fun selectImage() {
-        val items = arrayOf<CharSequence>("相册", "相机")
+    private fun selectImage() {
+        val items = arrayOf("相册", "相机")
         AlertDialog.Builder(context)
                 .setTitle("选择图片来源")
                 .setItems(items) { dialog, which ->
@@ -236,7 +236,7 @@ class MeFragment : BaseFragment() {
                 .create().show()
     }
 
-    fun uploadImage(bytes: ByteArray) {
+    private fun uploadImage(bytes: ByteArray) {
         User.current()?.qiniuToken({ key, token ->
             val uploadManager = UploadManager()
             uploadManager.put(bytes, key, token, { key, info, response ->
@@ -275,7 +275,7 @@ class MeFragment : BaseFragment() {
         }
     }
 
-    class ListAdapter(val items: ArrayList<CellItem>, val listener: (CellItem) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+    private class ListAdapter(val items: ArrayList<CellItem>, val listener: (CellItem) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder {
             return ViewHolder(View.inflate(parent.context, R.layout.layout_me_cell, null))

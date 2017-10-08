@@ -33,7 +33,7 @@
             android:background="@drawable/edittext_background">
             
             <TextView
-                android:id="@+id/departmentTextView"
+                android:id="@+id/departmentNameTextView"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -65,9 +65,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"/>
+            android:layout_height="match_parent"/>
 
     </RelativeLayout>
 

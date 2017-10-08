@@ -39,12 +39,11 @@ class RankFragment : BaseFragment() {
 
     }
 
-    var items = ArrayList<User>()
-    var selectedIndex = 0
-    var currentMonth = 0
-
-    private var coinsUsers = ArrayList<User>()
-    private var pointsUsers = ArrayList<User>()
+    private var users = ArrayList<User>()
+    private var currentMonth = 0
+        set(month) {
+            query(month)
+        }
 
     override fun layoutId(): Int {
         return R.layout.fragment_recyclerview
@@ -65,116 +64,67 @@ class RankFragment : BaseFragment() {
         val layoutManager = GridLayoutManager(context, 1)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = ListAdapter(items) {
-
-        }
+        recyclerView.adapter = ListAdapter(users)
     }
 
-    fun showSelectDateDialog() {
+    private fun showSelectDateDialog() {
         val items = ArrayList<String>()
         items.add("${month(currentMonth - 2)}月")
         items.add("${month(currentMonth - 1)}月")
         items.add("${month(currentMonth)}月")
         AlertDialog.Builder(context)
                 .setTitle("选择月份")
-                .setItems(items.toTypedArray(), DialogInterface.OnClickListener { dialog, which ->
-                    loadData(2 - which)
+                .setItems(items.toTypedArray(), { dialog, which ->
+                    currentMonth = 2 - which
                 })
                 .show()
     }
 
-    fun month(month: Int): Int {
+    private fun month(month: Int): Int {
         if (month <= 0) {
             return 12 + month
         }
         return month
     }
 
-    fun loadData(month: Int) {
+    private fun query(month: Int) {
         User.coinsRank(0, month, { users ->
-            coinsUsers.clear()
-            coinsUsers.addAll(users)
-            reloadData()
-        }) { message ->
-            if (message != null) toast(message)
-            reloadData()
-        }
-        User.pointsRank(0, month, { users ->
-            pointsUsers.clear()
-            pointsUsers.addAll(users)
-            reloadData()
-        }) { message ->
-            if (message != null) toast(message)
+            reloadData(users)
+        }) {
             reloadData()
         }
     }
 
-    fun selectSegment(index: Int, isInit: Boolean = false) {
-        selectedIndex = index
-        when(index) {
-            0 -> {
-                coinsTriangle.visibility = View.VISIBLE
-                pointTriangle.visibility = View.INVISIBLE
-            }
-            1 -> {
-                coinsTriangle.visibility = View.INVISIBLE
-                pointTriangle.visibility = View.VISIBLE
-            }
-        }
-        (recyclerView.adapter as ListAdapter).selectedIndex = index
-        if (!isInit)
-            reloadData()
+    private fun reloadData(users: List<User> = emptyList()) {
+        this.users.clear()
+        this.users.addAll(users)
+
+        recyclerView.adapter.notifyDataSetChanged()
+        emptyView.visibility = if (users.isEmpty()) View.VISIBLE else View.INVISIBLE
     }
 
-    fun reloadData() {
-        items.clear()
-        when(selectedIndex) {
-            0 -> {
-                items.addAll(coinsUsers)
-            }
-            1 -> {
-                items.addAll(pointsUsers)
-            }
-        }
-        if (recyclerView != null)
-            recyclerView.adapter.notifyDataSetChanged()
-        if (emptyView != null)
-            emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
-    }
-
-    class ListAdapter(val users: ArrayList<User>, val listener: (User) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
-
-        var selectedIndex = 0
+    class ListAdapter(val users: ArrayList<User>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder {
             return ViewHolder(View.inflate(parent.context, R.layout.layout_rank_cell, null))
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.bind(users[position], position, selectedIndex, listener)
+            holder.bind(users[position], position)
         }
 
         override fun getItemCount() = users.size
 
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-            fun bind(item: User, position: Int, selectedIndex: Int, listener: (User) -> Unit) = with(itemView) {
-                when(position % 4) {
-                    0 -> { layout.backgroundResource = R.drawable.cell_blue_xml }
-                    1 -> { layout.backgroundResource = R.drawable.cell_green_xml }
-                    2 -> { layout.backgroundResource = R.drawable.cell_purple_xml }
-                    3 -> { layout.backgroundResource = R.drawable.cell_red_xml }
-                }
-                if (avatarImageView.image == null) {
-                    avatarImageView.imageResource = item.avatar()
-                }
-                Glide.with(context).load(item.logo).into(avatarImageView)
+            fun bind(user: User, position: Int) = with(itemView) {
+
+                Glide.with(context).load(user.logo).into(avatarImageView)
+                coinsTextView.text = "绿币：${user.coins}"
+                nameTextView.text = user.fullname
+                titleTextView.text = user.title_name
                 rankTextView.text = "${position + 1}"
-                nameTextView.text = item.fullname
-                titleTextView.text = if (selectedIndex == 0) "" else "${item.title_name}"
-                moneyTextView.text = if (selectedIndex == 0) "绿币：${item.coins}" else "成就点：${item.points}"
-                positionTextView.text = "${item.department_name}"
-                setOnClickListener { listener(item) }
+                departmentTextView.text = user.department_name
             }
 
         }
