@@ -3,12 +3,13 @@ package com.zoombin.greentown.model
 import com.alibaba.fastjson.JSON
 import com.zoombin.greentown.net.Net
 import org.json.JSONObject
+import java.io.Serializable
 
 /**
  * Created by gejw on 2017/6/10.
  */
 
-class Message : Any() {
+class Message : Any(), Serializable {
 
     var logo: String? = null
 
@@ -45,6 +46,17 @@ class Message : Any() {
             if (User.current()?.user_id != null)
                 map.put("userId", User.current()!!.user_id)
             Net.get("chat/allMessages", map, { json ->
+                val messages = JSON.parseArray(JSONObject(json).getString("data").toString(), Message::class.java)
+                success(messages)
+            }, failure)
+        }
+
+        fun allSendMessages(success: (List<Message>) -> Unit,
+                            failure: (String?) -> Unit) {
+            val map = HashMap<String, Any>()
+            if (User.current()?.user_id != null)
+                map.put("userId", User.current()!!.user_id)
+            Net.get("chat/messageToMayorList", map, { json ->
                 val messages = JSON.parseArray(JSONObject(json).getString("data").toString(), Message::class.java)
                 success(messages)
             }, failure)

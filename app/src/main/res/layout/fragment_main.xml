@@ -1,89 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:quick="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
 
-    <include layout="@layout/layout_titlebar"/>
-
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/fl_tab_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/white">
+        android:layout_marginBottom="@dimen/bottombar_wechat_height"
+        android:layout_height="match_parent"/>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
-
-                <ImageButton
-                    android:id="@+id/homeButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="@null"
-                    android:src="@drawable/home_main"
-                    android:scaleType="centerInside"
-                    android:layout_marginBottom="-10dp"/>
-
-                <ImageButton
-                    android:id="@+id/guildButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="@null"
-                    android:src="@drawable/home_guild"
-                    android:scaleType="centerInside"
-                    android:layout_marginBottom="-10dp"/>
-
-                <ImageButton
-                    android:id="@+id/sportButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="@null"
-                    android:src="@drawable/home_sport"
-                    android:scaleType="centerInside"
-                    android:layout_marginBottom="-10dp"/>
-
-                <ImageButton
-                    android:id="@+id/rankButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="@null"
-                    android:src="@drawable/home_rank"
-                    android:scaleType="centerInside"
-                    android:layout_marginBottom="-10dp"/>
-
-            </LinearLayout>
-
-        </ScrollView>
-
-    </LinearLayout>
-
-    <LinearLayout
+    <com.robinge.quickkit.widget.tabbar.QBottomBar
+        android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:elevation="20dp">
+        android:layout_height="@dimen/bottombar_wechat_height"
+        android:layout_gravity="bottom"/>
 
-        <ImageButton
-            android:id="@+id/messageButton"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:background="@null"
-            android:scaleType="fitXY"
-            android:src="@drawable/tab_message"
-            android:layout_marginLeft="20dp"
-            android:layout_gravity="center_vertical"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:background="@drawable/actionbar_shadow_up"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/bottombar_wechat_height"
+        android:layout_height="wrap_content"/>
 
-    </LinearLayout>
-
-</LinearLayout>
+</FrameLayout>
