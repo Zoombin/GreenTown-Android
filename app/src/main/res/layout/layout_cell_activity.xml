@@ -109,6 +109,23 @@
                     android:textColor="@color/black"
                     android:text="名字"/>
 
+                <LinearLayout
+                    android:id="@+id/ruleLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/button"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/help"/>
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -128,30 +145,6 @@
                     android:textSize="12sp"
                     android:textColor="@color/white"
                     android:layout_centerHorizontal="true"/>
-
-                <LinearLayout
-                    android:id="@+id/ruleLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/button"
-                    android:layout_alignParentBottom="true"
-                    android:orientation="horizontal"
-                    android:paddingLeft="10dp"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:src="@drawable/help"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:text="活动规则"
-                        android:layout_marginLeft="5dp"/>
-
-                </LinearLayout>
 
             </RelativeLayout>
 
