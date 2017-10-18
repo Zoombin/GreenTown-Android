@@ -1,6 +1,7 @@
 package com.zoombin.greentown.model
 
 import android.content.Intent
+import android.os.Parcelable
 import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.annotation.JSONField
 import com.zoombin.greentown.GTApplication
@@ -8,12 +9,13 @@ import com.zoombin.greentown.R
 import com.zoombin.greentown.net.Net
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.Serializable
 
 /**
  * Created by gejw on 2017/6/7.
  */
 
-class User: Any() {
+class User: Any(), Serializable {
 
     var user_id = 0
 
@@ -24,9 +26,9 @@ class User: Any() {
     var title_name = ""
 
     var logo = ""
-
+    //  绿币
     var coins = 0
-
+    // 成就点
     var points = 0
 
     var department_id = 0
@@ -58,6 +60,7 @@ class User: Any() {
         val edit = GTApplication.context?.getSharedPreferences("user", 0)?.edit()
         edit?.putString("user", json)
         edit?.commit()
+        GTApplication.context?.sendBroadcast(Intent("user_update"))
     }
 
     companion object {
@@ -236,7 +239,7 @@ class User: Any() {
         map.put("userId", user_id)
         map.put("logo", avatar)
         Net.post("user/updateUserLogo", map, { json ->
-            success()
+            queryUserInfo(success, failure)
         }, failure)
     }
 

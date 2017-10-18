@@ -1,18 +1,13 @@
 package com.zoombin.greentown.ui
 
-import android.Manifest
-import android.content.pm.PackageManager
-import android.os.Build
-import android.support.v7.app.AppCompatActivity
+
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
-import android.widget.Toast
 import com.zoombin.greentown.R
-import com.zoombin.greentown.ui.fragment.MainFragment
+import com.zoombin.greentown.ui.fragment.main.*
 import me.yokeyword.fragmentation.SupportActivity
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator
 import me.yokeyword.fragmentation.anim.FragmentAnimator
+
 
 class MainActivity : SupportActivity() {
 
@@ -20,33 +15,18 @@ class MainActivity : SupportActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) {
-            loadRootFragment(R.id.layout, MainFragment())
+        if (findFragment(MainFragment::class.java) == null) {
+            loadRootFragment(R.id.fl_container, MainFragment.newInstance())
         }
-
-        if (Build.VERSION.SDK_INT >= 23) {
-            val checkCallPhonePermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-            if (checkCallPhonePermission != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 222)
-                return
-            }
-        }
-
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) = when (requestCode) {
-    //就像onActivityResult一样这个地方就是判断你是从哪来的。
-        222 -> {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-            } else {
-                Toast.makeText(this, "很遗憾你把相机权限禁用了。请务必开启相机权限享受我们提供的服务吧。", Toast.LENGTH_LONG).show()
-            }
-        }
-        else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    override fun onBackPressedSupport() {
+        // 对于 4个类别的主Fragment内的回退back逻辑,已经在其onBackPressedSupport里各自处理了
+        super.onBackPressedSupport()
     }
 
-    override fun onCreateFragmentAnimator(): FragmentAnimator {
+    public override fun onCreateFragmentAnimator(): FragmentAnimator {
+        // 设置横向(和安卓4.x动画相同)
         return DefaultHorizontalAnimator()
     }
 

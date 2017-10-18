@@ -4,17 +4,28 @@
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:background="@color/white">
         
         <ImageButton
             android:id="@+id/navigationLeftButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
             android:src="@drawable/navigation_user"
             android:scaleType="centerInside"
             android:background="@null"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/navigationLeftTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray"
             android:visibility="gone"/>
 
         <ImageView
@@ -33,7 +44,7 @@
             android:layout_centerVertical="true"
             android:text="@string/app_name"
             android:textSize="18sp"
-            android:textColor="@color/mainTextColor"
+            android:textColor="@color/black"
             android:gravity="center"
             android:visibility="gone"/>
 
@@ -41,13 +52,30 @@
             android:id="@+id/navigationRightButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:src="@drawable/navigation_menu"
             android:scaleType="centerInside"
             android:background="@null"
             android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/navigationRightTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray"
+            android:visibility="gone"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/gray_chateau"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 

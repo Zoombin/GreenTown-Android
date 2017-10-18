@@ -3,23 +3,17 @@ package com.zoombin.greentown.ui.fragment
 import android.app.AlertDialog
 import android.content.*
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
-import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import me.yokeyword.fragmentation.SupportFragment
 import me.yokeyword.fragmentation.anim.DefaultNoAnimator
-import me.yokeyword.fragmentation.anim.DefaultVerticalAnimator
 import me.yokeyword.fragmentation.anim.FragmentAnimator
 import org.jetbrains.anko.imageResource
-import org.jetbrains.anko.support.v4.toast
 
 class MainFragment : SupportFragment() {
 
@@ -59,22 +53,21 @@ class MainFragment : SupportFragment() {
                     .show()
         }
 
-        messageButton.setOnClickListener { start(MessageFragment()) }
+//        messageButton.setOnClickListener { start(MessageFragmentQ()) }
+//
+//        homeButton.setOnClickListener { start(HomeFragmentQ()) }
+//
+//        guildButton.setOnClickListener { start(GuildFragmentQ()) }
+//
+//        sportButton.setOnClickListener { start(SportFragmentQ()) }
 
-        homeButton.setOnClickListener { start(HomeFragment()) }
-
-        guildButton.setOnClickListener { start(GuildFragment()) }
-
-        sportButton.setOnClickListener { start(SportFragment()) }
-
-        rankButton.setOnClickListener { start(RankFragment()) }
+//        rankButton.setOnClickListener { start(RankFragment()) }
 
         if (User.current() == null)
             start(LoginFragment())
         else {
             User.current()?.statistics()
         }
-
 
         context.registerReceiver(null, IntentFilter("logout"))
     }

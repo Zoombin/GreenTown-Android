@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
-    <include layout="@layout/layout_titlebar"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"

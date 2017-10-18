@@ -5,17 +5,27 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.zoombin.greentown"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 4
-        versionName '1.0.3'
+        versionCode 7
+        versionName '1.2.6'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    //签名配置
+    signingConfigs {
+        releaseConfig {
+            keyAlias "gejw"
+            keyPassword "123456"
+            storeFile file("gejw.jks")
+            storePassword "123456"
+        }
     }
     buildTypes {
         release {
+            signingConfig signingConfigs.releaseConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -49,7 +59,7 @@ dependencies {
     // 通用库
     compile 'org.xutils:xutils:3.5.0'
     // fastjson
-    compile 'com.alibaba:fastjson:1.1.55.android'
+    compile 'com.alibaba:fastjson:1.1.64.android'
     // 等待对话框 (https://github.com/d-max/spots-dialog)
     compile 'com.github.d-max:spots-dialog:0.7@aar'
     // android常用工具 (https://github.com/litesuits/android-common)
@@ -65,9 +75,14 @@ dependencies {
     compile 'com.qiniu:qiniu-android-sdk:7.3.+'
     // 圆形头像
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    // 权限检测 https://github.com/yewei02538/HiPermission/blob/master/README-CN.md
+    compile 'me.weyye.hipermission:library:1.0.7'
     // 依赖库
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.android.support:recyclerview-v7:25.0.0'
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:recyclerview-v7:25.1.0'
+    // 工具包 https://github.com/Blankj/AndroidUtilCode/blob/master/README-CN.md
+    compile 'com.blankj:utilcode:1.9.2'
+
     compile files('libs/jcore-android_v1.1.3.jar')
     compile files('libs/jpush-android_v3.0.6.jar')
 }

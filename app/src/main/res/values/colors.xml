@@ -2,13 +2,31 @@
 <resources>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
-    <color name="themeColor">#F08600</color>
-    <color name="backgroundColor">#EEEEEE</color>
-    <color name="mainTextColor">#FAFAFA</color>
+    <!-- 主题色 -->
+    <color name="themeColor">#83BD00</color>
+    <color name="backgroundColor">#F8F8F8</color>
+    <color name="mainTextColor">#000000</color>
+    <color name="edttext_textcolor">#000000</color>
+    <color name="edttext_placecolor">#444444</color>
 
+    <color name="line">#A5A5A5</color>
+
+    <color name="desert_storm">#F8F8F8</color>
     <color name="poolTextColor">#f5774b00</color>
 
     <color name="spinner_origin">#FF8C00</color>
     <color name="spinner_green">#10E382</color>
     <color name="spinner_blue">#0096E6</color>
+
+
+    <color name="colorPrimary">#F44336</color>
+    <color name="colorPrimaryDark">#D32F2F</color>
+    <color name="colorAccent">#536DFE</color>
+    <color name="bg_app">#F1F1F1</color>
+
+    <color name="tab_select">@color/themeColor</color>
+    <color name="tab_unselect">#444444</color>
+    <color name="bg_btn">#dadada</color>
+    <color name="gray_chateau">#A5A5A5</color>
+
 </resources>
