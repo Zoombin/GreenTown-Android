@@ -86,13 +86,13 @@ class NoticeFragment : BaseFragment() {
                      position: Int) = with(itemView) {
 
                 when(message.msg_type) {
-                    1 -> { typeTextView.text = "公告" }
-                    2 -> { typeTextView.text = if (message.msg_content.contains("鞭策")) "鞭策" else "鼓舞" }
-                    3 -> { typeTextView.text = message.department_name }
-                    4 -> { typeTextView.text = "我的留言" }
+                    1 -> { timeTextView.text = "公告" }
+                    2 -> { timeTextView.text = if (message.msg_content.contains("鞭策")) "鞭策" else "鼓舞" }
+                    3 -> { timeTextView.text = message.department_name }
+                    4 -> { timeTextView.text = "我的留言" }
                 }
 
-                timeTextView.text = message.created_date
+                timeTextView.text = "${timeTextView.text} ${message.created_date}"
                 messageTextView.text = message.msg_content
             }
 
