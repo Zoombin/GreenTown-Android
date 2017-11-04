@@ -31,7 +31,7 @@ import org.jetbrains.anko.support.v4.toast
  * Created by gejw on 2017/9/23.
  */
 
-class ActivityFragment : BaseFragment() {
+class ActivityFragment : MainBaseFragment() {
 
     companion object {
 
@@ -152,6 +152,11 @@ class ActivityFragment : BaseFragment() {
             }
         }
         reloadData()
+    }
+
+    override fun exec() {
+        super.exec()
+        query()
     }
 
     private fun reloadSports(sports: List<Sport> = emptyList()) {

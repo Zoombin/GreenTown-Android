@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.layout_cell_notice.view.*
  * Created by gejw on 2017/9/23.
  */
 
-class NoticeFragment : BaseFragment() {
+class NoticeFragment : MainBaseFragment() {
 
     companion object {
 
@@ -56,6 +56,11 @@ class NoticeFragment : BaseFragment() {
         }) {
             reloadData()
         }
+    }
+
+    override fun exec() {
+        super.exec()
+        query()
     }
 
     private fun reloadData(users: List<Message> = emptyList()) {

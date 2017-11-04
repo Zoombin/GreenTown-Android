@@ -10,8 +10,8 @@ android {
         applicationId "com.zoombin.greentown"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 8
-        versionName '1.2.8'
+        versionCode 9
+        versionName '1.2.9'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     //签名配置
