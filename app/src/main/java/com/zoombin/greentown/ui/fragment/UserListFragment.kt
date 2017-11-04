@@ -7,81 +7,93 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import com.bumptech.glide.Glide
 import com.zoombin.greentown.R
-import com.zoombin.greentown.model.Sport
 import com.zoombin.greentown.model.User
 import com.robinge.quickkit.fragment.QBaseBackFragment
-import com.zoombin.greentown.ui.fragment.member.InspireFragment
-import com.zoombin.greentown.ui.fragment.member.SpurFragment
-import kotlinx.android.synthetic.main.fragment_guild.*
+import kotlinx.android.synthetic.main.fragment_users.*
 import kotlinx.android.synthetic.main.layout_guild_cell.view.*
 import kotlinx.android.synthetic.main.layout_titlebar.*
 import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.image
 import org.jetbrains.anko.imageResource
-import org.jetbrains.anko.support.v4.toast
 
 /**
- * Created by gejw on 2017/6/9.
+ * Created by gejw on 2017/7/28.
  */
 
-class SportPlayerFragmentQ(sport: Sport) : QBaseBackFragment() {
 
-    var sport = sport
-    var items = ArrayList<User>()
+class UserListFragment(users: ArrayList<User>, selectedLlistener: (User) -> Unit) : QBaseBackFragment() {
+
+    var users = users
+    var selectedLlistener = selectedLlistener
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_sportplayer, null)
+        val view = inflater?.inflate(R.layout.fragment_users, null)
         return view
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        titleLabel.text = "选手名单"
+        titleLabel.text = "选择用户"
 
         val layoutManager = GridLayoutManager(context, 1)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = ListAdapter(items, {
-            start(SpurFragment.newInstance(it))
-        }) {
-            start(InspireFragment.newInstance(it))
-        }
-        sport.players({ users ->
-            items.clear()
-            items.addAll(users)
-            recyclerView.adapter.notifyDataSetChanged()
-            emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
-        }) { message ->
-            if (message != null) toast(message)
-            emptyView.visibility = if (items.size == 0) View.VISIBLE else View.INVISIBLE
-        }
+        recyclerView.adapter = ListAdapter(users, { user ->
+            selectedLlistener(user)
+            pop()
+        })
 
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                var result = ArrayList<User>()
+                for (user in users) {
+                    if (user.fullname.contains(query!!)) {
+                        result.add(user)
+                    }
+                }
+
+                val adapter = recyclerView.adapter as ListAdapter
+                adapter.users.clear()
+                adapter.users.addAll(result)
+                recyclerView.adapter.notifyDataSetChanged()
+                return false
+            }
+
+        })
     }
 
     override fun initView() {
 
     }
 
-    class ListAdapter(val users: ArrayList<User>,
-                      val spurLlistener: (User) -> Unit,
-                      val inspireLlistener: (User) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+
+    class ListAdapter(val items: ArrayList<User>,
+                      val selectedLlistener: (User) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+
+        var users = items
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder {
             return ViewHolder(View.inflate(parent.context, R.layout.layout_guild_cell, null))
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.bind(users[position], position, spurLlistener, inspireLlistener)
+            holder.bind(users[position], position, selectedLlistener)
         }
 
         override fun getItemCount() = users.size
 
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-            fun bind(item: User, position: Int, spurLlistener: (User) -> Unit, inspireLlistener: (User) -> Unit) = with(itemView) {
+            fun bind(item: User, position: Int, selectedLlistener: (User) -> Unit) = with(itemView) {
                 when(position % 4) {
                     0 -> { layout.backgroundResource = R.drawable.cell_blue_xml }
                     1 -> { layout.backgroundResource = R.drawable.cell_green_xml }
@@ -94,8 +106,9 @@ class SportPlayerFragmentQ(sport: Sport) : QBaseBackFragment() {
                 Glide.with(context).load(item.logo).into(avatarImageView)
                 nameTextView.text = item.fullname
                 positionTextView.text = "${item.department_name}"
-                spurButton.setOnClickListener { spurLlistener(item) }
-                inspireButton.setOnClickListener { inspireLlistener(item) }
+                spurButton.visibility = View.GONE
+                inspireButton.visibility = View.GONE
+                layout.setOnClickListener { selectedLlistener(item) }
             }
 
         }

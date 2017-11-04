@@ -6,8 +6,8 @@ import android.view.View
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.Reason
 import com.zoombin.greentown.model.User
-import com.zoombin.greentown.ui.fragment.UserListFragmentQ
 import com.robinge.quickkit.fragment.QBaseBackFragment
+import com.zoombin.greentown.ui.fragment.UserListFragment
 import kotlinx.android.synthetic.main.fragment_spur.*
 import kotlinx.android.synthetic.main.widget_remark.view.*
 import kotlinx.android.synthetic.main.widget_spinner.view.*
@@ -81,11 +81,11 @@ class SpurFragment : QBaseBackFragment() {
 
         playerSpinner.setOnClickListener {
             User.allUsers({ users ->
-                if (users.size == 0) {
+                if (users.isEmpty()) {
                     toast("无数据")
                     return@allUsers
                 }
-                start(UserListFragmentQ(ArrayList(users), { user ->
+                start(UserListFragment(ArrayList(users), { user ->
                     this.user = user
                     playerSpinner.valueTextView.text = user!!.fullname
                 }))
@@ -95,7 +95,7 @@ class SpurFragment : QBaseBackFragment() {
         }
         reasonSpinner.setOnClickListener {
             Reason.spurReason({ reasons ->
-                if (reasons.size == 0) {
+                if (reasons.isEmpty()) {
                     toast("无数据")
                     return@spurReason
                 }
