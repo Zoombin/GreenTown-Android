@@ -36,7 +36,7 @@ import java.io.ByteArrayOutputStream
  * Created by gejw on 2017/9/23.
  */
 
-class MeFragment : BaseFragment() {
+class MeFragment : MainBaseFragment() {
 
     companion object {
 

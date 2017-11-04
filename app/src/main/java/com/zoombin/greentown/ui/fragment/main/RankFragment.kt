@@ -14,6 +14,7 @@ import com.zoombin.greentown.model.User
 import com.robinge.quickkit.fragment.BarButtonItem
 import com.zoombin.greentown.ui.fragment.common.BaseFragment
 import com.robinge.quickkit.fragment.setRightBarButtonItem
+import com.zoombin.greentown.ui.fragment.main.MainBaseFragment
 import kotlinx.android.synthetic.main.fragment_rank.*
 import kotlinx.android.synthetic.main.layout_rank_cell.view.*
 import org.jetbrains.anko.backgroundResource
@@ -26,7 +27,7 @@ import java.util.*
  * Created by gejw on 2017/6/9.
  */
 
-class RankFragment : BaseFragment() {
+class RankFragment : MainBaseFragment() {
 
     companion object {
 

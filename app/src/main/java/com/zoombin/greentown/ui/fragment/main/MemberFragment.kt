@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.layout_cell_member.view.*
  * Created by gejw on 2017/9/23.
  */
 
-class MemberFragment: BaseFragment() {
+class MemberFragment: MainBaseFragment() {
 
     companion object {
 
