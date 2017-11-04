@@ -13,12 +13,21 @@ import com.robinge.quickkit.widget.tabbar.QBottomBarTab
 import com.zoombin.greentown.R
 import com.zoombin.greentown.model.User
 import com.zoombin.greentown.ui.LoginActivity
+import com.zoombin.greentown.ui.fragment.common.BaseFragment
 import com.zoombin.greentown.ui.fragment.main.rank.RankFragment
 import me.yokeyword.fragmentation.SupportFragment
 
 /**
  * Created by gejw on 2017/10/2.
  */
+
+open abstract class MainBaseFragment: BaseFragment() {
+
+    open fun exec() {
+
+    }
+
+}
 
 class MainFragment: SupportFragment() {
 
@@ -38,7 +47,7 @@ class MainFragment: SupportFragment() {
         }
     }
 
-    private val mFragments = arrayOfNulls<SupportFragment>(5)
+    private val mFragments = arrayOfNulls<MainBaseFragment>(5)
 
     private var mBottomBar: QBottomBar? = null
 
@@ -130,6 +139,7 @@ class MainFragment: SupportFragment() {
                 if (position == FIVE) {
                     MeFragment.newInstance().query()
                 }
+                mFragments[position]?.exec()
             }
 
             override fun onTabUnselected(position: Int) {
